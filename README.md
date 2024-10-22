@@ -1,4 +1,4 @@
-# 10月21日 | Clash Meta每天更新20.3M/S免费节点订阅链接  更新时间 2024-10-21 08:08:16
+# 10月22日 | Clash Meta每天更新22.2M/S免费节点订阅链接  更新时间 2024-10-22 08:39:18
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clash-meta.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,19 +9,19 @@
 
 ### Clash订阅链接
 
-- https://clash-meta.github.io/uploads/2024/10/0-20241021.yaml
-- https://clash-meta.github.io/uploads/2024/10/1-20241021.yaml
-- https://clash-meta.github.io/uploads/2024/10/2-20241021.yaml
-- https://clash-meta.github.io/uploads/2024/10/3-20241021.yaml
-- https://clash-meta.github.io/uploads/2024/10/4-20241021.yml
+- https://clash-meta.github.io/uploads/2024/10/0-20241022.yaml
+- https://clash-meta.github.io/uploads/2024/10/1-20241022.yaml
+- https://clash-meta.github.io/uploads/2024/10/2-20241022.yaml
+- https://clash-meta.github.io/uploads/2024/10/3-20241022.yaml
+- https://clash-meta.github.io/uploads/2024/10/4-20241022.yml
 
 ### V2ray订阅链接
 
-- https://clash-meta.github.io/uploads/2024/10/0-20241021.txt
-- https://clash-meta.github.io/uploads/2024/10/1-20241021.txt
-- https://clash-meta.github.io/uploads/2024/10/2-20241021.txt
-- https://clash-meta.github.io/uploads/2024/10/3-20241021.txt
-- https://clash-meta.github.io/uploads/2024/10/4-20241021.txt
+- https://clash-meta.github.io/uploads/2024/10/0-20241022.txt
+- https://clash-meta.github.io/uploads/2024/10/1-20241022.txt
+- https://clash-meta.github.io/uploads/2024/10/2-20241022.txt
+- https://clash-meta.github.io/uploads/2024/10/3-20241022.txt
+- https://clash-meta.github.io/uploads/2024/10/4-20241022.txt
 
 ## 更多clash节点订阅 ：
 
