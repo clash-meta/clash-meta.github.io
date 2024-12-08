@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-22860.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kotlin新手入坑：构造函数，静态方法，顶层方法.._.ST</title>
+        <meta name="description" content="构造函数，静态方法  前言 构造函数   主构函数 次构造函数   静态方法   类似静态方法调用的语法特性 静态方法 顶层方法     抓住今天，尽可能少的信赖明天。 喝汤能补 (* ^ ▽ ^ *" />
+        <link rel="icon" href="__ADDON__/img/clash_meta/favicon.ico" type="image/x-icon"/>
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Kotlin新手入坑：构造函数，静态方法，顶层方法.._.ST</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>构造函数，静态方法</h3> <ul> <li><a href="#_4" rel="nofollow">前言</a></li> <li><a href="#_12" rel="nofollow">构造函数</a></li> <li> <ul> <li><a href="#_14" rel="nofollow">主构函数</a></li> <li><a href="#_57" rel="nofollow">次构造函数</a></li> </ul> </li> <li><a href="#_85" rel="nofollow">静态方法</a></li> <li> <ul> <li><a href="#_90" rel="nofollow">类似静态方法调用的语法特性</a></li> <li><a href="#_114" rel="nofollow">静态方法</a></li> <li><a href="#_129" rel="nofollow">顶层方法</a></li> </ul> </li> </ul> </div> <p><font size="5"><em><strong>抓住今天，尽可能少的信赖明天。</strong></em> </font>喝汤能补 (* ^ ▽ ^ *)</p> </h1> <p>  该文章作为学习交流，如有错误欢迎各位大佬指正 (* ^ ▽ ^ *)</p> <ul> <li>自身技能<br /> （1）已具备计算机的基本知识</li> <li>本文简介<br /> 主要讲解：构造函数概念与相关语法，静态方法概念与相关语法知识。</li> </ul> </h1> <p>在kotlin中构造函数分为两种：主构函数，次构函数。</p> <h2> <a id="_14" rel="nofollow"></a>主构函数</h2> <p>    主构函数：每个类默认都会有一个不带参数的主构函数，也可以显式的给它指明参数。特点是没有函数体，直接定义在类名的后面即可。</p> <p>看下代码<br />     这里将name1，age1都放在主构函数中，表示在实例化Bird时，必须要传入要求的参数。<br />     在创建对象时，传入的参数自动赋值了，所以不需要重新赋值，可以使用val。<br />     init结构体：如果想在主构造函数中编写逻辑，就必须写在 <font color="red"> init{}</font>的函数体中。（主构造函数无函数体）</p> <pre><code>class Bird(val name1 : String ,val age1 : Int) : Animal(){ 	init {         println("init Bird")     } 	 }  val Bird  b  =  Bird("翠",3) </code></pre> <p>    学过java的会发现，继承的时候多了一个(). why？------java继承中有个特性，是子类的构造函数必须调用父类的构造函数。 在kotlin中，可以通过在init结构体中去调用父类的构造函数，但是这种方式不太好，在大多数的时候，我们是不需要写init的。所以使用  ()  来进行代替,子类的构造函数调用父类中的哪个构造函数，通过继承时的括号进行指定。</p> <p>看下带参数的父类的代码<br />     Animal 已经带了参数，这时如果继承时是Animal()，就会报错，因为没有无参数的主构造函数了。在添加这个两个构造函数的值的时候，可以在子类中加上这两个参数，然后传个父类的构造函数。<br />     这里对父类的参数声明未使用var，val，是因为主构造函数中，声明成var、val的参数将自动成为该类的字段，会导致和父类同名的name，age冲突。不加关键字表示将name，age的作用域仅限制在主构造函数中。</p> <pre><code>open class Animal( name: String, age: Int) {     var name = ""     var age = 0     fun eat() {         println(name + " age is " + age)     } }  class Bird(val appearance : String ,name: String, age : Int) : Animal(name,age){     init {         println("init Bird")     }     fun fry(){         println(" flight ")     } }      val bird = Bird("翅膀","cui",4) </code></pre> <h2> <a id="_57" rel="nofollow"></a>次构造函数</h2> <p>   对于任意一个类，只能有一个主构造函数，但是可以有多个次构造函数。次构造函数也可以用来实例化类，特点是拥有函数体。<br /> 当类机既有主构造函数又有次构造函数时，所有的次构造函数都必须调用主构造函数(包括间接调用)。</p> <ul> <li> <font color="red"> <strong>constructor关键字</strong></font>，语法格式constructor(参数) : this (参数){…}</li> </ul> <p>   第一个次构造函数接收name和age，然后通过this调用主构造函数，并对 appearance赋值初始值； 第二个次构造函数，通过this调用第一个次构造函数，并对name和age参数赋值初始值，间接调用了主构造函数。</p> <pre><code>class Bird(val appearance : String ,name: String, age : Int) : Animal(name,age){     constructor(name: String,age: Int): this("",name,age){     }     constructor() : this ("",0){     }          fun fry(){         println(" flight ")     } } </code></pre> <p>看个特殊的列子<br />    这时继承又没有()了。前面我们提到一个类默认都有一个主构造函数，然而kotlin是允许，类中只有次构造函数，没有主构造函数的情况的，非常少见。因为没有主构造函数，所以继承时，也就不需要括号了；同时，次构造函数只能   直接调用(super)  父类的构造函数。</p> <pre><code>class Bird : Animal{     constructor(name: String,age: Int): super(name,age){     } } </code></pre> </h1> <p>  静态方法，在一些编程语言中也称类方法，指不需要创建实例就能调用的方法。Kotlin中，极度弱化了静态方法的概念，改用其语法特性来实现类似效果，但也有静态方法。</p> <ul> <li>类似静态方法调用的语法特性，不是真的静态方法；如果在java代码中使用静态方法的形式去调用，会发现这些方法并不存在。</li> </ul> <h2> <a id="_90" rel="nofollow"></a>类似静态方法调用的语法特性</h2> <p>  工具类的方法，Kotlin推荐使用单例类的方式来实现。这里的getFileIsExist不是静态方法，但是实现了通过类名即可调用的语法特性。</p> <pre><code>object FileUtil {     fun getFileIsExist(file: File): Boolean{         return file.exists()     } } </code></pre> <p>  在类中，只希望某个方法能使用类名的方式进行调用，则可以使用<font color="red"> <strong>companion object关键字</strong></font>。这个关键字会在Test类的内部创建一个伴生类，getFileIsExist就是定义在这个伴生类里面的实例方法。<br />   Kotlin保证Test类始终只会存在一个伴生类对象，所以Test.getFileIsExist()方法，就是调用Test类的伴生对象的getFileIsExist()方法。<br />   同样，这种形式定义的getFileIsExist()方法也不是静态方法。</p> <pre><code>class Test{      companion object {         fun getFileIsExist(file: File): Boolean {             return file.exists()         }     } } </code></pre> <h2> <a id="_114" rel="nofollow"></a>静态方法</h2> <p>  Kotlin中，给单例类或者companion object 中的方法加上<font color="red">@JvmStatic注解</font>，编译器就会将这些方法编译成真正的静态方法。该注解只能加在单例类，或者companion object 中的方法上，普通方法添加，会提示语法错误。</p> <pre><code>class Test{      companion object {         @JvmStatic         fun getFileIsExist(file: File): Boolean {             return file.exists()         }     } } </code></pre> <h2> <a id="_129" rel="nofollow"></a>顶层方法</h2> <p>  顶层方法指的是那些没有定义在任何类中的方法，直接放到某一个包里面（也称为包级别函数）。如：main()方法。Kotlin编译器会将所有的顶层方法全部编译成静态方法，所以定义一个顶层方法，也就定义一个静态方法。</p> <ul> <li>定义顶层方法，首先创建一个Kotlin文件，后缀为.kt ，在这个xxx.kt的文件中，定义的方法都是顶层方法。使用时，直接在需要使用的类，导入该方法即可。</li> <li>如果在java中，没有顶层方法概念，无法直接调用。这里编译器会自动创建一个xxxKt的java类，这些方法以静态的形式定义在该java类中。</li> </ul> <p>  简单例子，Kotlin中定义FileUtil.kt ，里面有getFileIsExist()方法。 java中想使用，需要使用编译器创建的FileUtilKt类，然后调用该类中的 getFileIsExist()方法。</p> <p><font size="5">觉得有帮助的点下赞哟，毕竟三连步骤更多，嘻嘻，谢谢大家的支持(* ^ ▽ ^ *)</font>                 </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-22402.htm">卖宠物粮的网站有哪些（卖宠物粮的小程序）</a></p>
+                                        <p>下一个：<a href="/news/article-22862.htm">动物疫苗的种类有哪些名称图片大全集（动物疫苗的类型）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-clash-meta-windows.htm" title="11月15日 | Clash Meta每天更新18M/S免费节点订阅链接">11月15日 | Clash Meta每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-subscribe-node.htm" title="12月5日 | Clash Meta每天更新22.7M/S免费节点订阅链接">12月5日 | Clash Meta每天更新22.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-15-latest-clash-meta-node.htm" title="9月15日 | Clash Meta每天更新22.7M/S免费节点订阅链接">9月15日 | Clash Meta每天更新22.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-1-free-node-subscribe-links.htm" title="10月1日 | Clash Meta每天更新20.6M/S免费节点订阅链接">10月1日 | Clash Meta每天更新20.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-node-share-links.htm" title="11月14日 | Clash Meta每天更新19.5M/S免费节点订阅链接">11月14日 | Clash Meta每天更新19.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-18784.htm" title="spring boot 基础学习 &#8211; thymeleaf页面模板技术">spring boot 基础学习 &#8211; thymeleaf页面模板技术</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-12-node-share.htm" title="8月12日 | Clash Meta每天更新18.9M/S免费节点订阅链接">8月12日 | Clash Meta每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-clash-meta-node.htm" title="10月26日 | Clash Meta每天更新20.7M/S免费节点订阅链接">10月26日 | Clash Meta每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-node-share.htm" title="10月10日 | Clash Meta每天更新20.6M/S免费节点订阅链接">10月10日 | Clash Meta每天更新20.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19197.htm" title="JAVA8 日期和时间(LocalDate、LocalDateTime、ZoneId、Duration、Period、Instant)API 用法详解">JAVA8 日期和时间(LocalDate、LocalDateTime、ZoneId、Duration、Period、Instant)API 用法详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
