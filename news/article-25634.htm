@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-25634.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Golang 实现 Redis(10): 本地原子性事务_在线工具</title>
+        <meta name="description" content="为了支持多个命令的原子性执行 Redis 提供了事务机制。 Redis 官方文档中称事务带有以下两个重要的保证：  事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Golang 实现 Redis(10): 本地原子性事务_在线工具</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<p>为了支持多个命令的原子性执行 Redis 提供了事务机制。 Redis 官方文档中称事务带有以下两个重要的保证：</p> <ul> <li>事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。</li> <li>事务是一个原子操作：事务中的命令要么全部被执行，要么全部都不执行</li> </ul> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://redis.io/docs/manual/transactions/"  target="_blank" rel="nofollow">https://redis.io/docs/manual/transactions/</a></p> </blockquote> <p>我们在使用事务的过程中可能会遇到两类错误:</p> <ol> <li>在命令入队过程中出现语法错误</li> <li>在命令执行过程中出现运行时错误，比如对 string 类型的 key 进行 lpush 操作</li> </ol> <p>在遇到语法错误时 Redis 会中止命令入队并丢弃事务。在遇到运行时错误时 Redis 仅会报错然后继续执行事务中剩下的命令，不会像大多数数据库那样回滚事务。对此，Redis 官方的解释是：</p> <blockquote> <p>Redis 命令只会因为错误的语法而失败（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由编程错误造成的，而这些错误应该在开发的过程中被发现，而不应该出现在生产环境中。<br /> 因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。<br /> 有种观点认为 Redis 处理事务的做法会产生 bug ， 然而需要注意的是， 在通常情况下， 回滚并不能解决编程错误带来的问题。 举个例子， 如果你本来想通过 INCR 命令将键的值加上 1 ， 却不小心加上了 2 ， 又或者对错误类型的键执行了 INCR ， 回滚是没有办法处理这些情况的。鉴于没有任何机制能避免程序员自己造成的错误， 并且这类错误通常不会在生产环境中出现， 所以 Redis 选择了更简单、更快速的无回滚方式来处理事务。</p> </blockquote> <p>emmmm, 接下来我们尝试在 Godis 中实现具有原子性、隔离性的事务吧。</p> <blockquote> <p>事务的原子性具有两个特点：1. 事务执行过程不可被其它事务(线程)插入 2. 事务要么完全成功要么完全不执行，不存在部分成功的状态<br /> 事务的隔离性是指事务中操作的结果是否对其它并发事务可见。由于KV数据库不存在幻读问题，因此我们需要避免脏读和不可重复度问题。</p> </blockquote> </h1> <h2 id="锁">锁</h2> <p>与 Redis 的单线程引擎不同 godis 的存储引擎是并行的，因此需要设计锁机制来保证执行多条命令执行时的原子性和隔离性。</p> <p>我们在<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/Finley/p/12590718.html#%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"  target="_blank" rel="nofollow">实现内存数据库</a>一文中提到:</p> <p>实现一个常规命令需要提供3个函数:</p> <ul> <li>ExecFunc 是实际执行命令的函数</li> <li>PrepareFunc 在 ExecFunc 前执行，负责分析命令行读写了哪些 key 便于进行加锁</li> <li>UndoFunc 仅在事务中被使用，负责准备 undo logs 以备事务执行过程中遇到错误需要回滚。</li> </ul> <p>其中的 PrepareFunc 会分析命令行返回要读写的 key, 以 prepareMSet 为例:</p> <pre><code class="language-go">// return writtenKeys, readKeys func prepareMSet(args [][]byte) ([]string, []string) { 	size := len(args) / 2 	keys := make([]string, size) 	for i := 0; i &lt; size; i++ { 		keys[i] = string(args[2*i]) 	} 	return keys, nil }</code></pre> <p>结合<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/Finley/p/12590718.html#lockmap"  target="_blank" rel="nofollow">实现内存数据库</a> 中提到的 LockMap 即可完成加锁。由于其它协程无法获得相关 key 的锁所以不可能插入到事务中，所以我们实现了原子性中不可被插入的特性。</p> <p>事务需要把所有 key 一次性完成加锁, 只有在事务提交或回滚时才能解锁。不能用到一个 key 就加一次锁用完就解锁，这种方法可能导致脏读：</p> <table> <thead> <tr> <th style="text-align: center">时间</th> <th style="text-align: center">事务1</th> <th style="text-align: center">事务2</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">t1</td> <td style="text-align: center">锁定key A</td> <td style="text-align: center"></td> </tr> <tr> <td style="text-align: center">t2</td> <td style="text-align: center">修改key A</td> <td style="text-align: center"></td> </tr> <tr> <td style="text-align: center">t3</td> <td style="text-align: center">解锁key A</td> <td style="text-align: center"></td> </tr> <tr> <td style="text-align: center">t4</td> <td style="text-align: center"></td> <td style="text-align: center">锁定key A</td> </tr> <tr> <td style="text-align: center">t4</td> <td style="text-align: center"></td> <td style="text-align: center">读取key A</td> </tr> <tr> <td style="text-align: center">t5</td> <td style="text-align: center"></td> <td style="text-align: center">解锁key A</td> </tr> <tr> <td style="text-align: center">t6</td> <td style="text-align: center">提交</td> <td style="text-align: center"></td> </tr> </tbody> </table> <p>如上图所示 t4 时刻， 事务 2 读到了事务 1未提交的数据，出现了脏读异常。</p> <h2 id="回滚">回滚</h2> <p>为了在遇到运行时错误时事务可以回滚（原子性），可用的回滚方式有两种：</p> <ul> <li>保存修改前的value, 在回滚时用修改前的value进行覆盖</li> <li>使用回滚命令来撤销原命令的影响。举例来说：键A原值为1，调用了<code>Incr A</code> 之后变为了2，我们可以再执行一次<code>Set A 1</code>命令来撤销 incr 命令。</li> </ul> <p>出于节省内存的考虑我们最终选择了第二种方案。比如 HSet 命令只需要另一条 HSet 将 field 改回原值即可，若采用保存 value 的方法我们则需要保存整个 HashMap。类似情况的还有 LPushRPop 等命令。</p> <p>有一些命令可能需要多条命令来回滚，比如回滚 Del 时不仅需要恢复对应的 key-value 还需要恢复 TTL 数据。或者 Del 命令删除了多个 key 时，也需要多条命令进行回滚。综上我们给出 UndoFunc 的定义：</p> <pre><code class="language-go">// UndoFunc returns undo logs for the given command line // execute from head to tail when undo type UndoFunc func(db *DB, args [][]byte) []CmdLine</code></pre> <p>我们以可以回滚任意操作的<code>rollbackGivenKeys</code>为例进行说明，当然使用<code>rollbackGivenKeys</code>的成本较高，在可能的情况下尽量实现针对性的 undo log.</p> <pre><code class="language-go">func rollbackGivenKeys(db *DB, keys ...string) []CmdLine { 	var undoCmdLines [][][]byte 	for _, key := range keys { 		entity, ok := db.GetEntity(key) 		if !ok { 			// 原来不存在 key 删掉 			undoCmdLines = append(undoCmdLines, 				utils.ToCmdLine("DEL", key), 			) 		} else { 			undoCmdLines = append(undoCmdLines, 				utils.ToCmdLine("DEL", key), // 先把新 key 删除掉 				aof.EntityToCmd(key, entity).Args, // 把 DataEntity 序列化成命令行 				toTTLCmd(db, key).Args, 			) 		} 	} 	return undoCmdLines }</code></pre> <p>接下来看一下 EntityToCmd, 非常简单易懂：</p> <pre><code class="language-go">func EntityToCmd(key string, entity *database.DataEntity) *protocol.MultiBulkReply { 	if entity == nil { 		return nil 	} 	var cmd *protocol.MultiBulkReply 	switch val := entity.Data.(type) { 	case []byte: 		cmd = stringToCmd(key, val) 	case *List.LinkedList: 		cmd = listToCmd(key, val) 	case *set.Set: 		cmd = setToCmd(key, val) 	case dict.Dict: 		cmd = hashToCmd(key, val) 	case *SortedSet.SortedSet: 		cmd = zSetToCmd(key, val) 	} 	return cmd }  var hMSetCmd = []byte("HMSET")  func hashToCmd(key string, hash dict.Dict) *protocol.MultiBulkReply { 	args := make([][]byte, 2+hash.Len()*2) 	args[0] = hMSetCmd 	args[1] = []byte(key) 	i := 0 	hash.ForEach(func(field string, val interface{}) bool { 		bytes, _ := val.([]byte) 		args[2+i*2] = []byte(field) 		args[3+i*2] = bytes 		i++ 		return true 	}) 	return protocol.MakeMultiBulkReply(args) }</code></pre> <h2 id="watch">Watch</h2> <p>Redis Watch 命令用于监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被放弃。</p> <p>实现 Watch 命令的核心是发现 key 是否被改动，我们使用简单可靠的版本号方案：为每个 key 存储一个版本号，版本号变化说明 key 被修改了:</p> <pre><code class="language-go">// database/single_db.go func (db *DB) GetVersion(key string) uint32 { 	entity, ok := db.versionMap.Get(key) 	if !ok { 		return 0 	} 	return entity.(uint32) }  // database/transaciton.go func Watch(db *DB, conn redis.Connection, args [][]byte) redis.Reply { 	watching := conn.GetWatching() 	for _, bkey := range args { 		key := string(bkey) 		watching[key] = db.GetVersion(key) // 将当前版本号存在 conn 对象中 	} 	return protocol.MakeOkReply() }</code></pre> <p>在执行事务前比较版本号：</p> <pre><code class="language-go">// database/transaciton.go func isWatchingChanged(db *DB, watching map[string]uint32) bool { 	for key, ver := range watching { 		currentVersion := db.GetVersion(key) 		if ver != currentVersion { 			return true 		} 	} 	return false }</code></pre> </h1> <p>在了解事务相关机制后，我们可以来看一下事务执行的核心代码<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/HDT3213/godis/blob/master/database/transaction.go"  target="_blank" rel="nofollow"> ExecMulti</a></p> <pre><code class="language-go">func (db *DB) ExecMulti(conn redis.Connection, watching map[string]uint32, cmdLines []CmdLine) redis.Reply { 	// 准备阶段 	// 使用 prepareFunc 获取事务要读写的 key 	writeKeys := make([]string, 0) // may contains duplicate 	readKeys := make([]string, 0) 	for _, cmdLine := range cmdLines { 		cmdName := strings.ToLower(string(cmdLine[0])) 		cmd := cmdTable[cmdName] 		prepare := cmd.prepare 		write, read := prepare(cmdLine[1:]) 		writeKeys = append(writeKeys, write...) 		readKeys = append(readKeys, read...) 	} 	watchingKeys := make([]string, 0, len(watching)) 	for key := range watching { 		watchingKeys = append(watchingKeys, key) 	} 	readKeys = append(readKeys, watchingKeys...) 	// 将要读写的 key 和被 watch 的 key 一起加锁 	db.RWLocks(writeKeys, readKeys) 	defer db.RWUnLocks(writeKeys, readKeys)  	// 检查被 watch 的 key 是否发生了改变 	if isWatchingChanged(db, watching) { // watching keys changed, abort 		return protocol.MakeEmptyMultiBulkReply() 	}  	// 执行阶段 	results := make([]redis.Reply, 0, len(cmdLines)) 	aborted := false 	undoCmdLines := make([][]CmdLine, 0, len(cmdLines)) 	for _, cmdLine := range cmdLines { 		// 在命令执行前再准备 undo log, 这样才能保证例如用 decr 回滚 incr 命令的实现可以正常工作 		undoCmdLines = append(undoCmdLines, db.GetUndoLogs(cmdLine)) 		result := db.execWithLock(cmdLine) 		if protocol.IsErrorReply(result) { 			aborted = true 			// don't rollback failed commands 			undoCmdLines = undoCmdLines[:len(undoCmdLines)-1] 			break 		} 		results = append(results, result) 	} 	// 执行成功 	if !aborted {  		db.addVersion(writeKeys...) 		return protocol.MakeMultiRawReply(results) 	} 	// 事务失败进行回滚 	size := len(undoCmdLines) 	for i := size - 1; i &gt;= 0; i-- { 		curCmdLines := undoCmdLines[i] 		if len(curCmdLines) == 0 { 			continue 		} 		for _, cmdLine := range curCmdLines { 			db.execWithLock(cmdLine) 		} 	} 	return protocol.MakeErrReply("EXECABORT Transaction discarded because of previous errors.") }</code></pre> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-25633.htm">仅用四步就整合好SpringSecurity+JWT实现登录认证！</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-node-share.htm" title="10月17日 | Clash Meta每天更新18.2M/S免费节点订阅链接">10月17日 | Clash Meta每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-clash-meta-node-github.htm" title="11月8日 | Clash Meta每天更新20.3M/S免费节点订阅链接">11月8日 | Clash Meta每天更新20.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-15-latest-clash-meta-node.htm" title="9月15日 | Clash Meta每天更新22.7M/S免费节点订阅链接">9月15日 | Clash Meta每天更新22.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-today-clash-meta-node.htm" title="11月10日 | Clash Meta每天更新18M/S免费节点订阅链接">11月10日 | Clash Meta每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-clash-meta-node-github.htm" title="12月3日 | Clash Meta每天更新18.1M/S免费节点订阅链接">12月3日 | Clash Meta每天更新18.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-subscribe-node.htm" title="12月5日 | Clash Meta每天更新22.7M/S免费节点订阅链接">12月5日 | Clash Meta每天更新22.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-6-clash-meta-github.htm" title="8月6日 | Clash Meta每天更新20.7M/S免费节点订阅链接">8月6日 | Clash Meta每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-6-free-subscribe-node.htm" title="9月6日 | Clash Meta每天更新22.8M/S免费节点订阅链接">9月6日 | Clash Meta每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19654.htm" title="隐藏滚动条适用于各个浏览器">隐藏滚动条适用于各个浏览器</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-free-high-speed-nodes.htm" title="11月1日 | Clash Meta每天更新20.4M/S免费节点订阅链接">11月1日 | Clash Meta每天更新20.4M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

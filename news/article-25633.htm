@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-25633.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>仅用四步就整合好SpringSecurity+JWT实现登录认证！</title>
+        <meta name="description" content="小二是新来的实习生，作为技术 leader，我还是很负责任的，有什么锅都想甩给他，啊，不，一不小心怎么把心里话全说出来了呢？重来！ 小二是新来的实习生，作为技术 leader，我还是很负责任的，有什么" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">仅用四步就整合好SpringSecurity+JWT实现登录认证！</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<p>小二是新来的实习生，作为技术 leader，我还是很负责任的，有什么锅都想甩给他，啊，不，一不小心怎么把心里话全说出来了呢？重来！</p> <p>小二是新来的实习生，作为技术 leader，我还是很负责任的，有什么好事都想着他，这不，我就安排了一个整合SpringSecurity+JWT实现登录认证的小任务交，没想到，他仅用四步就搞定了，这让我感觉倍有面。</p> <h3 id="一关于-springsecurity">一、关于 SpringSecurity</h3> <p>在 Spring Boot 出现之前，SpringSecurity 的使用场景是被另外一个安全管理框架 Shiro 牢牢霸占的，因为相对于 SpringSecurity 来说，SSM 中整合 Shiro 更加轻量级。Spring Boot 出现后，使这一情况情况大有改观。正应了那句古话：一人得道鸡犬升天，虽然有点不大合适，就将就着用吧。</p> <p>这是因为 Spring Boot 为 SpringSecurity 提供了自动化配置，大大降低了 SpringSecurity 的学习成本。另外，SpringSecurity 的功能也比 Shiro 更加强大。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/551ee1edbfdb73a7f5c2f3dde77c6d65.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <h3 id="二关于-jwt">二、关于 JWT</h3> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/Nsk43BHIqVxEHUVIfHJTTQ"  target="_blank" rel="nofollow">JWT</a>，是目前最流行的一个<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/HTMDZaukCb7pyfHefVcfyg"  target="_blank" rel="nofollow">跨域</a>认证解决方案：客户端发起用户登录请求，服务器端接收并认证成功后，生成一个 JSON 对象（如下所示），然后将其返回给客户端。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d98fdb98eb9afada8b92b40df70ab7ba.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <p>从本质上来说，JWT 就像是一种生成加密用户身份信息的 Token，更安全也更灵活。</p> <h3 id="三整合步骤">三、整合步骤</h3> <p>第一步，给需要登录认证的模块添加 codingmore-security 依赖：</p> <pre><code>&lt;dependency&gt;     &lt;groupId&gt;top.codingmore&lt;/groupId&gt;     &lt;artifactId&gt;codingmore-security&lt;/artifactId&gt;     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>比如说 codingmore-admin 后端管理模块需要登录认证，就在 codingmore-admin/pom.xml 文件中添加 codingmore-security 依赖。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c2988d90bab054ed7f57eb3f3f2a306d.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <p>第二步，在需要登录认证的模块里添加 CodingmoreSecurityConfig 类，继承自 codingmore-security 模块中的 SecurityConfig 类。</p> <pre><code class="language-java">@Configuration @EnableWebSecurity @EnableGlobalMethodSecurity(prePostEnabled = true) public class CodingmoreSecurityConfig extends SecurityConfig {     @Autowired     private IUsersService usersService;      @Bean     public UserDetailsService userDetailsService() {         //获取登录用户信息         return username -&gt; usersService.loadUserByUsername(username);     } }</code></pre> <p>UserDetailsService 这个类主要是用来加载用户信息的，包括用户名、密码、权限、角色集合....其中有一个方法如下：</p> <pre><code class="language-java">UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;</code></pre> <p>认证逻辑中，SpringSecurity 会调用这个方法根据客户端传入的用户名加载该用户的详细信息，包括判断：</p> <ul> <li>密码是否一致</li> <li>通过后获取权限和角色</li> </ul> <pre><code class="language-java">    public UserDetails loadUserByUsername(String username) {         // 根据用户名查询用户         Users admin = getAdminByUsername(username);         if (admin != null) {             List&lt;Resource&gt; resourceList = getResourceList(admin.getId());             return new AdminUserDetails(admin,resourceList);         }         throw new UsernameNotFoundException("用户名或密码错误");     }</code></pre> <p>getAdminByUsername 负责根据用户名从数据库中查询出密码、角色、权限等。</p> <pre><code class="language-java">    public Users getAdminByUsername(String username) {         QueryWrapper&lt;Users&gt; queryWrapper = new QueryWrapper&lt;&gt;();         queryWrapper.eq("user_login", username);         List&lt;Users&gt; usersList = baseMapper.selectList(queryWrapper);          if (usersList != null &amp;&amp; usersList.size() &gt; 0) {             return usersList.get(0);         }          // 用户名错误，提前抛出异常         throw new UsernameNotFoundException("用户名错误");     }</code></pre> <p>第三步，在 application.yml 中配置下不需要安全保护的资源路径：</p> <pre><code class="language-java">secure:   ignored:     urls: #安全路径白名单       - /doc.html       - /swagger-ui/**       - /swagger/**       - /swagger-resources/**       - /**/v3/api-docs       - /**/*.js       - /**/*.css       - /**/*.png       - /**/*.ico       - /webjars/springfox-swagger-ui/**       - /actuator/**       - /druid/**       - /users/login       - /users/register       - /users/info       - /users/logout</code></pre> <p>第四步，在登录接口中添加登录和刷新 token 的方法：</p> <pre><code class="language-java">@Controller @Api(tags = "用户") @RequestMapping("/users") public class UsersController {     @Autowired     private IUsersService usersService;     @Value("${jwt.tokenHeader}")     private String tokenHeader;     @Value("${jwt.tokenHead}")     private String tokenHead;  @ApiOperation(value = "登录以后返回token")     @RequestMapping(value = "/login", method = RequestMethod.POST)     @ResponseBody     public ResultObject login(@Validated UsersLoginParam users, BindingResult result) {         String token = usersService.login(users.getUserLogin(), users.getUserPass());          if (token == null) {             return ResultObject.validateFailed("用户名或密码错误");         }          // 将 JWT 传递回客户端         Map&lt;String, String&gt; tokenMap = new HashMap&lt;&gt;();         tokenMap.put("token", token);         tokenMap.put("tokenHead", tokenHead);         return ResultObject.success(tokenMap);     }      @ApiOperation(value = "刷新token")     @RequestMapping(value = "/refreshToken", method = RequestMethod.GET)     @ResponseBody     public ResultObject refreshToken(HttpServletRequest request) {         String token = request.getHeader(tokenHeader);         String refreshToken = usersService.refreshToken(token);         if (refreshToken == null) {             return ResultObject.failed("token已经过期！");         }         Map&lt;String, String&gt; tokenMap = new HashMap&lt;&gt;();         tokenMap.put("token", refreshToken);         tokenMap.put("tokenHead", tokenHead);         return ResultObject.success(tokenMap);     } }</code></pre> <p>使用 Apipost 来测试一下，首先是文章获取接口，在没有登录的情况下会提示暂未登录或者 token 已过期。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3242da5fc1745fbfba6689d4cdfaeabe.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <h2 id="四实现原理">四、实现原理</h2> <p>小二之所以能仅用四步就实现了登录认证，主要是因为他将 SpringSecurity+JWT 的代码封装成了通用模块，我们来看看 codingmore-security 的目录结构。</p> <pre><code>codingmore-security ├── component |    ├── JwtAuthenticationTokenFilter -- JWT登录授权过滤器 |    ├── RestAuthenticationEntryPoint |    └── RestfulAccessDeniedHandler ├── config |    ├── IgnoreUrlsConfig |    └── SecurityConfig └── util      └── JwtTokenUtil -- JWT的token处理工具类</code></pre> <p>JwtAuthenticationTokenFilter 和 JwtTokenUtil 在讲<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/Nsk43BHIqVxEHUVIfHJTTQ"  target="_blank" rel="nofollow">JWT</a> 的时候已经详细地讲过了，这里再简单补充一点。</p> <p>客户端的请求头里携带了 token，服务端肯定是需要针对每次请求解析校验 token 的，所以必须得定义一个过滤器，也就是 JwtAuthenticationTokenFilter：</p> <ul> <li>从请求头中获取 token</li> <li>对 token 进行解析、验签、校验过期时间</li> <li>校验成功，将验证结果放到 ThreadLocal 中，供下次请求使用</li> </ul> <p>重点来看其他四个类。第一个 RestAuthenticationEntryPoint（自定义返回结果：未登录或登录过期）：</p> <pre><code class="language-java">public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {     @Override     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {         response.setHeader("Access-Control-Allow-Origin", "*");         response.setHeader("Cache-Control","no-cache");         response.setCharacterEncoding("UTF-8");         response.setContentType("application/json");         response.getWriter().println(JSONUtil.parse(ResultObject.unauthorized(authException.getMessage())));         response.getWriter().flush();     } }</code></pre> <p>可以通过 debug 的方式看一下返回的信息正是之前用户未登录状态下访问文章页的错误信息。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/6ff9ff0e5bb8b7048bbf1868bb3cb168.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <p>具体的信息是在 ResultCode 类中定义的。</p> <pre><code class="language-java">public enum ResultCode implements IErrorCode {     SUCCESS(0, "操作成功"),     FAILED(500, "操作失败"),     VALIDATE_FAILED(506, "参数检验失败"),     UNAUTHORIZED(401, "暂未登录或token已经过期"),     FORBIDDEN(403, "没有相关权限");     private long code;     private String message;      private ResultCode(long code, String message) {         this.code = code;         this.message = message;     } }</code></pre> <p>第二个 RestfulAccessDeniedHandler（自定义返回结果：没有权限访问时）：</p> <pre><code class="language-java">public class RestfulAccessDeniedHandler implements AccessDeniedHandler{     @Override     public void handle(HttpServletRequest request,                        HttpServletResponse response,                        AccessDeniedException e) throws IOException, ServletException {         response.setHeader("Access-Control-Allow-Origin", "*");         response.setHeader("Cache-Control","no-cache");         response.setCharacterEncoding("UTF-8");         response.setContentType("application/json");         response.getWriter().println(JSONUtil.parse(ResultObject.forbidden(e.getMessage())));         response.getWriter().flush();     } }</code></pre> <p>第三个IgnoreUrlsConfig（用于配置不需要安全保护的资源路径）：</p> <pre><code class="language-java">@Getter @Setter @ConfigurationProperties(prefix = "secure.ignored") public class IgnoreUrlsConfig {     private List&lt;String&gt; urls = new ArrayList&lt;&gt;(); }</code></pre> <p>通过 lombok 注解的方式直接将配置文件中不需要权限校验的路径放开，比如说 Knife4j 的接口文档页面。如果不放开的话，就被 SpringSecurity 拦截了，没办法访问到了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/abd8323843889c7d968fc588b1fe7054.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <p>第四个SecurityConfig（SpringSecurity通用配置）：</p> <pre><code class="language-java">public class SecurityConfig extends WebSecurityConfigurerAdapter {      @Autowired(required = false)     private DynamicSecurityService dynamicSecurityService;      @Override     protected void configure(HttpSecurity httpSecurity) throws Exception {         ExpressionUrlAuthorizationConfigurer&lt;HttpSecurity&gt;.ExpressionInterceptUrlRegistry registry = httpSecurity                 .authorizeRequests();          //不需要保护的资源路径允许访问         for (String url : ignoreUrlsConfig().getUrls()) {             registry.antMatchers(url).permitAll();         }          // 任何请求需要身份认证         registry.and()                 .authorizeRequests()                 .anyRequest()                 .authenticated()                 // 关闭跨站请求防护及不使用session                 .and()                 .csrf()                 .disable()                 .sessionManagement()                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)                 // 自定义权限拒绝处理类                 .and()                 .exceptionHandling()                 .accessDeniedHandler(restfulAccessDeniedHandler())                 .authenticationEntryPoint(restAuthenticationEntryPoint())                 // 自定义权限拦截器JWT过滤器                 .and()                 .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);         //有动态权限配置时添加动态权限校验过滤器         if(dynamicSecurityService!=null){             registry.and().addFilterBefore(dynamicSecurityFilter(), FilterSecurityInterceptor.class);         }     } }</code></pre> <p>这个类的主要作用就是告诉 SpringSecurity 那些路径不需要拦截，除此之外的，都要进行 RestfulAccessDeniedHandler（登录校验）、RestAuthenticationEntryPoint（权限校验）和 JwtAuthenticationTokenFilter（JWT 过滤）。</p> <p>并且将 JwtAuthenticationTokenFilter 过滤器添加到 UsernamePasswordAuthenticationFilter 过滤器之前。</p> <h3 id="五测试">五、测试</h3> <p>第一步，测试登录接口，Apipost 直接访问<code>http://localhost:9002/users/login</code>，可以看到 token 正常返回。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d62a28e6839e82b9b4edc2442e55de95.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <p>第二步，不带 token 直接访问文章接口，可以看到进入了 RestAuthenticationEntryPoint 这个处理器：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/eaf4eaf638b033106545ccc38321cf38.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <p>第三步，携带 token，这次我们改用 Knife4j 来测试，发现可以正常访问：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/690f1625bf081261229217d9447a2f38.jpg" alt="仅用四步就整合好SpringSecurity+JWT实现登录认证！"></p> <p>源码链接：</p> <blockquote> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/itwanger/coding-more"  target="_blank" rel="nofollow">https://github.com/itwanger/coding-more</a></p> </blockquote> <p></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-25178.htm">宠物猫疫苗可以自己打么吗多少钱（宠物猫打疫苗可以自己打吗）</a></p>
+                                        <p>下一个：<a href="/news/article-25634.htm">Golang 实现 Redis(10): 本地原子性事务_在线工具</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-8-14-node-share.htm" title="8月14日 | Clash Meta每天更新21.2M/S免费节点订阅链接">8月14日 | Clash Meta每天更新21.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-4-today-clash-meta-node.htm" title="8月4日 | Clash Meta每天更新18.8M/S免费节点订阅链接">8月4日 | Clash Meta每天更新18.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-clash-meta-node-share.htm" title="8月24日 | Clash Meta每天更新21.2M/S免费节点订阅链接">8月24日 | Clash Meta每天更新21.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-19-latest-clash-meta-node.htm" title="9月19日 | Clash Meta每天更新22.1M/S免费节点订阅链接">9月19日 | Clash Meta每天更新22.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-clash-meta-github.htm" title="11月12日 | Clash Meta每天更新20.7M/S免费节点订阅链接">11月12日 | Clash Meta每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-clash-meta-node-share.htm" title="10月21日 | Clash Meta每天更新21.3M/S免费节点订阅链接">10月21日 | Clash Meta每天更新21.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-node-share-links.htm" title="9月26日 | Clash Meta每天更新22.3M/S免费节点订阅链接">9月26日 | Clash Meta每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-latest-clash-meta-node.htm" title="11月17日 | Clash Meta每天更新18.4M/S免费节点订阅链接">11月17日 | Clash Meta每天更新18.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-node-share.htm" title="10月17日 | Clash Meta每天更新18.2M/S免费节点订阅链接">10月17日 | Clash Meta每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-12-free-clash-meta-node.htm" title="10月12日 | Clash Meta每天更新18.2M/S免费节点订阅链接">10月12日 | Clash Meta每天更新18.2M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
