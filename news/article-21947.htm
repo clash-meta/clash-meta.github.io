@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Pandas 错误记录</title>
         <meta name="description" content="1.错误发生在从hdfs下载csv文件到本地，利用pandas读取报错 出现此错误的原因是因为输入文件的路径是文件夹路径，而不是文件本身。 查看本地文件，果然data_rh.csv是个假数据文件打开里" />
-        <link rel="icon" href="__ADDON__/img/clash_meta/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
     <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Template CSS -->
@@ -97,7 +97,8 @@
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<div id="content_views" class="markdown_views prism-github-gist"> <p>1.错误发生在从hdfs下载csv文件到本地，利用pandas读取报错<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/7ace0bd6cef47da07d2b3334a0296c76.jpg" alt="Pandas 错误记录"><br /> 出现此错误的原因是因为输入文件的路径是文件夹路径，而不是文件本身。<br /> 查看本地文件，果然data_rh.csv是个假数据文件打开里面有很多小文件。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/0d50ea54f3295cd4dd1352d8f0d4e814.jpg" alt="Pandas 错误记录"><br /> 主要是利用spark df.write.format(“csv”).save("/tmp/myFile.csv") 保存的是一个myFile.csv的文件夹，有两个问题：</p> <ul> <li>hadoop fs -get 命令得到是一堆文件。</li> <li>文件都是以snappy格式压缩的</li> </ul> <p>第一个问题，可以使用coalesce进行合并，df.coalesce(1).write.option(“header”, “true”).csv(“myFile.csv”)<br /> 这样的写法同样会产生一个myFile.csv的文件夹，但其中的数据会全部保存到单个csv文件中<br /> 第二个问题，由于我使用的是sparkmagic，所以默认压缩是snappy, 可以在csv的compression参数进行设置。</p> <pre><code class="prism language-python">df<span class="token punctuation">.</span>coalesce<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>\   <span class="token punctuation">.</span>write<span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">"header"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span>\   <span class="token punctuation">.</span>csv<span class="token punctuation">(</span>path<span class="token operator">=</span><span class="token string">"myFile.csv"</span><span class="token punctuation">,</span> compression<span class="token operator">=</span><span class="token string">"none"</span><span class="token punctuation">)</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-github-gist"> <p>1.错误发生在从hdfs下载csv文件到本地，利用pandas读取报错<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/7ace0bd6cef47da07d2b3334a0296c76.jpg" alt="Pandas 错误记录"><br /> 出现此错误的原因是因为输入文件的路径是文件夹路径，而不是文件本身。<br /> 查看本地文件，果然data_rh.csv是个假数据文件打开里面有很多小文件。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/0d50ea54f3295cd4dd1352d8f0d4e814.jpg" alt="Pandas 错误记录"><br /> 主要是利用spark df.write.format(“csv”).save("/tmp/myFile.csv") 保存的是一个myFile.csv的文件夹，有两个问题：</p> <ul> <li>hadoop fs -get 命令得到是一堆文件。</li> <li>文件都是以snappy格式压缩的</li> </ul> <p>第一个问题，可以使用coalesce进行合并，df.coalesce(1).write.option(“header”, “true”).csv(“myFile.csv”)<br /> 这样的写法同样会产生一个myFile.csv的文件夹，但其中的数据会全部保存到单个csv文件中<br /> 第二个问题，由于我使用的是sparkmagic，所以默认压缩是snappy, 可以在csv的compression参数进行设置。</p> <pre><code class="prism language-python">df<span class="token punctuation">.</span>coalesce<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>\   <span class="token punctuation">.</span>write<span class="token punctuation">.</span>option<span class="token punctuation">(</span><span class="token string">"header"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span>\   <span class="token punctuation">.</span>csv<span class="token punctuation">(</span>path<span class="token operator">=</span><span class="token string">"myFile.csv"</span><span class="token punctuation">,</span> compression<span class="token operator">=</span><span class="token string">"none"</span><span class="token punctuation">)</span> </code></pre> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-21485.htm">让野猫挠了轻微出血有事吗图片（让野猫挠了轻微出血有事吗图片真实）</a></p>
                                         <p>下一个：<a href="/news/article-21948.htm">国内知名兽药厂家 国内知名兽药厂家有哪些</a></p>
@@ -110,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-21485.htm" title="让野猫挠了轻微出血有事吗图片（让野猫挠了轻微出血有事吗图片真实）">让野猫挠了轻微出血有事吗图片（让野猫挠了轻微出血有事吗图片真实）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-today-clash-meta-node.htm" title="11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接">11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-clash-meta-github.htm" title="11月19日 | Clash Meta每天更新18.8M/S免费节点订阅链接">11月19日 | Clash Meta每天更新18.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-2-clash-meta-windows.htm" title="9月2日 | Clash Meta每天更新18M/S免费节点订阅链接">9月2日 | Clash Meta每天更新18M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-7-free-clash-meta-node.htm" title="8月7日 | Clash Meta每天更新22.9M/S免费节点订阅链接">8月7日 | Clash Meta每天更新22.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-clash-meta-node-github.htm" title="11月8日 | Clash Meta每天更新20.3M/S免费节点订阅链接">11月8日 | Clash Meta每天更新20.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-13-free-high-speed-nodes.htm" title="8月13日 | Clash Meta每天更新20.7M/S免费节点订阅链接">8月13日 | Clash Meta每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-28-clash-meta-windows.htm" title="9月28日 | Clash Meta每天更新20.6M/S免费节点订阅链接">9月28日 | Clash Meta每天更新20.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-12-clash-meta-node-github.htm" title="9月12日 | Clash Meta每天更新22.7M/S免费节点订阅链接">9月12日 | Clash Meta每天更新22.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-high-speed-nodes.htm" title="12月6日 | Clash Meta每天更新18.7M/S免费节点订阅链接">12月6日 | Clash Meta每天更新18.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-5-clash-meta-node.htm" title="8月5日 | Clash Meta每天更新19.8M/S免费节点订阅链接">8月5日 | Clash Meta每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23333.htm" title="315公布的安全狗粮（狗粮315黑榜）">315公布的安全狗粮（狗粮315黑榜）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-meta-node-github.htm" title="10月13日 | Clash Meta每天更新19.7M/S免费节点订阅链接">10月13日 | Clash Meta每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-29-free-node-subscribe.htm" title="8月29日 | Clash Meta每天更新20.1M/S免费节点订阅链接">8月29日 | Clash Meta每天更新20.1M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-10-12-free-clash-meta-node.htm" title="10月12日 | Clash Meta每天更新18.2M/S免费节点订阅链接">10月12日 | Clash Meta每天更新18.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-31-today-clash-meta-node.htm" title="8月31日 | Clash Meta每天更新19.5M/S免费节点订阅链接">8月31日 | Clash Meta每天更新19.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-11-clash-meta-node-share.htm" title="9月11日 | Clash Meta每天更新20M/S免费节点订阅链接">9月11日 | Clash Meta每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-14-node-share.htm" title="8月14日 | Clash Meta每天更新21.2M/S免费节点订阅链接">8月14日 | Clash Meta每天更新21.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-node-share-links.htm" title="10月14日 | Clash Meta每天更新18.9M/S免费节点订阅链接">10月14日 | Clash Meta每天更新18.9M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -131,7 +132,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -159,6 +160,15 @@
         <!-- copyright -->
         <section class="w3l-copyright text-center">
             <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                 <p class="copy-footer-29">
                 Clash Meta免费节点订阅站 版权所有 Powered by WordPress
                 </p>
