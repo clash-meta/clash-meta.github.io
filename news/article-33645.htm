@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-33645.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>C#面向抽象编程第二讲</title>
+        <meta name="description" content="抽象编程怎么说呢，以观察者模式为例： 观察者模式有两个对象，一个是观察者，一个是可观察者(字面翻译很别扭observable),消息发布者(提供者)。 第一层如下,三个对象A、B、C分别有一个接收消息" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">C#面向抽象编程第二讲</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>抽象编程怎么说呢，以观察者模式为例：</p> <p>观察者模式有两个对象，一个是观察者，一个是可观察者(字面翻译很别扭observable),消息发布者(提供者)。</p> <p>第一层如下,三个对象A、B、C分别有一个接收消息的方法，还有一个存储数据的字段，X就是发布消息的对象，它通过setdata方法设置自己的字段data,然后通知abc，abc如愿以偿地拿到了通知，完美!</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> A     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> Data;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.Data =<span style="color: rgba(0, 0, 0, 1)"> data;         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> B     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> Count;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Notify(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.Count =<span style="color: rgba(0, 0, 0, 1)"> data;         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> C     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> N;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Set(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.N =<span style="color: rgba(0, 0, 0, 1)"> data;         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> X     {</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> A instanceA;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> B instanceB;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> C instanceC;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> SetData(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.data =<span style="color: rgba(0, 0, 0, 1)"> data;             instanceA.Update(data);             instanceB.Notify(data);             instanceC.Set(data);         }     }</span><span style="color: rgba(0, 0, 255, 1)">using</span><span style="color: rgba(0, 0, 0, 1)"> ObserverOne;  A a</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> A(); B b</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> B(); C c</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> C();  Console.WriteLine(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">订阅前.................</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">a.Data = {a.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">b.Count = {b.Count}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">c.N = {c.N}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);  X x</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> X(); x.instanceA</span>=<span style="color: rgba(0, 0, 0, 1)"> a; x.instanceB</span>=<span style="color: rgba(0, 0, 0, 1)"> b; x.instanceC</span>=<span style="color: rgba(0, 0, 0, 1)"> c; x.SetData(</span><span style="color: rgba(128, 0, 128, 1)">10</span><span style="color: rgba(0, 0, 0, 1)">);  Console.WriteLine(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">X发布data=10, 订阅后.................</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">a.Data = {a.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">b.Count = {b.Count}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">c.N = {c.N}</span><span style="color: rgba(128, 0, 0, 1)">"</span>);</pre> </div> <p>再想一想，这好像不够灵活，订阅者是死的，那改进一下：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">interface</span><span style="color: rgba(0, 0, 0, 1)"> IUpdatebleObject     {</span><span style="color: rgba(0, 0, 255, 1)">int</span> Data {<span style="color: rgba(0, 0, 255, 1)">get</span><span style="color: rgba(0, 0, 0, 1)">; }</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> newData);     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> A : IUpdatebleObject     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> Data =&gt;<span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> newData)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.data =<span style="color: rgba(0, 0, 0, 1)"> newData;         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> B : IUpdatebleObject     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> Data =&gt;<span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> newData)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.data =<span style="color: rgba(0, 0, 0, 1)"> newData;         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> C : IUpdatebleObject     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">int</span> Data =&gt;<span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> newData)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.data =<span style="color: rgba(0, 0, 0, 1)"> newData;         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> X     {</span><span style="color: rgba(0, 0, 255, 1)">private</span> IUpdatebleObject[] updates=<span style="color: rgba(0, 0, 255, 1)">new</span> IUpdatebleObject[<span style="color: rgba(128, 0, 128, 1)">3</span><span style="color: rgba(0, 0, 0, 1)">];</span><span style="color: rgba(0, 0, 255, 1)">public</span> IUpdatebleObject<span style="color: rgba(0, 0, 255, 1)">this</span>[<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> index]         {</span><span style="color: rgba(0, 0, 255, 1)">set</span> { updates[index] =<span style="color: rgba(0, 0, 0, 1)"> value; }         }</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> data;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> newData)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.data =<span style="color: rgba(0, 0, 0, 1)"> newData;</span><span style="color: rgba(0, 0, 255, 1)">foreach</span> (<span style="color: rgba(0, 0, 255, 1)">var</span> update<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> updates)             {                 update.Update(newData);             }         }     }</span><span style="color: rgba(0, 0, 255, 1)">using</span><span style="color: rgba(0, 0, 0, 1)"> ObserverTwo;  X x</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> X();  IUpdatebleObject a</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> A(); IUpdatebleObject b</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> B(); IUpdatebleObject c</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> C(); Console.WriteLine(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">订阅前.................</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">a.Data = {a.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">b.Data = {b.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">c.Data = {c.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); x[</span><span style="color: rgba(128, 0, 128, 1)">0</span>] =<span style="color: rgba(0, 0, 0, 1)"> a; x[</span><span style="color: rgba(128, 0, 128, 1)">1</span>] =<span style="color: rgba(0, 0, 0, 1)"> b; x[</span><span style="color: rgba(128, 0, 128, 1)">2</span>] =<span style="color: rgba(0, 0, 0, 1)"> c; x.Update(</span><span style="color: rgba(128, 0, 128, 1)">10</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">X发布data=10, 订阅后.................</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">a.Data = {a.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">b.Data = {b.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">c.Data = {c.Data}</span><span style="color: rgba(128, 0, 0, 1)">"</span>);</pre> </div> <p>虽然写到这个例子已经很了不起了，但是对于有想法的来说还是可以继续改进，要不然怎么常挂嘴边说面对抽象编程呢，那就继续改进了：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 观察者</span><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(128, 128, 128, 1)">&lt;typeparam name="T"&gt;&lt;/typeparam&gt;</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">interface</span> IObserver&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)">     {</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(SubjectBase&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)"> subject);     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(128, 128, 128, 1)">&lt;summary&gt;</span><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(0, 128, 0, 1)"> 可观察者(发出通知的对象)</span><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(128, 128, 128, 1)">&lt;/summary&gt;</span><span style="color: rgba(128, 128, 128, 1)">///</span><span style="color: rgba(128, 128, 128, 1)">&lt;typeparam name="T"&gt;&lt;/typeparam&gt;</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">abstract</span><span style="color: rgba(0, 0, 255, 1)">class</span> SubjectBase&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)">     {</span><span style="color: rgba(0, 0, 255, 1)">protected</span> IList&lt;IObserver&lt;T&gt;&gt; observers =<span style="color: rgba(0, 0, 255, 1)">new</span> List&lt;IObserver&lt;T&gt;&gt;<span style="color: rgba(0, 0, 0, 1)">();</span><span style="color: rgba(0, 0, 255, 1)">protected</span><span style="color: rgba(0, 0, 0, 1)"> T state;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">virtual</span> T State =&gt;<span style="color: rgba(0, 0, 0, 1)"> state;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">static</span> SubjectBase&lt;T&gt;<span style="color: rgba(0, 0, 255, 1)">operator</span> +(SubjectBase&lt;T&gt; subject,IObserver&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)"> observer)         {             subject.observers.Add(observer);</span><span style="color: rgba(0, 0, 255, 1)">return</span><span style="color: rgba(0, 0, 0, 1)"> subject;         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">static</span> SubjectBase&lt;T&gt;<span style="color: rgba(0, 0, 255, 1)">operator</span> -(SubjectBase&lt;T&gt; subject,IObserver&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)"> observer)         {             subject.observers.Remove(observer);</span><span style="color: rgba(0, 0, 255, 1)">return</span><span style="color: rgba(0, 0, 0, 1)"> subject;         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">virtual</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> Notify()         {</span><span style="color: rgba(0, 0, 255, 1)">foreach</span> (<span style="color: rgba(0, 0, 255, 1)">var</span> observer<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> observers)             {                 observer.Update(</span><span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">);             }         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">virtual</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> Update(T state)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.state =<span style="color: rgba(0, 0, 0, 1)"> state;             Notify();         }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span> Observer&lt;T&gt; : IObserver&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)">     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> T State;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> Update(SubjectBase&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)"> subject)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.State =<span style="color: rgba(0, 0, 0, 1)"> subject.State;         }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span> Subject&lt;T&gt;:SubjectBase&lt;T&gt;<span style="color: rgba(0, 0, 0, 1)">     {     }</span></pre> </div> <p>到这里基本上可以说是把骨架搭起来了，这些可以称之为底层的代码。实现代码如下：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> TestObserver     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> TestMulticst()         {             SubjectBase</span>&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt; subject =<span style="color: rgba(0, 0, 255, 1)">new</span> Subject&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;<span style="color: rgba(0, 0, 0, 1)">();             Observer</span>&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt; observer1 =<span style="color: rgba(0, 0, 255, 1)">new</span> Observer&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;<span style="color: rgba(0, 0, 0, 1)">();             observer1.State</span>=<span style="color: rgba(128, 0, 128, 1)">10</span><span style="color: rgba(0, 0, 0, 1)">;             Observer</span>&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt; observer2 =<span style="color: rgba(0, 0, 255, 1)">new</span> Observer&lt;<span style="color: rgba(0, 0, 255, 1)">int</span>&gt;<span style="color: rgba(0, 0, 0, 1)">();             observer2.State</span>=<span style="color: rgba(128, 0, 128, 1)">20</span><span style="color: rgba(0, 0, 0, 1)">;             subject</span>+=<span style="color: rgba(0, 0, 0, 1)"> observer1;             subject</span>+=<span style="color: rgba(0, 0, 0, 1)"> observer2;             subject.Update(</span><span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">);             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">observer1.State={observer1.State}  observer2.State={observer2.State}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);             subject</span>-=<span style="color: rgba(0, 0, 0, 1)"> observer1;             subject.Update(</span><span style="color: rgba(128, 0, 128, 1)">100</span><span style="color: rgba(0, 0, 0, 1)">);             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">update state = 100, observer1.State={observer1.State}  observer2.State={observer2.State}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> TestMultiSubject()         {             SubjectBase</span>&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt; subject1 =<span style="color: rgba(0, 0, 255, 1)">new</span> Subject&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt;<span style="color: rgba(0, 0, 0, 1)">();             SubjectBase</span>&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt; subject2 =<span style="color: rgba(0, 0, 255, 1)">new</span> Subject&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt;<span style="color: rgba(0, 0, 0, 1)">();             Observer</span>&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt; observer1 =<span style="color: rgba(0, 0, 255, 1)">new</span> Observer&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>&gt;<span style="color: rgba(0, 0, 0, 1)">();             observer1.State</span>=<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">运动</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">;             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">observer1.State={observer1.State}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);             subject1</span>+=<span style="color: rgba(0, 0, 0, 1)"> observer1;             subject2</span>+=<span style="color: rgba(0, 0, 0, 1)"> observer1;             subject1.Update(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">看电影</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">observer1.State={observer1.State}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);             subject2.Update(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">喝茶</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">observer1.State={observer1.State}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);              subject1</span>-=<span style="color: rgba(0, 0, 0, 1)"> observer1;             subject2</span>-=<span style="color: rgba(0, 0, 0, 1)"> observer1;             observer1.State</span>=<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">休息</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">;             subject1</span>-=<span style="color: rgba(0, 0, 0, 1)"> observer1;             subject2</span>-=<span style="color: rgba(0, 0, 0, 1)"> observer1;             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">observer1.State={observer1.State}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);         }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">using</span><span style="color: rgba(0, 0, 0, 1)"> ObserverThree;</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">new TestObserver().TestMulticst();</span><span style="color: rgba(0, 0, 255, 1)">new</span> TestObserver().TestMultiSubject();</pre> </div> <p>到这里基本上就完成了任务，也就可以结束了。但是，学习需要深度也需要宽度，所以观察者模式在C#可以通过事件来实现一样的效果。下面就看下上面写这么多的代码用事件怎么写呢,这里的实例稍作变化,实现改变名字通知观察者，这里观察者就是控制台了，打印通知：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> UserEventArgs:EventArgs     {</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> name;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">string</span> Name =&gt;<span style="color: rgba(0, 0, 0, 1)"> name;</span><span style="color: rgba(0, 0, 255, 1)">public</span> UserEventArgs(<span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> name)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.name =<span style="color: rgba(0, 0, 0, 1)"> name;         }      }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> User     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">event</span> EventHandler&lt;UserEventArgs&gt;<span style="color: rgba(0, 0, 0, 1)"> NameChanged;</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> name;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> Name         {</span><span style="color: rgba(0, 0, 255, 1)">get</span> {<span style="color: rgba(0, 0, 255, 1)">return</span><span style="color: rgba(0, 0, 0, 1)"> name; }</span><span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">             {                 name</span>=<span style="color: rgba(0, 0, 0, 1)"> value;                 NameChanged</span>?.Invoke(<span style="color: rgba(0, 0, 255, 1)">this</span>,<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> UserEventArgs(value));             }         }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">using</span><span style="color: rgba(0, 0, 0, 1)"> ObserverFour;  User user</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> User(); user.NameChanged</span>+=<span style="color: rgba(0, 0, 0, 1)"> OnNameChanged; user.Name</span>=<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">joe</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 0, 255, 1)">void</span> OnNameChanged(<span style="color: rgba(0, 0, 255, 1)">object</span><span style="color: rgba(0, 0, 0, 1)"> sender, UserEventArgs args) {     Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">{args.Name} Changed</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); }</span></pre> </div> <p>再放一个麻烦一点的例子，字典新增的通知(监听)事件：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span> DictionaryEventArgs&lt;TKey,TValue&gt;<span style="color: rgba(0, 0, 0, 1)"> : EventArgs     {</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 0, 1)"> TKey key;</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 0, 1)"> TValue value;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> DictionaryEventArgs(TKey key,TValue value)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.key =<span style="color: rgba(0, 0, 0, 1)"> key;</span><span style="color: rgba(0, 0, 255, 1)">this</span>.value =<span style="color: rgba(0, 0, 0, 1)"> value;         }</span><span style="color: rgba(0, 0, 255, 1)">public</span> TKey Key =&gt;<span style="color: rgba(0, 0, 0, 1)"> key;</span><span style="color: rgba(0, 0, 255, 1)">public</span> TValue Value =&gt;<span style="color: rgba(0, 0, 0, 1)"> value;     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">interface</span> IObserverableDictionary&lt;TKey,TValue&gt;:IDictionary&lt;TKey, TValue&gt;<span style="color: rgba(0, 0, 0, 1)">     {         EventHandler</span>&lt;DictionaryEventArgs&lt;TKey,TValue&gt;&gt; NewItemAdded {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span> ObserverableDictionary&lt;TKey, TValue&gt; : Dictionary&lt;TKey, TValue&gt;, IObserverableDictionary&lt;TKey, TValue&gt;<span style="color: rgba(0, 0, 0, 1)">     {</span><span style="color: rgba(0, 0, 255, 1)">protected</span> EventHandler&lt;DictionaryEventArgs&lt;TKey, TValue&gt;&gt;<span style="color: rgba(0, 0, 0, 1)"> newItemAdded;</span><span style="color: rgba(0, 0, 255, 1)">public</span> EventHandler&lt;DictionaryEventArgs&lt;TKey, TValue&gt;&gt; NewItemAdded {<span style="color: rgba(0, 0, 255, 1)">get</span> =&gt; newItemAdded;<span style="color: rgba(0, 0, 255, 1)">set</span>=&gt; newItemAdded =<span style="color: rgba(0, 0, 0, 1)"> value;}</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> Add(TKey key,TValue value)         {</span><span style="color: rgba(0, 0, 255, 1)">base</span><span style="color: rgba(0, 0, 0, 1)">.Add(key, value);</span><span style="color: rgba(0, 0, 255, 1)">if</span>(NewItemAdded !=<span style="color: rgba(0, 0, 255, 1)">null</span><span style="color: rgba(0, 0, 0, 1)">)                 NewItemAdded(</span><span style="color: rgba(0, 0, 255, 1)">this</span>,<span style="color: rgba(0, 0, 255, 1)">new</span> DictionaryEventArgs&lt;TKey, TValue&gt;<span style="color: rgba(0, 0, 0, 1)">(key, value));           }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">using</span><span style="color: rgba(0, 0, 0, 1)"> ObserverFive;</span><span style="color: rgba(0, 0, 255, 1)">string</span> key =<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">hello</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">;</span><span style="color: rgba(0, 0, 255, 1)">string</span> value =<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">world</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">;  IObserverableDictionary</span>&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>,<span style="color: rgba(0, 0, 255, 1)">string</span>&gt; dictionary =<span style="color: rgba(0, 0, 255, 1)">new</span> ObserverableDictionary&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>,<span style="color: rgba(0, 0, 255, 1)">string</span>&gt;<span style="color: rgba(0, 0, 0, 1)">(); dictionary.NewItemAdded</span>+=<span style="color: rgba(0, 0, 0, 1)"> Validate; dictionary.Add(key, value);</span><span style="color: rgba(0, 0, 255, 1)">void</span> Validate(<span style="color: rgba(0, 0, 255, 1)">object</span> sender, DictionaryEventArgs&lt;<span style="color: rgba(0, 0, 255, 1)">string</span>,<span style="color: rgba(0, 0, 255, 1)">string</span>&gt;<span style="color: rgba(0, 0, 0, 1)"> args) {     Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">{args.Key} {args.Value}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); }</span></pre> </div> <p>事件说完了！再回头看看观察者设计模式。</p> <p>微软已经很重视观察者模式这个设计，把IObserver、IObservable集成到runtime里面去了，也就是基类库里面。aspnetcore框架也有用到这个，比如日志模块。所以感觉有必要了解一下，放个小例子作为结束：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> Message     {</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">string</span> Notify {<span style="color: rgba(0, 0, 255, 1)">get</span>;<span style="color: rgba(0, 0, 255, 1)">set</span><span style="color: rgba(0, 0, 0, 1)">; }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span> Teacher : IObservable&lt;Message&gt;<span style="color: rgba(0, 0, 0, 1)">     {</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">readonly</span> List&lt;IObserver&lt;Message&gt;&gt;<span style="color: rgba(0, 0, 0, 1)"> _observers;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)"> Teacher()         {             _observers</span>=<span style="color: rgba(0, 0, 255, 1)">new</span> List&lt;IObserver&lt;Message&gt;&gt;<span style="color: rgba(0, 0, 0, 1)">();         }</span><span style="color: rgba(0, 0, 255, 1)">public</span> IDisposable Subscribe(IObserver&lt;Message&gt;<span style="color: rgba(0, 0, 0, 1)"> observer)         {             _observers.Add(observer);</span><span style="color: rgba(0, 0, 255, 1)">return</span><span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> Unsubscribe(observer, _observers);         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span> SendMessage(<span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> message)         {</span><span style="color: rgba(0, 0, 255, 1)">foreach</span> (<span style="color: rgba(0, 0, 255, 1)">var</span> observer<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> _observers)             {                 observer.OnNext(</span><span style="color: rgba(0, 0, 255, 1)">new</span> Message() { Notify =<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">message</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)"> });             }         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> OnCompleted()         {</span><span style="color: rgba(0, 0, 255, 1)">foreach</span> (<span style="color: rgba(0, 0, 255, 1)">var</span> observer<span style="color: rgba(0, 0, 255, 1)">in</span><span style="color: rgba(0, 0, 0, 1)"> _observers)             {                 observer.OnCompleted();             }             _observers.Clear();         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> Unsubscribe:IDisposable     {</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">readonly</span> IObserver&lt;Message&gt;<span style="color: rgba(0, 0, 0, 1)"> _observer;</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">readonly</span> List&lt;IObserver&lt;Message&gt;&gt;<span style="color: rgba(0, 0, 0, 1)"> _observers;</span><span style="color: rgba(0, 0, 255, 1)">public</span> Unsubscribe(IObserver&lt;Message&gt; observer, List&lt;IObserver&lt;Message&gt;&gt;<span style="color: rgba(0, 0, 0, 1)"> observers)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>._observers =<span style="color: rgba(0, 0, 0, 1)"> observers;</span><span style="color: rgba(0, 0, 255, 1)">this</span>._observer =<span style="color: rgba(0, 0, 0, 1)"> observer;         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> Dispose()         {</span><span style="color: rgba(0, 0, 255, 1)">if</span><span style="color: rgba(0, 0, 0, 1)">(_observers.Contains(_observer))                 _observers.Remove(_observer);         }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">abstract</span><span style="color: rgba(0, 0, 255, 1)">class</span> Student : IObserver&lt;Message&gt;<span style="color: rgba(0, 0, 0, 1)">     {</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> name;</span><span style="color: rgba(0, 0, 255, 1)">public</span> Student(<span style="color: rgba(0, 0, 255, 1)">string</span><span style="color: rgba(0, 0, 0, 1)"> name)         {</span><span style="color: rgba(0, 0, 255, 1)">this</span>.name =<span style="color: rgba(0, 0, 0, 1)"> name;         }</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 0, 1)"> IDisposable _unsubscribe;</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">virtual</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> OnCompleted()         {             Console.WriteLine(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">放学了...</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">virtual</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> OnError(Exception error)         {             Console.WriteLine(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">生病了...</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">virtual</span><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> OnNext(Message value)         {             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">大家好: 我是 {name} -_-</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);             Console.WriteLine($</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">老师说:{value.Notify}</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);         }</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 255, 1)">virtual</span><span style="color: rgba(0, 0, 255, 1)">void</span> Subscribe(IObservable&lt;Message&gt;<span style="color: rgba(0, 0, 0, 1)"> obserable)         {</span><span style="color: rgba(0, 0, 255, 1)">if</span> (obserable !=<span style="color: rgba(0, 0, 255, 1)">null</span><span style="color: rgba(0, 0, 0, 1)">)                 _unsubscribe</span>= obserable.Subscribe(<span style="color: rgba(0, 0, 255, 1)">this</span><span style="color: rgba(0, 0, 0, 1)">);         }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> StudentZhang : Student     {</span><span style="color: rgba(0, 0, 255, 1)">public</span> StudentZhang(<span style="color: rgba(0, 0, 255, 1)">string</span> name) :<span style="color: rgba(0, 0, 255, 1)">base</span><span style="color: rgba(0, 0, 0, 1)">(name)         {         }     }</span><span style="color: rgba(0, 0, 255, 1)">internal</span><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> StudentLi : Student     {</span><span style="color: rgba(0, 0, 255, 1)">public</span> StudentLi(<span style="color: rgba(0, 0, 255, 1)">string</span> name) :<span style="color: rgba(0, 0, 255, 1)">base</span><span style="color: rgba(0, 0, 0, 1)">(name)         {         }     }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">using</span><span style="color: rgba(0, 0, 0, 1)"> ObserverSeven;  Teacher teacher</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> Teacher(); teacher.Subscribe(</span><span style="color: rgba(0, 0, 255, 1)">new</span> StudentLi(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">李逵</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">)); teacher.Subscribe(</span><span style="color: rgba(0, 0, 255, 1)">new</span> StudentZhang(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">张麻子</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">)); teacher.SendMessage(</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">明天放假</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">); teacher.OnCompleted();</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">这里学生是多个，也定义可以多个老师，实现多对多关系</span></pre> </div> <p>示例代码：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/liuzhixin405/exercise/tree/master/%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85And%E5%87%BA%E7%89%88%E9%A2%84%E5%AE%9A_EventBus_Observer/Observer/Observer"  rel="nofollow">exercise/发布订阅And出版预定_EventBus_Observer/Observer/Observer at master · liuzhixin405/exercise (github.com)</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33167.htm">以动物医院写一篇童话作文（动物医院看图作文）</a></p>
+                                        <p>下一个：<a href="/news/article-33646.htm">拓扑排序小结_在线工具</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-meta-node-github.htm" title="10月13日 | Clash Meta每天更新19.7M/S免费节点订阅链接">10月13日 | Clash Meta每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-21-node-share-links.htm" title="8月21日 | Clash Meta每天更新19.8M/S免费节点订阅链接">8月21日 | Clash Meta每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-30789.htm" title="KCP协议：从TCP到UDP家族QUIC/KCP/ENET">KCP协议：从TCP到UDP家族QUIC/KCP/ENET</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-free-node-subscribe.htm" title="12月23日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址">12月23日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-clash-meta-node-github.htm" title="12月3日 | Clash Meta每天更新18.1M/S免费节点订阅链接">12月3日 | Clash Meta每天更新18.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-29-free-node-subscribe-links.htm" title="9月29日 | Clash Meta每天更新18.6M/S免费节点订阅链接">9月29日 | Clash Meta每天更新18.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29831.htm" title="宠物粮品牌起名字大全 宠物粮品牌起名字大全集">宠物粮品牌起名字大全 宠物粮品牌起名字大全集</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-2-clash-meta-windows.htm" title="9月2日 | Clash Meta每天更新18M/S免费节点订阅链接">9月2日 | Clash Meta每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-clash-meta-node-share.htm" title="12月12日 | Clash Meta每天更新21.2M/S免费节点订阅链接">12月12日 | Clash Meta每天更新21.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-30-free-node-subscribe-links.htm" title="10月30日 | Clash Meta每天更新18.4M/S免费节点订阅链接">10月30日 | Clash Meta每天更新18.4M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
