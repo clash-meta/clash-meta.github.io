@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-38477.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring Cloud Gateway系列 配置Gateway详解</title>
+        <meta name="description" content="文章目录    前言 application.yml 配置项 其他配置   Http超时配置 使用 Java API配置路由 Discovery Client路由 配置谓词和过滤器 CORS 配置  " />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Spring Cloud Gateway系列 配置Gateway详解</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <div class="toc"> <h3>文章目录</h3> <ul> <li> <ul> <li><a href="#_1" rel="nofollow">前言</a></li> <li><a href="#applicationyml__5" rel="nofollow">application.yml 配置项</a></li> <li><a href="#_152" rel="nofollow">其他配置</a></li> <li> <ul> <li><a href="#Http_153" rel="nofollow">Http超时配置</a></li> <li><a href="#_Java_API_211" rel="nofollow">使用 Java API配置路由</a></li> <li><a href="#Discovery_Client__247" rel="nofollow">Discovery Client路由 配置谓词和过滤器</a></li> <li><a href="#CORS__273" rel="nofollow">CORS 配置</a></li> </ul> </li> </ul> </li> </ul> </div> <h2><a id="_1" rel="nofollow"></a>前言</h2> <p>在之前介绍了一些Spring Cloud Gateway配置项，接下来详细介绍下所有配置项。</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/appendix.html"  rel="nofollow">官方文档地址</a></p> <h2><a id="applicationyml__5" rel="nofollow"></a>application.yml 配置项</h2> <p>可以在application.properties、application.yml、代码、命令行开关中指定各种属性。</p> <p>本附录提供了常见 Spring Cloud Gateway 属性的列表以及对使用它们的底层类的引用。</p> <table> <thead> <tr> <th>名称</th> <th>默认</th> <th>说明</th> </tr> </thead> <tbody> <tr> <td>spring.cloud.gateway.default-filters</td> <td></td> <td>作用于每个路由的过滤器列表</td> </tr> <tr> <td>spring.cloud.gateway.discovery.locator.enabled</td> <td>false</td> <td>启用服务发现，动态路由</td> </tr> <tr> <td>spring.cloud.gateway.discovery.locator.filters</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.discovery.locator.include-expression</td> <td>true</td> <td>是否在网关集成中包含服务的 SpEL 表达式，默认为：true。</td> </tr> <tr> <td>spring.cloud.gateway.discovery.locator.lower-case-service-id</td> <td>false</td> <td>在谓词和过滤器中小写 serviceId ，默认为 false。当 eureka 自动大写 serviceId 时很有用。所以 MYSERIVCE，会匹配 /myservice/**</td> </tr> <tr> <td>spring.cloud.gateway.discovery.locator.predicates</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.discovery.locator.route-id-prefix</td> <td></td> <td>routeId 的前缀，默认为 discoveryClient.getClass().getSimpleName() + “_”+服务 ID 。将以创建 routeId。</td> </tr> <tr> <td>spring.cloud.gateway.discovery.locator.url-expression</td> <td>‘lb://’+serviceId</td> <td>为每个路由创建 uri 的 SpEL 表达式，默认为：‘lb://’+serviceId。</td> </tr> <tr> <td>spring.cloud.gateway.enabled</td> <td>true</td> <td>启用网关功能。</td> </tr> <tr> <td>spring.cloud.gateway.fail-on-route-definition-error</td> <td>true</td> <td>路由定义错误失败的选项，默认为 true。否则，将记录警告。</td> </tr> <tr> <td>spring.cloud.gateway.filter.add-request-header.enabled</td> <td>true</td> <td>启用 add-request-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.add-request-parameter.enabled</td> <td>true</td> <td>启用添加请求参数过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.add-response-header.enabled</td> <td>true</td> <td>启用添加响应头过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.circuit-breaker.enabled</td> <td>true</td> <td>启用断路器过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.dedupe-response-header.enabled</td> <td>true</td> <td>启用重复数据删除响应头过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.fallback-headers.enabled</td> <td>true</td> <td>启用回退标头过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.hystrix.enabled</td> <td>true</td> <td>启用 hystrix 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.map-request-header.enabled</td> <td>true</td> <td>启用 map-request-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.modify-request-body.enabled</td> <td>true</td> <td>启用修改请求正文过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.modify-response-body.enabled</td> <td>true</td> <td>启用修改响应正文过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.prefix-path.enabled</td> <td>true</td> <td>启用前缀路径过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.preserve-host-header.enabled</td> <td>true</td> <td>启用保留主机头过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.redirect-to.enabled</td> <td>true</td> <td>启用重定向过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.remove-hop-by-hop.headers</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.remove-hop-by-hop.order</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.remove-request-header.enabled</td> <td>true</td> <td>启用 remove-request-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.remove-request-parameter.enabled</td> <td>true</td> <td>启用删除请求参数过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.remove-response-header.enabled</td> <td>true</td> <td>启用 remove-response-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.request-header-size.enabled</td> <td>true</td> <td>启用请求头大小过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.request-header-to-request-uri.enabled</td> <td>true</td> <td>启用 request-header-to-request-uri 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.request-rate-limiter.deny-empty-key</td> <td>true</td> <td>如果密钥解析器返回空密钥，则切换到拒绝请求，默认为 true。</td> </tr> <tr> <td>spring.cloud.gateway.filter.request-rate-limiter.empty-key-status-code</td> <td></td> <td>当 denyEmptyKey 为 true 时返回的 HttpStatus，默认为 FORBIDDEN。</td> </tr> <tr> <td>spring.cloud.gateway.filter.request-rate-limiter.enabled</td> <td>true</td> <td>启用请求速率限制器过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.request-size.enabled</td> <td>true</td> <td>启用请求大小过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.retry.enabled</td> <td>true</td> <td>启用重试过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.rewrite-location-response-header.enabled</td> <td>true</td> <td>启用 rewrite-location-response-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.rewrite-location.enabled</td> <td>true</td> <td>启用重写位置过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.rewrite-path.enabled</td> <td>true</td> <td>启用重写路径过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.rewrite-response-header.enabled</td> <td>true</td> <td>启用重写响应头过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.save-session.enabled</td> <td>true</td> <td>启用保存会话过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.content-security-policy</td> <td>default-src ‘self’ https:; font-src ‘self’ https: data:; img-src ‘self’ https: data:; object-src ‘none’; script-src https:; style-src ‘self’ https: ‘unsafe-inline’</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.content-type-options</td> <td>nosniff</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.disable</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.download-options</td> <td>noopen</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.enabled</td> <td>true</td> <td>启用安全标头过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.frame-options</td> <td>DENY</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.permitted-cross-domain-policies</td> <td>none</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.referrer-policy</td> <td>no-referrer</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.strict-transport-security</td> <td>max-age=631138519</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.secure-headers.xss-protection-header</td> <td>1 ; mode=block</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.filter.set-path.enabled</td> <td>true</td> <td>启用设置路径过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.set-request-header.enabled</td> <td>true</td> <td>启用 set-request-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.set-request-host-header.enabled</td> <td>true</td> <td>启用 set-request-host-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.set-response-header.enabled</td> <td>true</td> <td>启用 set-response-header 过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.set-status.enabled</td> <td>true</td> <td>启用设置状态过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.filter.strip-prefix.enabled</td> <td>true</td> <td>启用带前缀过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.forwarded.enabled</td> <td>true</td> <td>启用 ForwardedHeadersFilter。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.adapt-cached-body.enabled</td> <td>true</td> <td>启用adapt-cached-body 全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.forward-path.enabled</td> <td>true</td> <td>启用转发路径全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.forward-routing.enabled</td> <td>true</td> <td>启用转发路由全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.load-balancer-client.enabled</td> <td>true</td> <td>启用负载平衡器客户端全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.netty-routing.enabled</td> <td>true</td> <td>启用 netty-routing 全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.netty-write-response.enabled</td> <td>true</td> <td>启用 netty-write-response 全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.reactive-load-balancer-client.enabled</td> <td>true</td> <td>启用reactive-load-balancer-client 全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.remove-cached-body.enabled</td> <td>true</td> <td>启用 remove-cached-body 全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.route-to-request-url.enabled</td> <td>true</td> <td>启用 route-to-request-url 全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.global-filter.websocket-routing.enabled</td> <td>true</td> <td>启用 websocket-routing 全局过滤器。</td> </tr> <tr> <td>spring.cloud.gateway.globalcors.add-to-simple-url-handler-mapping</td> <td>false</td> <td>如果应将全局 CORS 配置添加到 URL 处理程序。</td> </tr> <tr> <td>spring.cloud.gateway.globalcors.cors-configurations</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.httpclient.compression</td> <td>false</td> <td>为 Netty HttpClient 启用压缩。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.connect-timeout</td> <td></td> <td>以毫秒为单位的连接超时，默认为 45 秒。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.max-header-size</td> <td></td> <td>最大响应标头大小。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.max-initial-line-length</td> <td></td> <td>最大初始行长度。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.acquire-timeout</td> <td></td> <td>仅针对 FIXED 类型，等待获取的最长时间（以毫秒为单位）。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.eviction-interval</td> <td>0</td> <td>以指定的时间间隔在后台执行定期驱逐检查。默认禁用 ({@link Duration#ZERO})</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.max-connections</td> <td></td> <td>仅适用于 FIXED 类型，即在现有连接上开始挂起获取之前的最大连接数。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.max-idle-time</td> <td></td> <td>通道关闭之前的时间（以毫秒为单位）。如果为 NULL，则没有最大空闲时间。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.max-life-time</td> <td></td> <td>通道将关闭的持续时间。如果为 NULL，则没有最大生命周期。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.metrics</td> <td>false</td> <td>允许在 Micrometer 中收集和注册通道池指标。默认禁用。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.name</td> <td>proxy</td> <td>通道池映射名称</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.pool.type</td> <td></td> <td>HttpClient 使用的池类型，默认为 ELASTIC。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.proxy.host</td> <td></td> <td>Netty HttpClient 代理配置的主机名。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.proxy.non-proxy-hosts-pattern</td> <td></td> <td>用于配置的主机列表的正则表达式 (Java)。应该直接到达，绕过代理</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.proxy.password</td> <td></td> <td>Netty HttpClient 代理配置密码。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.proxy.port</td> <td></td> <td>Netty HttpClient 的代理配置端口。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.proxy.type</td> <td></td> <td>proxyType 用于 Netty HttpClient 的代理配置。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.proxy.username</td> <td></td> <td>Netty HttpClient 代理配置的用户名。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.response-timeout</td> <td></td> <td>响应超时。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.close-notify-flush-timeout</td> <td>3000ms</td> <td>SSL close_notify 刷新超时。默认为 3000 毫秒。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.close-notify-read-timeout</td> <td>0</td> <td>SSL close_notify 读取超时。默认为 0 毫秒。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.default-configuration-type</td> <td></td> <td>默认的 ssl 配置类型。默认为 TCP。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.handshake-timeout</td> <td>10000ms</td> <td>SSL 握手超时。默认为 10000 毫秒</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.key-password</td> <td></td> <td>密钥密码，默认与keyStorePassword 相同。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.key-store</td> <td></td> <td>Netty HttpClient 的密钥库路径。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.key-store-password</td> <td></td> <td>密钥库密码。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.key-store-provider</td> <td></td> <td>Netty HttpClient 的密钥库提供程序，可选字段。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.key-store-type</td> <td>JKS</td> <td>Netty HttpClient 的密钥库类型，默认为 JKS。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.trusted-x509-certificates</td> <td></td> <td>用于验证远程端点证书的可信证书。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.ssl.use-insecure-trust-manager</td> <td>false</td> <td>安装 netty InsecureTrustManagerFactory。这是不安全的，不适合生产。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.websocket.max-frame-payload-length</td> <td></td> <td>最大帧有效载荷长度。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.websocket.proxy-ping</td> <td>true</td> <td>代理 ping 帧到下游服务，默认为 true。</td> </tr> <tr> <td>spring.cloud.gateway.httpclient.wiretap</td> <td>false</td> <td>为 Netty HttpClient 启用窃听调试。</td> </tr> <tr> <td>spring.cloud.gateway.httpserver.wiretap</td> <td>false</td> <td>为 Netty HttpServer 启用窃听调试。</td> </tr> <tr> <td>spring.cloud.gateway.loadbalancer.use404</td> <td>false</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.metrics.enabled</td> <td>false</td> <td>启用指标数据的收集。</td> </tr> <tr> <td>spring.cloud.gateway.metrics.prefix</td> <td>spring.cloud.gateway</td> <td>网关发出的所有指标的前缀。</td> </tr> <tr> <td>spring.cloud.gateway.metrics.tags</td> <td></td> <td>添加到指标的标签映射。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.after.enabled</td> <td>true</td> <td>启用 after 谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.before.enabled</td> <td>true</td> <td>启用 before 谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.between.enabled</td> <td>true</td> <td>启用 between 谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.cloud-foundry-route-service.enabled</td> <td>true</td> <td>启用 cloud-foundry-route-service 谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.cookie.enabled</td> <td>true</td> <td>启用 cookie 谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.header.enabled</td> <td>true</td> <td>启用标头谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.host.enabled</td> <td>true</td> <td>启用主机谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.method.enabled</td> <td>true</td> <td>启用方法谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.path.enabled</td> <td>true</td> <td>启用路径谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.query.enabled</td> <td>true</td> <td>启用查询谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.read-body.enabled</td> <td>true</td> <td>启用 read-body 谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.remote-addr.enabled</td> <td>true</td> <td>启用远程地址谓词。</td> </tr> <tr> <td>spring.cloud.gateway.predicate.weight.enabled</td> <td>true</td> <td>启用权重谓词。</td> </tr> <tr> <td>spring.cloud.gateway.redis-rate-limiter.burst-capacity-header</td> <td>X-RateLimit-Burst-Capacity</td> <td>返回突发容量配置的标头名称。</td> </tr> <tr> <td>spring.cloud.gateway.redis-rate-limiter.config</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.redis-rate-limiter.include-headers</td> <td>true</td> <td>是否包含包含速率限制器信息的标头，默认为 true。</td> </tr> <tr> <td>spring.cloud.gateway.redis-rate-limiter.remaining-header</td> <td>X-RateLimit-Remaining</td> <td>返回当前秒内剩余请求数的标头名称。</td> </tr> <tr> <td>spring.cloud.gateway.redis-rate-limiter.replenish-rate-header</td> <td>X-RateLimit-Replenish-Rate</td> <td>返回补货率配置的标题名称。</td> </tr> <tr> <td>spring.cloud.gateway.redis-rate-limiter.requested-tokens-header</td> <td>X-RateLimit-Requested-Tokens</td> <td>返回请求的令牌配置的标头的名称。</td> </tr> <tr> <td>spring.cloud.gateway.routes</td> <td></td> <td>route 路由集合。</td> </tr> <tr> <td>spring.cloud.gateway.set-status.original-status-header-name</td> <td></td> <td>包含代理请求的 http 代码的标头名称。</td> </tr> <tr> <td>spring.cloud.gateway.streaming-media-types</td> <td></td> <td></td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.enabled</td> <td>true</td> <td>启用 XForwardedHeadersFilter。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.for-append</td> <td>true</td> <td>如果已启用将 X-Forwarded-For 作为列表附加。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.for-enabled</td> <td>true</td> <td>如果启用 X-Forwarded-For。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.host-append</td> <td>true</td> <td>如果启用将 X-Forwarded-Host 作为列表附加。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.host-enabled</td> <td>true</td> <td>X-Forwarded-Host 启用。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.order</td> <td>0</td> <td>XForwardedHeadersFilter 的顺序。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.port-append</td> <td>true</td> <td>如果启用将 X-Forwarded-Port 作为列表附加。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.port-enabled</td> <td>true</td> <td>如果启用 X-Forwarded-Port。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.prefix-append</td> <td>true</td> <td>如果将 X-Forwarded-Prefix 作为列表附加已启用。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.prefix-enabled</td> <td>true</td> <td></td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.proto-append</td> <td>true</td> <td>如果启用将 X-Forwarded-Proto 作为列表附加。</td> </tr> <tr> <td>spring.cloud.gateway.x-forwarded.proto-enabled</td> <td>true</td> <td>如果启用 X-Forwarded-Proto。</td> </tr> </tbody> </table> <h2><a id="_152" rel="nofollow"></a>其他配置</h2> <h3><a id="Http_153" rel="nofollow"></a>Http超时配置</h3> <p>可以为所有路由配置 Http 超时（响应和连接），并可以为每个路由特定配置。</p> <p><strong>1. 全局超时</strong></p> <p>配置全局 http 超时：</p> <ul> <li>connect-timeout必须以毫秒为单位指定。</li> <li>response-timeout必须指定为 java.time.Duration</li> </ul> <p>示例：</p> <pre><code class="prism language-yml"><span class="token key atrule">spring</span><span class="token punctuation">:</span><span class="token key atrule">cloud</span><span class="token punctuation">:</span><span class="token key atrule">gateway</span><span class="token punctuation">:</span><span class="token key atrule">httpclient</span><span class="token punctuation">:</span><span class="token key atrule">connect-timeout</span><span class="token punctuation">:</span><span class="token number">1000</span><span class="token key atrule">response-timeout</span><span class="token punctuation">:</span> 5s</code></pre> <p><strong>2 . 每个路由超时</strong></p> <p>要配置每条路由超时：</p> <ul> <li>connect-timeout必须以毫秒为单位指定。</li> <li>response-timeout必须以毫秒为单位指定。</li> </ul> <pre><code class="prism language-yml"><span class="token punctuation">-</span><span class="token key atrule">id</span><span class="token punctuation">:</span> per_route_timeouts<span class="token key atrule">uri</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//example.org<span class="token key atrule">predicates</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">name</span><span class="token punctuation">:</span> Path<span class="token key atrule">args</span><span class="token punctuation">:</span><span class="token key atrule">pattern</span><span class="token punctuation">:</span> /delay/<span class="token punctuation">{<!-- --></span>timeout<span class="token punctuation">}</span><span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">response-timeout</span><span class="token punctuation">:</span><span class="token number">200</span><span class="token key atrule">connect-timeout</span><span class="token punctuation">:</span><span class="token number">200</span></code></pre> <p><strong>3. 使用 Java 代码为每条路由超时配置</strong></p> <pre><code class="prism language-java"><span class="token keyword">import</span><span class="token keyword">static</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>support<span class="token punctuation">.</span></span><span class="token class-name">RouteMetadataUtils</span><span class="token punctuation">.</span>CONNECT_TIMEOUT_ATTR<span class="token punctuation">;</span><span class="token keyword">import</span><span class="token keyword">static</span><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>support<span class="token punctuation">.</span></span><span class="token class-name">RouteMetadataUtils</span><span class="token punctuation">.</span>RESPONSE_TIMEOUT_ATTR<span class="token punctuation">;</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">RouteLocator</span><span class="token function">customRouteLocator</span><span class="token punctuation">(</span><span class="token class-name">RouteLocatorBuilder</span> routeBuilder<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> routeBuilder<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">"test1"</span><span class="token punctuation">,</span> r<span class="token operator">-&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> r<span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span><span class="token string">"*.somehost.org"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">path</span><span class="token punctuation">(</span><span class="token string">"/somepath"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filters</span><span class="token punctuation">(</span>f<span class="token operator">-&gt;</span> f<span class="token punctuation">.</span><span class="token function">addRequestHeader</span><span class="token punctuation">(</span><span class="token string">"header1"</span><span class="token punctuation">,</span><span class="token string">"header-value-1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">uri</span><span class="token punctuation">(</span><span class="token string">"http://someuri"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">metadata</span><span class="token punctuation">(</span>RESPONSE_TIMEOUT_ATTR<span class="token punctuation">,</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">metadata</span><span class="token punctuation">(</span>CONNECT_TIMEOUT_ATTR<span class="token punctuation">,</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <h3><a id="_Java_API_211" rel="nofollow"></a>使用 Java API配置路由</h3> <p>为了允许在 Java 中进行简单配置，该RouteLocatorBuilderbean 包括一个流畅的 API。以下清单显示了它的工作原理：</p> <pre><code class="prism language-java"><span class="token comment">// static imports from GatewayFilters and RoutePredicates</span><span class="token annotation punctuation">@Bean</span><span class="token keyword">public</span><span class="token class-name">RouteLocator</span><span class="token function">customRouteLocator</span><span class="token punctuation">(</span><span class="token class-name">RouteLocatorBuilder</span> builder<span class="token punctuation">,</span><span class="token class-name">ThrottleGatewayFilterFactory</span> throttle<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span>r<span class="token operator">-&gt;</span> r<span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span><span class="token string">"**.abc.org"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">path</span><span class="token punctuation">(</span><span class="token string">"/image/png"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filters</span><span class="token punctuation">(</span>f<span class="token operator">-&gt;</span>                         f<span class="token punctuation">.</span><span class="token function">addResponseHeader</span><span class="token punctuation">(</span><span class="token string">"X-TestHeader"</span><span class="token punctuation">,</span><span class="token string">"foobar"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">uri</span><span class="token punctuation">(</span><span class="token string">"http://httpbin.org:80"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span>r<span class="token operator">-&gt;</span> r<span class="token punctuation">.</span><span class="token function">path</span><span class="token punctuation">(</span><span class="token string">"/image/webp"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filters</span><span class="token punctuation">(</span>f<span class="token operator">-&gt;</span>                         f<span class="token punctuation">.</span><span class="token function">addResponseHeader</span><span class="token punctuation">(</span><span class="token string">"X-AnotherHeader"</span><span class="token punctuation">,</span><span class="token string">"baz"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">uri</span><span class="token punctuation">(</span><span class="token string">"http://httpbin.org:80"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">metadata</span><span class="token punctuation">(</span><span class="token string">"key"</span><span class="token punctuation">,</span><span class="token string">"value"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span>r<span class="token operator">-&gt;</span> r<span class="token punctuation">.</span><span class="token function">order</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">host</span><span class="token punctuation">(</span><span class="token string">"**.throttle.org"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">path</span><span class="token punctuation">(</span><span class="token string">"/get"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filters</span><span class="token punctuation">(</span>f<span class="token operator">-&gt;</span> f<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>throttle<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">uri</span><span class="token punctuation">(</span><span class="token string">"http://httpbin.org:80"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">metadata</span><span class="token punctuation">(</span><span class="token string">"key"</span><span class="token punctuation">,</span><span class="token string">"value"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p>这种风格还允许更多的自定义谓词断言。Route Definition Locator bean定义的谓词使用逻辑组合and。通过使用流利的Java API，你可以使用and()，or()以及negate()的Predicate类。</p> <h3><a id="Discovery_Client__247" rel="nofollow"></a>Discovery Client路由 配置谓词和过滤器</h3> <p>默认情况下，网关使用DiscoveryClient.</p> <p>默认谓词是使用模式定义的路径谓词/serviceId/**，其中serviceId是DiscoveryClient.</p> <p>默认过滤器是带有正则表达式/serviceId/?(?&lt; remaining&gt;.*)和替换的重写路径过滤器/${ remaining}。这会在向下游发送请求之前从路径中剥离服务 ID。</p> <p>如果要自定义DiscoveryClient路由使用的谓词或过滤器，请设置<code>spring.cloud.gateway.discovery.locator.predicates[x]</code>和<code>spring.cloud.gateway.discovery.locator.filters[y]</code>。这样做时，如果您想保留该功能，您需要确保包含前面显示的默认谓词和过滤器。以下示例显示了它的样子：</p> <pre><code class="prism language-yml">spring.cloud.gateway.discovery.locator.predicates<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>.name<span class="token punctuation">:</span> Path spring.cloud.gateway.discovery.locator.predicates<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>.args<span class="token punctuation">[</span>pattern<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token string">"'/'+serviceId+'/**'"</span> spring.cloud.gateway.discovery.locator.predicates<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>.name<span class="token punctuation">:</span> Host spring.cloud.gateway.discovery.locator.predicates<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>.args<span class="token punctuation">[</span>pattern<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token string">"'**.foo.com'"</span> spring.cloud.gateway.discovery.locator.filters<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>.name<span class="token punctuation">:</span> CircuitBreaker spring.cloud.gateway.discovery.locator.filters<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>.args<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">:</span> serviceId spring.cloud.gateway.discovery.locator.filters<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>.name<span class="token punctuation">:</span> RewritePath spring.cloud.gateway.discovery.locator.filters<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>.args<span class="token punctuation">[</span>regexp<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token string">"'/' + serviceId + '/?(?&lt;remaining&gt;.*)'"</span> spring.cloud.gateway.discovery.locator.filters<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>.args<span class="token punctuation">[</span>replacement<span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token string">"'/${remaining}'"</span></code></pre> <h3><a id="CORS__273" rel="nofollow"></a>CORS 配置</h3> <p>您可以配置网关以控制 CORS 行为。全局 CORS 配置是 URL 模式到Spring Framework Cors Configuration的映射。以下示例配置 CORS：</p> <pre><code class="prism language-yml"><span class="token key atrule">spring</span><span class="token punctuation">:</span><span class="token key atrule">cloud</span><span class="token punctuation">:</span><span class="token key atrule">gateway</span><span class="token punctuation">:</span><span class="token key atrule">globalcors</span><span class="token punctuation">:</span><span class="token key atrule">cors-configurations</span><span class="token punctuation">:</span><span class="token key atrule">'[/**]'</span><span class="token punctuation">:</span><span class="token key atrule">allowedOrigins</span><span class="token punctuation">:</span><span class="token string">"https://docs.spring.io"</span><span class="token key atrule">allowedMethods</span><span class="token punctuation">:</span><span class="token punctuation">-</span> GET</code></pre> <p>在前面的示例中，允许来自docs.spring.io所有 GET 请求路径的请求的 CORS 请求。</p> <p>要为某些网关路由谓词未处理的请求提供相同的 CORS 配置，请将spring.cloud.gateway.globalcors.add-to-simple-url-handler-mapping属性设置为true。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-38476.htm">浅谈c++的命名空间（namespace）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-8-today-clash-meta-node.htm" title="10月8日 | Clash Meta每天更新21.6M/S免费节点订阅链接">10月8日 | Clash Meta每天更新21.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-28-node-share.htm" title="12月28日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址">12月28日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-28426.htm" title="南京宠物猫领养中心电话地址查询（南京猫咪领养中心）">南京宠物猫领养中心电话地址查询（南京猫咪领养中心）</a></li>
+                        <li class="py-2"><a href="/news/article-36514.htm" title="SpringBoot+Vue之分页操作">SpringBoot+Vue之分页操作</a></li>
+                        <li class="py-2"><a href="/news/article-22860.htm" title="Kotlin新手入坑：构造函数，静态方法，顶层方法.._.ST">Kotlin新手入坑：构造函数，静态方法，顶层方法.._.ST</a></li>
+                        <li class="py-2"><a href="/news/article-23780.htm" title="合肥宠物救助领养中心 合肥宠物救助领养中心电话">合肥宠物救助领养中心 合肥宠物救助领养中心电话</a></li>
+                        <li class="py-2"><a href="/news/article-25634.htm" title="Golang 实现 Redis(10): 本地原子性事务_在线工具">Golang 实现 Redis(10): 本地原子性事务_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-today-clash-meta-node.htm" title="11月13日 | Clash Meta每天更新20M/S免费节点订阅链接">11月13日 | Clash Meta每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-meta-node-github.htm" title="10月13日 | Clash Meta每天更新19.7M/S免费节点订阅链接">10月13日 | Clash Meta每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-free-subscribe-node.htm" title="10月24日 | Clash Meta每天更新21.3M/S免费节点订阅链接">10月24日 | Clash Meta每天更新21.3M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

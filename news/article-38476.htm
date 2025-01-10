@@ -2,12 +2,11 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://clash-meta.github.io" />
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-38476.htm" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>2024-12归档 - 第9页 - Clash Meta免费节点订阅站</title>
-        <meta name="keywords" content="2024-12归档Clash Meta免费节点订阅站" />
-        <meta name="description" content="2024-12归档，当前是第9页" />
+    <title>浅谈c++的命名空间（namespace）</title>
+        <meta name="description" content="一、命名空间的作用 假设这样一种情况，当一个班上有两个名叫 zouxu 的学生时，为了明确区分它们，我们在使用名字之外，不得不使用一些额外的信息，比如他们的家庭住址，或者他们父母的名字等等。  同样的" />
         <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
     <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -26,7 +25,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
     <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
@@ -83,10 +82,11 @@
     <section class="w3l-about-breadcrumb">
         <div class="breadcrumb-bg breadcrumb-bg-about py-5">
             <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
-                <h1 class="title pt-5">2024-12 归档</h1>
+                <h1 class="title pt-5">浅谈c++的命名空间（namespace）</h1>
                 <ul class="breadcrumbs-custom-path mt-3 text-center">
                     <li><a href="/">首页</a></li>
-                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 2024-12 归档</li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
                 </ul>
             </div>
         </div>
@@ -97,55 +97,13 @@
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
                     <div class="col-md-9">
-                        <div class="xcblog-blog-list">
-                                                        <div class="row item xcblog-blog-item" data-date="2024-12-01">
-                                <div class="col-md-3">
-                                    <div class="position-relative text-lg-right">
-                                        <a href="/news/article-19655.htm" class="xcblog-blog-url">
-                                            <img src="/uploads/20240803-1/173a156a760dd369fdba059836a2f67d.webp" alt="宠物领养软件缺点是什么（宠物领养 app）" class="img-fluid radius-image">
-                                        </a>
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2 id="一命名空间的作用">一、命名空间的作用</h2> <p>假设这样一种情况，当一个班上有两个名叫 zouxu 的学生时，为了明确区分它们，我们在使用名字之外，不得不使用一些额外的信息，比如他们的家庭住址，或者他们父母的名字等等。 <br /> 同样的情况也出现在 C++ 应用程序中。例如，您可能会写一个名为 xyz() 的函数，在另一个可用的库中也存在一个相同的函数 xyz()。这样，编译器就无法判断您所使用的是哪一个 xyz() 函数。 <br /> 因此，引入了命名空间这个概念，专门用于解决上面的问题，它可作为附加信息来区分不同库中相同名称的函数、类、变量等。使用了命名空间即定义了上下文。本质上，命名空间就是定义了一个范围。</p> <hr/> <h2 id="二定义一个命名空间">二、定义一个命名空间</h2> <pre class="prettyprint"><code class="hljs vala"><span class="hljs-class"><span class="hljs-keyword">namespace</span> <span class="hljs-title">namespace_name</span> {<!-- --></span>    <span class="hljs-comment">// 代码声明</span> }</code></pre> <p>为了调用带有命名空间的函数或变量，需要在前面加上命名空间的名称，如下所示：</p> <pre class="prettyprint"><code class="hljs ruby"><span class="hljs-symbol">name:</span><span class="hljs-symbol">:code</span>;  <span class="hljs-regexp">//</span> code 可以是变量或函数</code></pre> <p>例子：</p> <pre class="prettyprint"><code class="hljs cpp"><span class="hljs-preprocessor">#include &lt;iostream&gt;</span> <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;  <span class="hljs-comment">// 第一个命名空间</span> <span class="hljs-keyword">namespace</span> first_space{    <span class="hljs-keyword">void</span> func(){       <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Inside first_space"</span> &lt;&lt; endl;    } } <span class="hljs-comment">// 第二个命名空间</span> <span class="hljs-keyword">namespace</span> second_space{    <span class="hljs-keyword">void</span> func(){       <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Inside second_space"</span> &lt;&lt; endl;    } } <span class="hljs-keyword">int</span> main () {     <span class="hljs-comment">// 调用第一个命名空间中的函数</span>    first_space::func();     <span class="hljs-comment">// 调用第二个命名空间中的函数</span>    second_space::func();      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; }</code></pre> <hr/> <h2 id="三往一个命名空间中加入新的成员">三、往一个命名空间中加入新的成员</h2> <pre class="prettyprint"><code class="hljs vala"><span class="hljs-class"><span class="hljs-keyword">namespace</span> <span class="hljs-title">namespace_name</span>  {<!-- --></span>    <span class="hljs-comment">// 代码声明</span> }</code></pre> <p>也就是在重新写这个namespace</p> <pre class="prettyprint"><code class="hljs vala"><span class="hljs-class"><span class="hljs-keyword">namespace</span> <span class="hljs-title">A</span>  {<!-- --></span>   <span class="hljs-keyword">int</span> i;   <span class="hljs-keyword">void</span> f();  } <span class="hljs-comment">// 现在A有成员i和f()</span>  <span class="hljs-class"><span class="hljs-keyword">namespace</span> <span class="hljs-title">A</span>  {<!-- --></span>    <span class="hljs-keyword">int</span> j;    <span class="hljs-keyword">void</span> g();  } <span class="hljs-comment">// 现在A有成员i、f()、j和g()</span></code></pre> <hr/> <h2 id="四using-指令">四、using 指令</h2> <p>您可以使用 using namespace 指令，这样在使用命名空间时就可以不用在前面加上命名空间的名称。这个指令会告诉编译器，后续的代码将使用指定的命名空间中的名称。</p> <pre class="prettyprint"><code class="hljs cpp"><span class="hljs-preprocessor">#include &lt;iostream&gt;</span> <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;  <span class="hljs-comment">// 第一个命名空间</span> <span class="hljs-keyword">namespace</span> first_space{    <span class="hljs-keyword">void</span> func(){       <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Inside first_space"</span> &lt;&lt; endl;    } } <span class="hljs-comment">// 第二个命名空间</span> <span class="hljs-keyword">namespace</span> second_space{    <span class="hljs-keyword">void</span> func(){       <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Inside second_space"</span> &lt;&lt; endl;    } } <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> first_space; <span class="hljs-keyword">int</span> main () {     <span class="hljs-comment">// 调用第一个命名空间中的函数</span>    func();     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; }</code></pre> <hr/> <h2 id="五嵌套的命名空间">五、嵌套的命名空间</h2> <p>命名空间可以嵌套，您可以在一个命名空间中定义另一个命名空间，如下所示：</p> <pre class="prettyprint"><code class="hljs vala"><span class="hljs-class"><span class="hljs-keyword">namespace</span> <span class="hljs-title">namespace_name1</span> {<!-- --></span>    <span class="hljs-comment">// 代码声明</span>    <span class="hljs-class"><span class="hljs-keyword">namespace</span> <span class="hljs-title">namespace_name2</span> {<!-- --></span>       <span class="hljs-comment">// 代码声明</span>    } }</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-37983.htm">天津宠物帮领养中心官网查询（天津宠物帮领养中心官网查询地址）</a></p>
+                                        <p>下一个：<a href="/news/article-38477.htm">Spring Cloud Gateway系列 配置Gateway详解</a></p>
                                     </div>
-                                </div>
-                                <div class="col-md-9 align-self">
-                                    <a href="/news/article-19655.htm" class="xcblog-blog-url">
-                                        <h3 class="title-big xcblog-blog-title">宠物领养软件缺点是什么（宠物领养 app）</h3>
-                                    </a>
-                                    <p class="mt-1">摘要：       今天给各位分享宠物领养软件缺点是什么的知识，其中也会对宠物领养 app进行解释，如果能碰巧解决你现在面临的问题，别忘了关注本站，现在开始吧！本文目录一览：1、快手领养宠物狗能信吗.</p>
-                                </div>
-                            </div>
-                                                        <div class="row item xcblog-blog-item" data-date="2024-12-01">
-                                <div class="col-md-3">
-                                    <div class="position-relative text-lg-right">
-                                        <a href="/news/article-19654.htm" class="xcblog-blog-url">
-                                            <img src="/uploads/20240803-1/9c357afd746a12d215b453e2ea6089c3.webp" alt="隐藏滚动条适用于各个浏览器" class="img-fluid radius-image">
-                                        </a>
                                     </div>
-                                </div>
-                                <div class="col-md-9 align-self">
-                                    <a href="/news/article-19654.htm" class="xcblog-blog-url">
-                                        <h3 class="title-big xcblog-blog-title">隐藏滚动条适用于各个浏览器</h3>
-                                    </a>
-                                    <p class="mt-1">问题釐清 什麽是＂滚动条＂？ 滚动条指的是下图右侧被红线框起来的部分：    只要网页内容大于视窗，滚动条就会出现。 一般来说，只要不是body层次的滚动条，那用overflow: hidden;就能</p>
-                                </div>
-                            </div>
-                                                        <div class="row item xcblog-blog-item" data-date="2024-12-01">
-                                <div class="col-md-3">
-                                    <div class="position-relative text-lg-right">
-                                        <a href="/free-nodes/2024-12-1-free-clash-meta-node.htm" class="xcblog-blog-url">
-                                            <img src="/uploads/20240803-1/16c591667d5bb6f26768b2cca2e20724.webp" alt="12月1日 | Clash Meta每天更新22.9M/S免费节点订阅链接" class="img-fluid radius-image">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-9 align-self">
-                                    <a href="/free-nodes/2024-12-1-free-clash-meta-node.htm" class="xcblog-blog-url">
-                                        <h3 class="title-big xcblog-blog-title">12月1日 | Clash Meta每天更新22.9M/S免费节点订阅链接</h3>
-                                    </a>
-                                    <p class="mt-1">这一次的节点更新覆盖了新加坡、加拿大、香港、欧洲、日本、韩国、美国等地区,最高速度可达22.9 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。</p>
-                                </div>
-                            </div>
-                            
-                            <ul class="pagination"><li><a href="/date/2024-12/page-9.htm">&laquo;</a></li> <li><a href="/date/2024-12/">1</a></li><li><a href="/date/2024-12/page-2.htm">2</a></li><li><a href="/date/2024-12/page-3.htm">3</a></li><li><a href="/date/2024-12/page-4.htm">4</a></li><li><a href="/date/2024-12/page-5.htm">5</a></li><li><a href="/date/2024-12/page-6.htm">6</a></li><li><a href="/date/2024-12/page-7.htm">7</a></li><li><a href="/date/2024-12/page-8.htm">8</a></li><li><a href="/date/2024-12/page-9.htm">9</a></li><li class="active"><span>10</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                        </div>
-                    </div>
                     <div class="col-md-3">
                         <div class="panel panel-default">
     <div class="panel-heading">
@@ -153,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-1-10-clash-meta-node.htm" title="1月10日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址">1月10日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-20567.htm" title="我们如何从特定的MySQL表中获取所有记录？">我们如何从特定的MySQL表中获取所有记录？</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-3-clash-meta-github.htm" title="1月3日 | Clash Meta每天更新21.1M/S免费节点订阅链接地址">1月3日 | Clash Meta每天更新21.1M/S免费节点订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-29-free-high-speed-nodes.htm" title="12月29日 | Clash Meta每天更新21.8M/S免费节点订阅链接地址">12月29日 | Clash Meta每天更新21.8M/S免费节点订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-25178.htm" title="宠物猫疫苗可以自己打么吗多少钱（宠物猫打疫苗可以自己打吗）">宠物猫疫苗可以自己打么吗多少钱（宠物猫打疫苗可以自己打吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-2-latest-clash-meta-node.htm" title="1月2日 | Clash Meta每天更新19.6M/S免费节点订阅链接地址">1月2日 | Clash Meta每天更新19.6M/S免费节点订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-today-clash-meta-node.htm" title="11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接">11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-18-clash-meta-windows.htm" title="12月18日 | Clash Meta每天更新22.6M/S免费节点订阅链接">12月18日 | Clash Meta每天更新22.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-31209.htm" title="南京领养狗狗的地方有哪些（南京哪里有领养狗狗的地方）">南京领养狗狗的地方有哪些（南京哪里有领养狗狗的地方）</a></li>
-                        <li class="py-2"><a href="/news/article-36515.htm" title="天津宠物猫领养中心地址在哪里（天津宠物猫领养中心地址在哪里呀）">天津宠物猫领养中心地址在哪里（天津宠物猫领养中心地址在哪里呀）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-clash-meta-github.htm" title="11月22日 | Clash Meta每天更新20.3M/S免费节点订阅链接">11月22日 | Clash Meta每天更新20.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37983.htm" title="天津宠物帮领养中心官网查询（天津宠物帮领养中心官网查询地址）">天津宠物帮领养中心官网查询（天津宠物帮领养中心官网查询地址）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-node-share.htm" title="1月4日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址">1月4日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="12月4日 | Clash Meta每天更新21M/S免费节点订阅链接">12月4日 | Clash Meta每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-31764.htm" title="宠物领养协议书范本图片大全下载 宠物领养协议书范本图片大全下载">宠物领养协议书范本图片大全下载 宠物领养协议书范本图片大全下载</a></li>
+                        <li class="py-2"><a href="/news/article-27030.htm" title="C ++程序，用于实现两个数相乘的Schonhage-Strassen算法">C ++程序，用于实现两个数相乘的Schonhage-Strassen算法</a></li>
+                        <li class="py-2"><a href="/news/article-36514.htm" title="SpringBoot+Vue之分页操作">SpringBoot+Vue之分页操作</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe-links.htm" title="12月15日 | Clash Meta每天更新21.3M/S免费节点订阅链接">12月15日 | Clash Meta每天更新21.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-36062.htm" title="动物疫苗未冷藏几小时失效了怎么处理（动物疫苗能放冰箱吗）">动物疫苗未冷藏几小时失效了怎么处理（动物疫苗能放冰箱吗）</a></li>
+                        <li class="py-2"><a href="/news/article-30790.htm" title="动物医院申请条件有哪些要求和流程图片视频（动物医院需要几个兽医资格证）">动物医院申请条件有哪些要求和流程图片视频（动物医院需要几个兽医资格证）</a></li>
                     </ul>
     </div>
 </div>
