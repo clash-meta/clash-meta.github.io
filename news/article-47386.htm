@@ -1,0 +1,311 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-47386.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SpringBoot如何配置Druid数据源监控页面</title>
+        <meta name="description" content="简介 什么是Druid？ Druid是阿里巴巴开发的，其号称为监控而生的数据源。Druid是目前最好的数据库数据源，它在功能、性能、扩展性方面，都超过其他数据库连接池，比如dbcp、c3p0、Bone" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-47386.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="SpringBoot如何配置Druid数据源监控页面" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/3fbc046cec797ff467f449a93df2f1df.webp" />
+        <meta property="og:release_date" content="2025-01-28T09:32:06" />
+    <meta property="og:updated_time" content="2025-01-28T09:32:06" />
+        <meta property="og:description" content="简介 什么是Druid？ Druid是阿里巴巴开发的，其号称为监控而生的数据源。Druid是目前最好的数据库数据源，它在功能、性能、扩展性方面，都超过其他数据库连接池，比如dbcp、c3p0、Bone" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringBoot如何配置Druid数据源监控页面">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">SpringBoot如何配置Druid数据源监控页面</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>简介</h2> <p><strong>什么是Druid？</strong></p> <p>Druid是阿里巴巴开发的，其号称为监控而生的数据源。Druid是目前最好的数据库数据源，它在功能、性能、扩展性方面，都超过其他数据库连接池，比如dbcp、c3p0、BoneCP、Proxool、JBoss DataSource。</p> <h2> <a id="SpringBootDruid_5" rel="nofollow"></a>SpringBoot上配置Druid</h2> <p>在SpringBoot上配置相当简单，只需3步即可。</p> <ol> <li>添加druid依赖 <pre><code class="prism language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>druid<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.1.23<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span> </code></pre> </li> <li>在配置文件中切换数据源<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/e159aa7abd55637bf70bb837a0a55b46.jpg" alt="SpringBoot如何配置Druid数据源监控页面"><br /> 可选择添加以下配置</li> </ol> <pre><code class="prism language-yaml"><span class="token comment"># Spring Boot 默认是不注入这些属性值的，需要自己绑定</span> <span class="token comment"># druid 数据源专有配置</span> <span class="token key atrule">initialSize</span><span class="token punctuation">:</span> <span class="token number">5</span> <span class="token key atrule">minIdle</span><span class="token punctuation">:</span> <span class="token number">5</span> <span class="token key atrule">maxActive</span><span class="token punctuation">:</span> <span class="token number">20</span> <span class="token key atrule">maxWait</span><span class="token punctuation">:</span> <span class="token number">60000</span> <span class="token key atrule">timeBetweenEvictionRunsMillis</span><span class="token punctuation">:</span> <span class="token number">60000</span> <span class="token key atrule">minEvictableIdleTimeMillis</span><span class="token punctuation">:</span> <span class="token number">300000</span> <span class="token key atrule">validationQuery</span><span class="token punctuation">:</span> SELECT 1 FROM DUAL <span class="token key atrule">testWhileIdle</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token key atrule">testOnBorrow</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token key atrule">testOnReturn</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token key atrule">poolPreparedStatements</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>  <span class="token comment"># 配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入</span> <span class="token key atrule">filters</span><span class="token punctuation">:</span> stat<span class="token punctuation">,</span>wall<span class="token punctuation">,</span>log4j <span class="token key atrule">maxPoolPreparedStatementPerConnectionSize</span><span class="token punctuation">:</span> <span class="token number">20</span> <span class="token key atrule">useGlobalDataSourceStat</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token key atrule">connectionProperties</span><span class="token punctuation">:</span> druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500 </code></pre> <p>注意：如果允许时报错 java.lang.ClassNotFoundException: org.apache.log4j.Priority， 则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j</p> <ol start="3"> <li>需要自己添加 DruidDataSource 组件到容器中，并绑定属性</li> </ol> <pre><code class="prism language-java"><span class="token annotation punctuation">@Configuration</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DruidConfig</span> <span class="token punctuation">{<!-- --></span>      <span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">"spring.datasource"</span><span class="token punctuation">)</span>     <span class="token annotation punctuation">@Bean</span>     <span class="token keyword">public</span> DataSource <span class="token function">druidDataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DruidDataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="Druid_58" rel="nofollow"></a>配置Druid数据源监控页面</h2> <p>Druid 数据源具有监控的功能，并提供了一个 web 界面方便用户查看，类似安装路由器时，druid 也提供了一个默认的 web 页面。</p> <p>开始配置：（继续在刚创建的DruidConfig中配置）</p> <p>（暂记能配置的参数都在 ResourceServlet 里 ）</p> <ol> <li> <p>需要设置 Druid 的后台管理页面，比如登录账号、密码等，配置后台管理；</p> <pre><code class="prism language-java"><span class="token comment">// 内置没有web.xml文件，使用 SpringBoot 注册 Servlet 方式配置</span> <span class="token annotation punctuation">@Bean</span> <span class="token keyword">public</span> ServletRegistrationBean <span class="token function">statViewServlet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     ServletRegistrationBean bean <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ServletRegistrationBean</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StatViewServlet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"/druid/*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 这些参数可以在StatViewServlet 的父类 ResourceServlet 中找到</span>     Map<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> String<span class="token punctuation">&gt;</span></span> initParams <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     initParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"loginUsername"</span><span class="token punctuation">,</span> <span class="token string">"admin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span><span class="token operator">/</span>后台管理界面的登录账号     initParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"loginPassword"</span><span class="token punctuation">,</span> <span class="token string">"123456"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span><span class="token operator">/</span>后台管理界面的登录密码   	<span class="token operator">/</span><span class="token operator">/</span> 页面允许某用户可以访问     <span class="token operator">/</span><span class="token operator">/</span> initParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"allow"</span><span class="token punctuation">,</span> <span class="token string">"localhost"</span><span class="token punctuation">)</span>：表示只有本机可以访问          <span class="token operator">/</span><span class="token operator">/</span> 第二参数为空或者为null时，表示允许所有访问     initParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"allow"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token operator">/</span><span class="token operator">/</span> 页面拒绝xxx访问     <span class="token operator">/</span><span class="token operator">/</span> initParams<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"xxx"</span><span class="token punctuation">,</span> <span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span>：表示禁止此ip访问      <span class="token operator">/</span><span class="token operator">/</span> 设置初始化参数     bean<span class="token punctuation">.</span><span class="token function">setInitParameters</span><span class="token punctuation">(</span>initParams<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token keyword">return</span> bean<span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> </li> <li> <p>配置完毕后，访问 http://localhost:8080/druid/login.html 进入页面</p> </li> <li> <p>输入刚才配置的用户名和密码即可登入到druid监控页面</p> </li> </ol> <h2> <a id="_98" rel="nofollow"></a>遇到问题</h2> <ul> <li>我编写时遇到的问题：在 <code>new StatViewServlet()</code>时，出现了错误，无法被创建出来。</li> <li>解决：点进源码查看时，发现关于servlet的包全部都报红了，所以在maven pom 中导入了servlet，就可以创建了。 <ul> <li>注意：导入的servlet包要3.0+，要不会没有<code>ServletRegistration</code>和<code>MultipartConfigElement</code> </li> </ul> </li> </ul> <p><sub>愿世上没有Bug</sub></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-46919.htm">宠物粮食生产厂家有哪些地方在招工（宠物粮食生产厂家有哪些地方在招工人）</a></p>
+                                        <p>下一个：<a href="/news/article-47387.htm">小猫多久能知道自己的名字（猫要多久能知道自己的名字）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-27497.htm" title="一文搞懂Vue3中如何使用ref获取元素节点？">一文搞懂Vue3中如何使用ref获取元素节点？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-subscribe-node.htm" title="12月13日 | Clash Meta每天更新22.3M/S免费节点订阅链接">12月13日 | Clash Meta每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-clash-meta-github.htm" title="11月9日 | Clash Meta每天更新21M/S免费节点订阅链接">11月9日 | Clash Meta每天更新21M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-44929.htm" title="动物疫苗有哪些大厂家打的呢多少钱（动物疫苗哪个好）">动物疫苗有哪些大厂家打的呢多少钱（动物疫苗哪个好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-node-share.htm" title="10月17日 | Clash Meta每天更新18.2M/S免费节点订阅链接">10月17日 | Clash Meta每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-46918.htm" title="Bootstrap Blazor 实战 Menu 导航菜单使用">Bootstrap Blazor 实战 Menu 导航菜单使用</a></li>
+                        <li class="py-2"><a href="/news/article-35551.htm" title="@Order的使用与Aop多切面的执行顺序">@Order的使用与Aop多切面的执行顺序</a></li>
+                        <li class="py-2"><a href="/news/article-19197.htm" title="JAVA8 日期和时间(LocalDate、LocalDateTime、ZoneId、Duration、Period、Instant)API 用法详解">JAVA8 日期和时间(LocalDate、LocalDateTime、ZoneId、Duration、Period、Instant)API 用法详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-latest-clash-meta-node.htm" title="12月7日 | Clash Meta每天更新21.4M/S免费节点订阅链接">12月7日 | Clash Meta每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-24246.htm" title="兰州哪里卖宠物鸭的多（兰州哪里有卖鸭子活体的地方）">兰州哪里卖宠物鸭的多（兰州哪里有卖鸭子活体的地方）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
