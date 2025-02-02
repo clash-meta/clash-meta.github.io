@@ -1,0 +1,314 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-49885.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>springboot mybatis-plus 配置 yml 、druid 配置 yml 、mybatis-plus 代码生成</title>
+        <meta name="description" content="今天分享一下 springboot mybatis-plus 和 druid 的yml 配置文件。 pom &lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-49885.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="springboot mybatis-plus 配置 yml 、druid 配置 yml 、mybatis-plus 代码生成" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/5275ebd579800cece969c4082fd08870.webp" />
+        <meta property="og:release_date" content="2025-02-02T09:26:59" />
+    <meta property="og:updated_time" content="2025-02-02T09:26:59" />
+        <meta property="og:description" content="今天分享一下 springboot mybatis-plus 和 druid 的yml 配置文件。 pom &lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="springboot mybatis-plus 配置 yml 、druid 配置 yml 、mybatis-plus 代码生成">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">springboot mybatis-plus 配置 yml 、druid 配置 yml 、mybatis-plus 代码生成</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><span style="font-size: 1em;">今天分享一下 springboot mybatis-plus 和 druid 的yml 配置文件。</span></p> <h2>pom</h2> <pre><code>&lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;  &nbsp; &nbsp; &nbsp;  &lt;/dependency&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- druid --&gt;  &nbsp; &nbsp; &nbsp;  &lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;groupId&gt;com.alibaba&lt;/groupId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;version&gt;1.2.4&lt;/version&gt;  &nbsp; &nbsp; &nbsp;  &lt;/dependency&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- druid --&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- mysql --&gt;  &nbsp; &nbsp; &nbsp;  &lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;groupId&gt;mysql&lt;/groupId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;scope&gt;runtime&lt;/scope&gt;  &nbsp; &nbsp; &nbsp;  &lt;/dependency&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- mysql --&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- mybatis-plus --&gt;  &nbsp; &nbsp; &nbsp;  &lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;groupId&gt;com.baomidou&lt;/groupId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;version&gt;3.4.1&lt;/version&gt;  &nbsp; &nbsp; &nbsp;  &lt;/dependency&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- mybatis-plus --&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- mybatis-plus-generator --&gt;  &nbsp; &nbsp; &nbsp;  &lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;groupId&gt;com.baomidou&lt;/groupId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;artifactId&gt;mybatis-plus-generator&lt;/artifactId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;version&gt;3.4.1&lt;/version&gt;  &nbsp; &nbsp; &nbsp;  &lt;/dependency&gt;  &nbsp; &nbsp; &nbsp;  &lt;dependency&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;groupId&gt;org.apache.velocity&lt;/groupId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;artifactId&gt;velocity-engine-core&lt;/artifactId&gt;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &lt;version&gt;2.1&lt;/version&gt;  &nbsp; &nbsp; &nbsp;  &lt;/dependency&gt;  &nbsp; &nbsp; &nbsp;  &lt;!-- mybatis-plus-generator --&gt;</code></pre> <h2>配置</h2> <p>mybatis-plus 官方配置：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://baomidou.com/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"  rel="nofollow">https://baomidou.com/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE</a></p> <p>druid 官方配置：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://druid.apache.org/docs/latest/configuration/index.html"  rel="nofollow">https://druid.apache.org/docs/latest/configuration/index.html</a></p> <p>application.yml：</p> <pre><code>server:   port: 8003   servlet:  &nbsp;  context-path: /  spring:   application:  &nbsp;  name: mybatis-plus-druid-demo # 应用名称   datasource:  &nbsp;  type: com.alibaba.druid.pool.DruidDataSource  &nbsp;  url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=false  &nbsp;  username: root  &nbsp;  password: root  &nbsp;  driverClassName: com.mysql.jdbc.Driver  &nbsp;  druid:  &nbsp; &nbsp;  # 连接池的配置信息  &nbsp; &nbsp;  # 初始化时建立物理连接的个数  &nbsp; &nbsp;  initial-size: 3  &nbsp; &nbsp;  # 连接池最小连接数  &nbsp; &nbsp;  min-idle: 3  &nbsp; &nbsp;  # 连接池最大连接数  &nbsp; &nbsp;  max-active: 20  &nbsp; &nbsp;  # 获取连接时最大等待时间，单位毫秒  &nbsp; &nbsp;  max-wait: 60000  &nbsp; &nbsp;  # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。  &nbsp; &nbsp;  test-while-idle: true  &nbsp; &nbsp;  # 既作为检测的间隔时间又作为testWhileIdel执行的依据  &nbsp; &nbsp;  time-between-connect-error-millis: 60000  &nbsp; &nbsp;  # 销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接  &nbsp; &nbsp;  min-evictable-idle-time-millis: 30000  &nbsp; &nbsp;  # 用来检测连接是否有效的sql 必须是一个查询语句  &nbsp; &nbsp;  # mysql中为 select 'x'  &nbsp; &nbsp;  # oracle中为 select 1 from dual  &nbsp; &nbsp;  validation-query: select 'x'  &nbsp; &nbsp;  # 申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true  &nbsp; &nbsp;  test-on-borrow: false  &nbsp; &nbsp;  # 归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true  &nbsp; &nbsp;  test-on-return: false  &nbsp; &nbsp;  # 是否缓存preparedStatement,mysql5.5+建议开启  &nbsp; &nbsp;  pool-prepared-statements: true  &nbsp; &nbsp;  # 当值大于0时poolPreparedStatements会自动修改为true  &nbsp; &nbsp;  max-pool-prepared-statement-per-connection-size: 20  &nbsp; &nbsp;  # 合并多个DruidDataSource的监控数据  &nbsp; &nbsp;  use-global-data-source-stat: false  &nbsp; &nbsp;  # 配置扩展插件  &nbsp; &nbsp;  filters: stat,wall,slf4j  &nbsp; &nbsp;  # 通过connectProperties属性来打开mergeSql功能；慢SQL记录  &nbsp; &nbsp;  connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000  &nbsp; &nbsp;  # 定时输出统计信息到日志中，并每次输出日志会导致清零（reset）连接池相关的计数器。  &nbsp; &nbsp;  time-between-log-stats-millis: 300000  &nbsp; &nbsp;  # 配置DruidStatFilter  &nbsp; &nbsp;  web-stat-filter:  &nbsp; &nbsp; &nbsp;  enabled: true  &nbsp; &nbsp; &nbsp;  url-pattern: '/*'  &nbsp; &nbsp; &nbsp;  exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'  &nbsp; &nbsp;  # 配置DruidStatViewServlet  &nbsp; &nbsp;  stat-view-servlet:  &nbsp; &nbsp; &nbsp;  # 是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）  &nbsp; &nbsp; &nbsp;  enabled: true  &nbsp; &nbsp; &nbsp;  url-pattern: '/druid/*'  &nbsp; &nbsp; &nbsp;  # IP白名单(没有配置或者为空，则允许所有访问)  &nbsp; &nbsp; &nbsp;  allow: 127.0.0.1,192.168.0.1  &nbsp; &nbsp; &nbsp;  # IP黑名单 (存在共同时，deny优先于allow)  &nbsp; &nbsp; &nbsp;  deny: 192.168.0.128  &nbsp; &nbsp; &nbsp;  # 禁用HTML页面上的“Reset All”功能  &nbsp; &nbsp; &nbsp;  reset-enable: false  &nbsp; &nbsp; &nbsp;  # 登录名  &nbsp; &nbsp; &nbsp;  login-username: root  &nbsp; &nbsp; &nbsp;  # 登录密码  &nbsp; &nbsp; &nbsp;  login-password: root  mybatis-plus:   #MyBatis Mapper 所对应的 XML 文件位置   mapperLocations:    #MyBatis 配置文件位置   configLocation:   #MyBaits 别名包扫描路径   typeAliasesPackage:   #该配置请和 typeAliasesPackage 一起使用，如果配置了该属性，则仅仅会扫描路径下以该类作为父类的域对象   typeAliasesSuperType:   #TypeHandler 扫描路径，如果配置了该属性，SqlSessionFactoryBean 会把该包下面的类注册为对应的 TypeHandler   typeHandlersPackage:   #枚举类 扫描路径，如果配置了该属性，会将路径下的枚举类进行注入，让实体类字段能够简单快捷的使用枚举属性    typeEnumsPackage:   #Spring Boot Only,启动时是否检查 MyBatis XML 文件的存在，默认不检查   checkConfigLocation: false   #Spring Boot Only,指定执行器   #ExecutorType.SIMPLE:该执行器类型不做特殊的事情，为每个语句的执行创建一个新的预处理语句（PreparedStatement）   #ExecutorType.REUSE:该执行器类型会复用预处理语句（PreparedStatement）   #ExecutorType.BATCH:该执行器类型会批量执行所有的更新语句   executorType:   #指定外部化 MyBatis Properties 配置，通过该配置可以抽离配置，实现不同环境的配置部署   configurationProperties:   #原生 MyBatis 所支持的配置   configuration:  &nbsp;  #默认false,是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN（下划线命名） 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射  &nbsp;  mapUnderscoreToCamelCase: false  &nbsp;  #默认枚举处理类,如果配置了该属性,枚举将统一使用指定处理器进行处理  &nbsp;  #org.apache.ibatis.type.EnumTypeHandler : 存储枚举的名称  &nbsp;  #org.apache.ibatis.type.EnumOrdinalTypeHandler : 存储枚举的索引  &nbsp;  #com.baomidou.mybatisplus.extension.handlers.MybatisEnumTypeHandler : 枚举类需要实现IEnum接口或字段标记@EnumValue注解.(3.1.2以下版本为EnumTypeHandler)  &nbsp;  defaultEnumTypeHandler:  &nbsp;  #当设置为 true 的时候，懒加载的对象可能被任何懒属性全部加载，否则，每个属性都按需加载。需要和 lazyLoadingEnabled 一起使用。  &nbsp;  aggressiveLazyLoading: true  &nbsp;  #MyBatis 自动映射策略，通过该配置可指定 MyBatis 是否并且如何来自动映射数据表字段与对象的属性，总共有 3 种可选值:  &nbsp;  #AutoMappingBehavior.NONE:不启用自动映射  &nbsp;  #AutoMappingBehavior.PARTIAL:只对非嵌套的 resultMap 进行自动映射  &nbsp;  #AutoMappingBehavior.FULL:对所有的 resultMap 都进行自动映射  &nbsp;  autoMappingBehavior:  &nbsp;  #MyBatis 自动映射时未知列或未知属性处理策略，通过该配置可指定 MyBatis 在自动映射过程中遇到未知列或者未知属性时如何处理，总共有 3 种可选值：  &nbsp;  #AutoMappingUnknownColumnBehavior.NONE：不做任何处理 (默认值)  &nbsp;  #AutoMappingUnknownColumnBehavior.WARNING：以日志的形式打印相关警告信息  &nbsp;  #AutoMappingUnknownColumnBehavior.FAILING：当作映射失败处理，并抛出异常和详细信息  &nbsp;  autoMappingUnknownColumnBehavior:  &nbsp;  #Mybatis一级缓存，默认为 SESSION。(微服务架构中需要关闭一级缓存)  &nbsp;  #SESSION session级别缓存，同一个session相同查询语句不会再次查询数据库  &nbsp;  #STATEMENT 关闭一级缓存  &nbsp;  localCacheScope:  &nbsp;  #开启Mybatis二级缓存，默认为 true  &nbsp;  cacheEnabled: true  &nbsp;  #指定当结果集中值为 null 的时候是否调用映射对象的 Setter（Map 对象时为 put）方法，通常运用于有 Map.keySet() 依赖或 null 值初始化的情况。  &nbsp;  callSettersOnNulls: true  &nbsp;  #指定一个提供 Configuration 实例的工厂类。该工厂生产的实例将用来加载已经被反序列化对象的懒加载属性值，其必须包含一个签名方法static Configuration getConfiguration()。（从 3.2.3 版本开始）  &nbsp;  configurationFactory:   global-config:  &nbsp;  #是否控制台 print mybatis-plus 的 LOGO  &nbsp;  banner: false  &nbsp;  #是否初始化 SqlRunner(com.baomidou.mybatisplus.extension.toolkit.SqlRunner) &nbsp;  &nbsp;  enableSqlRunner: false  &nbsp;  #类型：Class  &nbsp;  #默认值：com.baomidou.mybatisplus.core.mapper.Mapper.class  &nbsp;  #通用Mapper父类(影响sqlInjector,只有这个的子类的 mapper 才会注入 sqlInjector 内的 method)  &nbsp;  superMapperClass:  &nbsp;  #metaObjectHandler: 3.0开始废除此属性，请使用@Bean的方式注入至Spring容器:  &nbsp;  #sqlInjector: 3.0开始废除此属性，请使用@Bean的方式注入至Spring容器  &nbsp;  #identifierGenerator: 废弃   db-config:  &nbsp;  #全局默认主键类型  &nbsp;  #类型：com.baomidou.mybatisplus.annotation.IdType  &nbsp;  #默认值：ASSIGN_ID  &nbsp;  idType:  &nbsp;  #表名前缀 &nbsp;  &nbsp;  tablePrefix:  &nbsp;  #schema  &nbsp;  schema:  &nbsp;  #字段 format,例: %s,(对主键无效) &nbsp;  &nbsp;  columnFormat:  &nbsp;  #entity 的字段(property)的 format,只有在 column as property 这种情况下生效例: %s,(对主键无效)  &nbsp;  propertyFormat:  &nbsp;  #表名是否使用驼峰转下划线命名,只对表名生效 &nbsp;  &nbsp;  tableUnderline:  &nbsp;  #大写命名,对表名和字段名均生效  &nbsp;  capitalMode:  &nbsp;  #表主键生成器(starter 下支持@bean注入)  &nbsp;  keyGenerator:  &nbsp;  #全局的entity的逻辑删除字段属性名,(逻辑删除下有效)  &nbsp;  logicDeleteField:  &nbsp;  #逻辑已删除值,(逻辑删除下有效)  &nbsp;  logicDeleteValue:  &nbsp;  #逻辑未删除值,(逻辑删除下有效)  &nbsp;  logicNotDeleteValue:  &nbsp;  #类型：com.baomidou.mybatisplus.annotation.FieldStrategy  &nbsp;  #默认值：NOT_NULL  &nbsp;  #字段验证策略之 insert,在 insert 的时候的字段验证策略  &nbsp;  insertStrategy:  &nbsp;  #类型：com.baomidou.mybatisplus.annotation.FieldStrategy  &nbsp;  #默认值：NOT_NULL  &nbsp;  #字段验证策略之 update,在 update 的时候的字段验证策略  &nbsp;  updateStrategy:  &nbsp;  #类型：com.baomidou.mybatisplus.annotation.FieldStrategy  &nbsp;  #默认值：NOT_NULL  &nbsp;  #字段验证策略之 select,在 select 的时候的字段验证策略既 wrapper 根据内部 entity 生成的 where 条件  &nbsp;  selectStrategy:</code></pre> <h2>druid控制台</h2> <p>访问 localhost:8003/druid，用户名密码是配置文件里的 root/root，能看到服务的信息,sql 监控等等</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220607/c4597adfa80bc5440e0ccd8f184620ad.jpg"></p> <h2>mybatis-plus 代码生成</h2> <p>copy到项目目录下，运行main方法即可</p> <pre><code>class GenCode {   public static void main(String[] args) {  &nbsp;  String projectName = "mybatis-plus-druid-demo";  &nbsp;  // 1、全局配置  &nbsp;  GlobalConfig globalConfig = new GlobalConfig();//构建全局配置对象  &nbsp;  String projectPath = System.getProperty("user.dir");// 获取当前用户的目录  &nbsp;  globalConfig  &nbsp; &nbsp; &nbsp;  .setOutputDir(projectPath + "/"+projectName+"/src/main/java")// 输出文件路径  &nbsp; &nbsp; &nbsp;  .setAuthor("demo")// 设置作者名字  &nbsp; &nbsp; &nbsp;  .setOpen(false)// 是否打开资源管理器  &nbsp; &nbsp; &nbsp;  .setFileOverride(true)// 是否覆盖原来生成的  &nbsp; &nbsp; &nbsp;  .setIdType(IdType.AUTO)// 主键策略  &nbsp; &nbsp; &nbsp;  .setBaseResultMap(true)// 生成resultMap  &nbsp; &nbsp; &nbsp;  .setBaseColumnList(true)// XML中生成基础列  &nbsp; &nbsp; &nbsp;  .setServiceName("%sService");// 生成的service接口名字首字母是否为I，这样设置就没有I   &nbsp;  // 2、数据源配置  &nbsp;  DataSourceConfig dataSourceConfig = new DataSourceConfig();// 创建数据源配置  &nbsp;  dataSourceConfig  &nbsp; &nbsp; &nbsp;  .setUrl("jdbc:mysql://127.0.0.1:3306/demo?userSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC")  &nbsp; &nbsp; &nbsp;  .setDriverName("com.mysql.cj.jdbc.Driver")  &nbsp; &nbsp; &nbsp;  .setUsername("root")  &nbsp; &nbsp; &nbsp;  .setPassword("root")  &nbsp; &nbsp; &nbsp;  .setDbType(DbType.MYSQL);   &nbsp;  // 3、包配置  &nbsp;  PackageConfig packageConfig = new PackageConfig();  &nbsp;  packageConfig  &nbsp; &nbsp; &nbsp;  .setParent("com.yiche.demo.druid")  &nbsp; &nbsp; &nbsp;  .setEntity("entity")  &nbsp; &nbsp; &nbsp;  .setController("controller")  &nbsp; &nbsp; &nbsp;  .setService("service")  &nbsp; &nbsp; &nbsp;  .setMapper("mapper");   &nbsp;  // 4、策略配置  &nbsp;  StrategyConfig strategyConfig = new StrategyConfig();  &nbsp;  strategyConfig  &nbsp; &nbsp; &nbsp;  .setCapitalMode(true)// 开启全局大写命名  &nbsp; &nbsp; &nbsp;  .setInclude("demo")// 设置要映射的表  &nbsp; &nbsp; &nbsp;  .setNaming(NamingStrategy.underline_to_camel)// 下划线到驼峰的命名方式  &nbsp; &nbsp; &nbsp;  .setColumnNaming(NamingStrategy.underline_to_camel)// 下划线到驼峰的命名方式  &nbsp; &nbsp; &nbsp;  .setEntityLombokModel(false)// 是否使用lombok  &nbsp; &nbsp; &nbsp;  .setRestControllerStyle(true)// 是否开启rest风格  &nbsp; &nbsp; &nbsp;  .setControllerMappingHyphenStyle(true);// localhost:8080/hello_a_2    &nbsp;  // 5、自定义配置（配置输出xml文件到resources下）  &nbsp;  InjectionConfig cfg = new InjectionConfig() {  &nbsp; &nbsp;  @Override  &nbsp; &nbsp;  public void initMap() {  &nbsp; &nbsp; &nbsp;  // to do nothing  &nbsp; &nbsp;  }  &nbsp;  };  &nbsp;  List&lt;FileOutConfig&gt; focList = new ArrayList&lt;&gt;();  &nbsp;  String templatePath = "/templates/mapper.xml.vm";  &nbsp;  // 自定义配置会被优先输出  &nbsp;  focList.add(new FileOutConfig(templatePath) {  &nbsp; &nbsp;  @Override  &nbsp; &nbsp;  public String outputFile(TableInfo tableInfo) {  &nbsp; &nbsp; &nbsp;  // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！  &nbsp; &nbsp; &nbsp;  return projectPath + "/"+projectName+"/src/main/resources/mapper/"  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;  &nbsp; &nbsp;  }  &nbsp;  });  &nbsp;  cfg.setFileOutConfigList(focList);   &nbsp;  // 6、整合配置  &nbsp;  AutoGenerator autoGenerator = new AutoGenerator();// 构建代码生自动成器对象  &nbsp;  autoGenerator  &nbsp; &nbsp; &nbsp;  .setGlobalConfig(globalConfig)// 将全局配置放到代码生成器对象中  &nbsp; &nbsp; &nbsp;  .setDataSource(dataSourceConfig)// 将数据源配置放到代码生成器对象中  &nbsp; &nbsp; &nbsp;  .setPackageInfo(packageConfig)// 将包配置放到代码生成器对象中  &nbsp; &nbsp; &nbsp;  .setStrategy(strategyConfig)// 将策略配置放到代码生成器对象中  &nbsp; &nbsp; &nbsp;  .setCfg(cfg)// 将自定义配置放到代码生成器对象中  &nbsp; &nbsp; &nbsp;  .execute();// 执行！   } }</code></pre> <h2>myabtis-plus 简单的api</h2> <p>生成后的实体需要手动加 TableField 属性(不然会报属性映射的错)</p> <pre><code>public class Demo implements Serializable {   &nbsp;  private static final long serialVersionUID = 1L;   &nbsp;  @TableId(value = "id", type = IdType.AUTO)  &nbsp;  private Long id;   &nbsp;  /**  &nbsp; &nbsp; * 名称  &nbsp; &nbsp; */  &nbsp;  private String name;   &nbsp;  private Integer age;   &nbsp;  @TableField(value = "uuid_no")  &nbsp;  private String uuidNo;  &nbsp; &nbsp;  &nbsp;  @TableField(value = "create_time")  &nbsp;  private LocalDateTime createTime;  &nbsp; &nbsp;  &nbsp;  @TableField(value = "update_time")  &nbsp;  private LocalDateTime updateTime;   &nbsp;  /**  &nbsp; &nbsp; * 0 未删除 1 已删除  &nbsp; &nbsp; */  &nbsp;  @TableField(value = "delete_flag")  &nbsp;  private Integer deleteFlag;    &nbsp;  public Long getId() {  &nbsp; &nbsp; &nbsp;  return id;  &nbsp;  }   &nbsp;  public void setId(Long id) {  &nbsp; &nbsp; &nbsp;  this.id = id;  &nbsp;  }   &nbsp;  public String getName() {  &nbsp; &nbsp; &nbsp;  return name;  &nbsp;  }   &nbsp;  public void setName(String name) {  &nbsp; &nbsp; &nbsp;  this.name = name;  &nbsp;  }   &nbsp;  public Integer getAge() {  &nbsp; &nbsp; &nbsp;  return age;  &nbsp;  }   &nbsp;  public void setAge(Integer age) {  &nbsp; &nbsp; &nbsp;  this.age = age;  &nbsp;  }   &nbsp;  public String getUuidNo() {  &nbsp; &nbsp; &nbsp;  return uuidNo;  &nbsp;  }   &nbsp;  public void setUuidNo(String uuidNo) {  &nbsp; &nbsp; &nbsp;  this.uuidNo = uuidNo;  &nbsp;  }   &nbsp;  public LocalDateTime getCreateTime() {  &nbsp; &nbsp; &nbsp;  return createTime;  &nbsp;  }   &nbsp;  public void setCreateTime(LocalDateTime createTime) {  &nbsp; &nbsp; &nbsp;  this.createTime = createTime;  &nbsp;  }   &nbsp;  public LocalDateTime getUpdateTime() {  &nbsp; &nbsp; &nbsp;  return updateTime;  &nbsp;  }   &nbsp;  public void setUpdateTime(LocalDateTime updateTime) {  &nbsp; &nbsp; &nbsp;  this.updateTime = updateTime;  &nbsp;  }   &nbsp;  public Integer getDeleteFlag() {  &nbsp; &nbsp; &nbsp;  return deleteFlag;  &nbsp;  }   &nbsp;  public void setDeleteFlag(Integer deleteFlag) {  &nbsp; &nbsp; &nbsp;  this.deleteFlag = deleteFlag;  &nbsp;  }   &nbsp;  @Override  &nbsp;  public String toString() {  &nbsp; &nbsp; &nbsp;  return "Demo{" +  &nbsp; &nbsp; &nbsp;  "id=" + id +  &nbsp; &nbsp; &nbsp;  ", name=" + name +  &nbsp; &nbsp; &nbsp;  ", age=" + age +  &nbsp; &nbsp; &nbsp;  ", uuidNo=" + uuidNo +  &nbsp; &nbsp; &nbsp;  ", createTime=" + createTime +  &nbsp; &nbsp; &nbsp;  ", updateTime=" + updateTime +  &nbsp; &nbsp; &nbsp;  ", deleteFlag=" + deleteFlag +  &nbsp; &nbsp; &nbsp;  "}";  &nbsp;  } }</code></pre> <p>简单的api，直接用生成的demoService ，不需要手动写sql</p> <p>插入：</p> <pre><code>Demo demo = new Demo(); boolean save = demoService.save(demo);</code></pre> <p>查询：</p> <pre><code>// 主键查询 Demo demo = demoService.getById(id); // 属性查询 QueryWrapper&lt;Demo&gt; wrapper = new QueryWrapper(); // name是test_1的 wrapper.eq("name", name); Demo demo = demoService.getOne(wrapper);</code></pre> <p>更新：</p> <pre><code>UpdateWrapper&lt;Demo&gt; wrapper = new UpdateWrapper(); // 构造更新条件,UPDATE demo &nbsp; &nbsp; &nbsp;  WHERE  name = ?  wrapper.eq("name", name); // 要更新的值 Demo demo = new Demo(); demo.setUuidNo(UUID.randomUUID().toString()); boolean update = demoService.update(demo, wrapper);</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-49374.htm">被猫抓伤五天后在打的针有效果吗（被猫抓伤后五天才打疫苗有作用吗?）</a></p>
+                                        <p>下一个：<a href="/news/article-49886.htm">动物疫苗去哪打的 动物疫苗去哪打的啊</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-29830.htm" title="和田宠物店（和田卖宠物的地方）">和田宠物店（和田卖宠物的地方）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-free-high-speed-nodes.htm" title="10月19日 | Clash Meta每天更新18.9M/S免费节点订阅链接">10月19日 | Clash Meta每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22862.htm" title="动物疫苗的种类有哪些名称图片大全集（动物疫苗的类型）">动物疫苗的种类有哪些名称图片大全集（动物疫苗的类型）</a></li>
+                        <li class="py-2"><a href="/news/article-43432.htm" title="猫咪领养协议模板简单易懂图片（猫咪领养协议模板简单易懂图片大全）">猫咪领养协议模板简单易懂图片（猫咪领养协议模板简单易懂图片大全）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-today-clash-meta-node.htm" title="1月25日 | Clash Meta每天更新20.8M/S免费节点订阅链接地址">1月25日 | Clash Meta每天更新20.8M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-today-clash-meta-node.htm" title="11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接">11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34602.htm" title="vue 跨层级 调用solt 传递">vue 跨层级 调用solt 传递</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-clash-meta-windows.htm" title="12月18日 | Clash Meta每天更新22.6M/S免费节点订阅链接">12月18日 | Clash Meta每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-latest-clash-meta-node.htm" title="11月7日 | Clash Meta每天更新19M/S免费节点订阅链接">11月7日 | Clash Meta每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-49374.htm" title="被猫抓伤五天后在打的针有效果吗（被猫抓伤后五天才打疫苗有作用吗?）">被猫抓伤五天后在打的针有效果吗（被猫抓伤后五天才打疫苗有作用吗?）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
