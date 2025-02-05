@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://clash-meta.github.io/news/article-20568.htm" />
@@ -8,6 +8,34 @@
     <title>深入理解Kafka核心设计及原理（二）：生产者</title>
         <meta name="description" content="2.1Kafka生产者客户端架构  2.2 Kafka 进行消息生产发送代码示例及ProducerRecord对象 　　kafka进行消息生产发送代码示例：  publicclass KafkaPro" />
         <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-20568.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="深入理解Kafka核心设计及原理（二）：生产者" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/d0147cbf7bf68d57e47fad39518da56b.webp" />
+        <meta property="og:release_date" content="2024-12-03T00:14:53" />
+    <meta property="og:updated_time" content="2024-12-03T00:14:53" />
+        <meta property="og:description" content="2.1Kafka生产者客户端架构  2.2 Kafka 进行消息生产发送代码示例及ProducerRecord对象 　　kafka进行消息生产发送代码示例：  publicclass KafkaPro" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="深入理解Kafka核心设计及原理（二）：生产者">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Template CSS -->
@@ -111,16 +139,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-22400.htm" title="动物疫苗批号查询网站官网首页（动物疫苗批准文号）">动物疫苗批号查询网站官网首页（动物疫苗批准文号）</a></li>
-                        <li class="py-2"><a href="/news/article-19655.htm" title="宠物领养软件缺点是什么（宠物领养 app）">宠物领养软件缺点是什么（宠物领养 app）</a></li>
-                        <li class="py-2"><a href="/news/article-32230.htm" title="宠物医院好评评语100字 宠物医院好评评语100字怎么写">宠物医院好评评语100字 宠物医院好评评语100字怎么写</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-24-node-share.htm" title="9月24日 | Clash Meta每天更新20.7M/S免费节点订阅链接">9月24日 | Clash Meta每天更新20.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-27-clash-meta-github.htm" title="8月27日 | Clash Meta每天更新20.2M/S免费节点订阅链接">8月27日 | Clash Meta每天更新20.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-subscribe-node.htm" title="12月24日 | Clash Meta每天更新21M/S免费节点订阅链接地址">12月24日 | Clash Meta每天更新21M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-today-clash-meta-node.htm" title="1月7日 | Clash Meta每天更新20.5M/S免费节点订阅链接地址">1月7日 | Clash Meta每天更新20.5M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-clash-meta-node-share.htm" title="1月31日 | Clash Meta每天更新22.1M/S免费节点订阅链接地址">1月31日 | Clash Meta每天更新22.1M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日 | Clash Meta每天更新20.7M/S免费节点订阅链接">11月5日 | Clash Meta每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-subscribe-node.htm" title="12月13日 | Clash Meta每天更新22.3M/S免费节点订阅链接">12月13日 | Clash Meta每天更新22.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-free-subscribe-node.htm" title="1月29日 | Clash Meta每天更新20.4M/S免费节点订阅链接地址">1月29日 | Clash Meta每天更新20.4M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-34605.htm" title="java使用poi生成excel">java使用poi生成excel</a></li>
+                        <li class="py-2"><a href="/news/article-31209.htm" title="南京领养狗狗的地方有哪些（南京哪里有领养狗狗的地方）">南京领养狗狗的地方有哪些（南京哪里有领养狗狗的地方）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-node-subscribe.htm" title="1月6日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址">1月6日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址</a></li>
                         <li class="py-2"><a href="/news/article-20113.htm" title="宠物猫抓伤了轻微出血会有事吗注射过猫三多（宠物猫抓伤出血打针吗）">宠物猫抓伤了轻微出血会有事吗注射过猫三多（宠物猫抓伤出血打针吗）</a></li>
-                        <li class="py-2"><a href="/news/article-21027.htm" title="卖宠物粮食怎么样（卖宠物粮食怎么样赚钱）">卖宠物粮食怎么样（卖宠物粮食怎么样赚钱）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-29-free-high-speed-nodes.htm" title="12月29日 | Clash Meta每天更新21.8M/S免费节点订阅链接地址">12月29日 | Clash Meta每天更新21.8M/S免费节点订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-2-clash-meta-node-share.htm" title="11月2日 | Clash Meta每天更新20.1M/S免费节点订阅链接">11月2日 | Clash Meta每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39975.htm" title="【Electron】在 WSL2 中 打包 electron Linux 版本应用及运行 &#8211; E不小心 _在线工具">【Electron】在 WSL2 中 打包 electron Linux 版本应用及运行 &#8211; E不小心 _在线工具</a></li>
                     </ul>
     </div>
 </div>
@@ -132,22 +160,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

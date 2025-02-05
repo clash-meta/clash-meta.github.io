@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://clash-meta.github.io/news/article-35551.htm" />
@@ -8,6 +8,34 @@
     <title>@Order的使用与Aop多切面的执行顺序</title>
         <meta name="description" content="@Order: 设置该类在spring容器中的加载顺序, 越小越早优先加载 多个Aop是可以切同一点的, 比如, 想把@ApiOperation(Swag注解的)地方再自定义增强一下, 比如 持久化一" />
         <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-35551.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="@Order的使用与Aop多切面的执行顺序" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/fd589cd251aa70a08d8d1faa33d19ae2.webp" />
+        <meta property="og:release_date" content="2025-01-04T10:24:44" />
+    <meta property="og:updated_time" content="2025-01-04T10:24:44" />
+        <meta property="og:description" content="@Order: 设置该类在spring容器中的加载顺序, 越小越早优先加载 多个Aop是可以切同一点的, 比如, 想把@ApiOperation(Swag注解的)地方再自定义增强一下, 比如 持久化一" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="@Order的使用与Aop多切面的执行顺序">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Template CSS -->
@@ -111,16 +139,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-18-node-share-links.htm" title="10月18日 | Clash Meta每天更新20.7M/S免费节点订阅链接">10月18日 | Clash Meta每天更新20.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-25177.htm" title="宠物鲜粮市场前景分析报告（宠物粮行业分析）">宠物鲜粮市场前景分析报告（宠物粮行业分析）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-14-clash-meta-node-github.htm" title="12月14日 | Clash Meta每天更新20.5M/S免费节点订阅链接">12月14日 | Clash Meta每天更新20.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-30790.htm" title="动物医院申请条件有哪些要求和流程图片视频（动物医院需要几个兽医资格证）">动物医院申请条件有哪些要求和流程图片视频（动物医院需要几个兽医资格证）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-8-today-clash-meta-node.htm" title="10月8日 | Clash Meta每天更新21.6M/S免费节点订阅链接">10月8日 | Clash Meta每天更新21.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="12月4日 | Clash Meta每天更新21M/S免费节点订阅链接">12月4日 | Clash Meta每天更新21M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-4-clash-meta-node-github.htm" title="11月4日 | Clash Meta每天更新19.3M/S免费节点订阅链接">11月4日 | Clash Meta每天更新19.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-25634.htm" title="Golang 实现 Redis(10): 本地原子性事务_在线工具">Golang 实现 Redis(10): 本地原子性事务_在线工具</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-subscribe-node.htm" title="12月24日 | Clash Meta每天更新21M/S免费节点订阅链接地址">12月24日 | Clash Meta每天更新21M/S免费节点订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-30-clash-meta-node-github.htm" title="12月30日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址">12月30日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26564.htm" title="猫咪3针疫苗一共多少元冬天打 猫咪3针疫苗一共多少元冬天打的">猫咪3针疫苗一共多少元冬天打 猫咪3针疫苗一共多少元冬天打的</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-today-clash-meta-node.htm" title="2月1日 | Clash Meta每天更新19.2M/S免费节点订阅链接地址">2月1日 | Clash Meta每天更新19.2M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-clash-meta-node-share.htm" title="12月17日 | Clash Meta每天更新18M/S免费节点订阅链接">12月17日 | Clash Meta每天更新18M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-clash-meta-node.htm" title="11月11日 | Clash Meta每天更新22.9M/S免费节点订阅链接">11月11日 | Clash Meta每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28426.htm" title="南京宠物猫领养中心电话地址查询（南京猫咪领养中心）">南京宠物猫领养中心电话地址查询（南京猫咪领养中心）</a></li>
+                        <li class="py-2"><a href="/news/article-48312.htm" title="国内十大猫粮品牌排行榜对比（国内知名猫粮品牌）">国内十大猫粮品牌排行榜对比（国内知名猫粮品牌）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe-links.htm" title="12月15日 | Clash Meta每天更新21.3M/S免费节点订阅链接">12月15日 | Clash Meta每天更新21.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35034.htm" title="国内动物疫苗龙头企业排行榜最新（国内动物疫苗龙头企业排行榜最新名单）">国内动物疫苗龙头企业排行榜最新（国内动物疫苗龙头企业排行榜最新名单）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-clash-meta-node-github.htm" title="12月27日 | Clash Meta每天更新21.7M/S免费节点订阅链接地址">12月27日 | Clash Meta每天更新21.7M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-47387.htm" title="小猫多久能知道自己的名字（猫要多久能知道自己的名字）">小猫多久能知道自己的名字（猫要多久能知道自己的名字）</a></li>
                     </ul>
     </div>
 </div>
@@ -132,16 +160,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
