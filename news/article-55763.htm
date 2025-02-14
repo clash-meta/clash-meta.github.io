@@ -1,0 +1,307 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-55763.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MySQL必知必会</title>
+        <meta name="description" content="7.1 组合WHERE语句 and操作符：  &nbsp;or操作符：  SQL（像多数语言一样）在处理0R操作符前，优先处理AND操作符。 7.2 IN操作符 IN WHERE子句中用来指定要匹配值" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-55763.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="MySQL必知必会" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/086ca1473e09e12d4742ba3f10c78733.webp" />
+        <meta property="og:release_date" content="2025-02-13T03:09:19" />
+    <meta property="og:updated_time" content="2025-02-13T03:09:19" />
+        <meta property="og:description" content="7.1 组合WHERE语句 and操作符：  &nbsp;or操作符：  SQL（像多数语言一样）在处理0R操作符前，优先处理AND操作符。 7.2 IN操作符 IN WHERE子句中用来指定要匹配值" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL必知必会">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">MySQL必知必会</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <h2>7.1 组合WHERE语句</h2> <p><strong>and操作符：</strong></p> <p><img fetchpriority="high" decoding="async" alt="" height="350" src="http://img.555519.xyz/uploads3/20220823/6ec8c48338f8c82d344e46da30cd7b2f.jpg"></p> <p><strong>&nbsp;or操作符：</strong></p> <p><img decoding="async" alt="" height="159" src="http://img.555519.xyz/uploads3/20220823/43d2ecb4a677635082e70e26537dca10.jpg"></p> <p>SQL（像多数语言一样）在处理0R操作符前，优先处理AND操作符。</p> <h2>7.2 IN操作符</h2> <p>IN WHERE子句中用来指定要匹配值的清单的关键字，<strong>功能与OR相当</strong>。为什么要用IN？</p> <ul> <li>在使用长的合法选项清单时，IN操作符的语法更清楚且更直观。</li> <li>在使用IN时，计算的次序更容易管理（因为<strong>使用的操作符更少</strong>)。</li> <li>IN操作符一般比OR操作符清单执行更快。</li> <li><strong>IN的最大优点是可以包含其他SELECT语句,使得能够更动态地建立WHERE子句</strong>。</li> </ul> <p><img decoding="async" alt="" height="174" src="http://img.555519.xyz/uploads3/20220823/0942ae16aeee2b74576dea28b0d31123.jpg"></p> <h2>7.3 NOT操作符</h2> <p>MySQL中的NOT MySQL支持使用NOT对<strong>IN、BETWEEN和EXISTS</strong>子句取反。</p> <p><img loading="lazy" decoding="async" alt="" height="183" src="http://img.555519.xyz/uploads3/20220823/eb9ee3e4b93049d09a5ad9d695154996.jpg"></p> </h1> <p><strong>百分号(%)通配符：</strong>%表示任何字符出现任意次数。</p> <p><img loading="lazy" decoding="async" alt="" height="412" src="http://img.555519.xyz/uploads3/20220823/7694344abe7910fef2557505f68b948c.jpg"></p> <p>&nbsp;like后面的字符串里面是区分大小写的。</p> <p>另一个有用的通配符是<strong>下划线(_)</strong>。下划线的用途与%一样，但下划线只匹配单个字符而不是多个字符。</p> <p><img loading="lazy" decoding="async" alt="" height="146" src="http://img.555519.xyz/uploads3/20220823/daeab6793668cff1c9255bd8b13bf3ae.jpg"></p> <p>&nbsp;两个下划线匹配页面两个字。</p> </h1> <p>下面的语句检索列product_name包含文本页面的所有行：</p> <p><img loading="lazy" decoding="async" alt="" height="142" src="http://img.555519.xyz/uploads3/20220823/aabd15af8e7f04f66350b078385acfd5.jpg"></p> <p><strong>.</strong>是正则表达式语言中一个特殊的字符。它表示匹配任意一个字符。</p> <p><img loading="lazy" decoding="async" alt="" height="136" src="http://img.555519.xyz/uploads3/20220823/7898a3833f61688b7ae864d51f11ebcd.jpg"></p> <p><strong>进行or匹配：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="157" src="http://img.555519.xyz/uploads3/20220823/5a4365308bacd0d09de6ac041b3022c6.jpg"></p> <p><strong>匹配几个字符之一：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="171" src="http://img.555519.xyz/uploads3/20220823/06c0e4c5e60772a3c32d59057f47c4cf.jpg"></p> <p>正如所见，[ ]是另一种形式的OR语句。事实上,正则表达式<strong>[123]为[1|2|3]的缩写</strong>，也可以使用后者。</p> <p><strong>范围匹配：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="187" src="http://img.555519.xyz/uploads3/20220823/80eb9dcbd3a78c16909cb9a6067fbb71.jpg"></p> <p><strong>&nbsp;匹配特殊字符</strong>：</p> <p><img loading="lazy" decoding="async" alt="" height="261" src="http://img.555519.xyz/uploads3/20220823/16b6c7c7f30b8c33eda785fdc8a14ead.jpg"></p> <p>&nbsp;匹配字符类：</p> <p><img loading="lazy" decoding="async" alt="" height="460" src="http://img.555519.xyz/uploads3/20220823/93f31a8e24f6e571519e0c4bfce08342.jpg"></p> </h1> <p><strong>拼接字段</strong>：解决办法是把两个列拼接起来。在MySQL的SELECT语句中，可使用<strong>Concat()函数</strong>来拼接两个列。</p> <p><img loading="lazy" decoding="async" alt="" height="201" src="http://img.555519.xyz/uploads3/20220823/6cf9422d6d2d9e61ede88e814b4f1a9b.jpg"></p> <p>在第8章中曾提到通过删除数据右侧多余的空格来整理数据，这可以使用MySQL的RTrim ()函数来完成。</p> <p><strong>使用别名：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="184" src="http://img.555519.xyz/uploads3/20220823/2253e30dfe5828d203633eef53236fe5.jpg"></p> <p>执行算术运算：</p> <p><img loading="lazy" decoding="async" alt="" height="163" src="http://img.555519.xyz/uploads3/20220823/263c12e063e3161243043cdabd11079e.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="187" src="http://img.555519.xyz/uploads3/20220823/b06a71b4a90d4f2bb94626d0453f91a2.jpg"></p> </h1> <p><strong>文本处理函数</strong>：</p> <p><img loading="lazy" decoding="async" alt="" height="413" src="http://img.555519.xyz/uploads3/20220823/66699bf05433e0dbdadf1cc7927266c2.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="195" src="http://img.555519.xyz/uploads3/20220823/cc87724d7c5a701a94f3e0eb3c66a418.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="145" src="http://img.555519.xyz/uploads3/20220823/7234ddd3063b22b61e03791a586c9a66.jpg"></p> <p><strong>日期和时间处理函数：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="544" src="http://img.555519.xyz/uploads3/20220823/91a465f7816e37d16ece2c7b5f65519e.jpg"></p> <p>WHERE order_date ='2005-09-01'可靠吗?order date的数据类型为datetime。这种类型存储日期及时间值。</p> <p>解决办法是指示MySQL仅将给出的日期与列中的日期部分进行比较，而不是将给出的日期与整个列值进行比较。为此，必须使用Date()函数。Date(order_date)指示MySQL仅提取列的日期部分。</p> <p><img loading="lazy" decoding="async" alt="" height="73" src="http://img.555519.xyz/uploads3/20220823/f21985a02ba173c6fa0881e97f2e002f.jpg"></p> <p><strong>数值处理函数：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="271" src="http://img.555519.xyz/uploads3/20220823/9c3efb37d6f1c918668561b409442b2a.jpg"></p> </h1> <p><img loading="lazy" decoding="async" alt="" height="303" src="http://img.555519.xyz/uploads3/20220823/a81510074a42e9208fba77fc69358b95.jpg"></p> <p><strong>&nbsp;AVG()函数：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="128" src="http://img.555519.xyz/uploads3/20220823/b13f10f3320083b6d1a0b2beb92a0ff3.jpg"></p> <p>&nbsp;AVG ()也可以用来确定特定列或行的平均值。</p> <p><img loading="lazy" decoding="async" alt="" height="144" src="http://img.555519.xyz/uploads3/20220823/33f01c2396ee85d1c2b32d41ad7e63ec.jpg"></p> <p><strong>COUNT()函数:</strong></p> <p>COUNT (*)对表中行的数目进行计数,不管表列中包含的是空值（(NULL）还是非空值。</p> <p>COUNT (column)对特定列中具有值的行进行计数，<strong>忽略NULL值</strong>。</p> <p><img loading="lazy" decoding="async" alt="" height="131" src="http://img.555519.xyz/uploads3/20220823/fc1f5cd13292df121c9c9d7710901827.jpg"></p> <p><strong>MAX()函数:</strong></p> <p>MAX()返回指定列中的最大值。MAX()要求指定列名：</p> <p><img loading="lazy" decoding="async" alt="" height="126" src="http://img.555519.xyz/uploads3/20220823/7664cd01829740205477d350a8382b97.jpg"></p> <p>MIN()的功能正好与MAX(）功能相反。</p> <p><strong>SUM()函数：</strong></p> <p>SUM()用来返回指定列值的和（总计)。</p> <p><img loading="lazy" decoding="async" alt="" height="122" src="http://img.555519.xyz/uploads3/20220823/6cbdbdaee1db6fa9438cf6633d308970.jpg"></p> <p><strong>聚集不同值：</strong></p> <p>对所有的行执行计算，指定ALL参数或不给参数(因为ALL是默认)。</p> <p>只包含不同的值，指定DISTINCT参数。</p> <p><img loading="lazy" decoding="async" alt="" height="132" src="http://img.555519.xyz/uploads3/20220823/82865d1dc534a9b5c81aeebe3c6446bb.jpg"></p> <p><strong>组合聚集函数：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="184" src="http://img.555519.xyz/uploads3/20220823/cfbe00320cd88b5f4597749d8312a34a.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55209.htm">宠物领养平台app推荐下载苹果（宠物领养软件推荐）</a></p>
+                                        <p>下一个：<a href="/news/article-55764.htm">220v小型饲料颗粒机多少钱一台（小型颗粒饲料机多少钱一台最便宜）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-28889.htm" title="女生技校最吃香的专业（女生技校最吃香的专业有哪些）">女生技校最吃香的专业（女生技校最吃香的专业有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-13-clash-meta-windows.htm" title="2月13日 | Clash Meta每天更新18.8M/S免费节点订阅链接地址">2月13日 | Clash Meta每天更新18.8M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-44929.htm" title="动物疫苗有哪些大厂家打的呢多少钱（动物疫苗哪个好）">动物疫苗有哪些大厂家打的呢多少钱（动物疫苗哪个好）</a></li>
+                        <li class="py-2"><a href="/news/article-34128.htm" title="加盟做什么项目比较好（加盟做什么生意最赚钱投资小）">加盟做什么项目比较好（加盟做什么生意最赚钱投资小）</a></li>
+                        <li class="py-2"><a href="/news/article-43433.htm" title="宠物粮供应商电话 宠物粮供应商电话号码">宠物粮供应商电话 宠物粮供应商电话号码</a></li>
+                        <li class="py-2"><a href="/news/article-26083.htm" title="北京宠物领养中心官网58（北京宠物领养吧）">北京宠物领养中心官网58（北京宠物领养吧）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-clash-meta-github.htm" title="2月3日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址">2月3日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27962.htm" title="JavaScript 编写猜拳游戏">JavaScript 编写猜拳游戏</a></li>
+                        <li class="py-2"><a href="/news/article-47882.htm" title="宠物食品加工厂手续代办（宠物食品加工厂手续代办要多少钱）">宠物食品加工厂手续代办（宠物食品加工厂手续代办要多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-high-speed-nodes.htm" title="11月30日 | Clash Meta每天更新22.1M/S免费节点订阅链接">11月30日 | Clash Meta每天更新22.1M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
