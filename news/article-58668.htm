@@ -1,0 +1,307 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-58668.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spark系列Spark StreamingDStreams转换</title>
+        <meta name="description" content="前言 DStream上的原语与RDD的类似，分为Transformations（转换）和Output Operations（输出）两种，此外转换操作中还有一些比较特殊的原语，如：updateState" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-58668.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="Spark系列Spark StreamingDStreams转换" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/4dc624c83449cb9946f320d22d59a4a1.webp" />
+        <meta property="og:release_date" content="2025-02-18T09:44:50" />
+    <meta property="og:updated_time" content="2025-02-18T09:44:50" />
+        <meta property="og:description" content="前言 DStream上的原语与RDD的类似，分为Transformations（转换）和Output Operations（输出）两种，此外转换操作中还有一些比较特殊的原语，如：updateState" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spark系列Spark StreamingDStreams转换">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Spark系列Spark StreamingDStreams转换</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2 id="前言">前言</h2> <p>DStream上的原语与RDD的类似，分为Transformations（转换）和Output Operations（输出）两种，此外转换操作中还有一些比较特殊的原语，如：updateStateByKey()、transform()以及各种Window相关的原语。</p> <table> <thead> <tr> <th>Transformation</th> <th align="center">Meaning</th> </tr> </thead> <tbody> <tr> <td>map(func)</td> <td align="center">将源DStream中的每个元素通过一个函数func从而得到新的DStreams。</td> </tr> <tr> <td>flatMap(func)</td> <td align="center">和map类似，但是每个输入的项可以被映射为0或更多项。</td> </tr> <tr> <td>filter(func)</td> <td align="center">选择源DStream中函数func判为true的记录作为新DStreams。</td> </tr> <tr> <td>repartition(numPartitions)</td> <td align="center">通过创建更多或者更少的partition来改变此DStream的并行级别。</td> </tr> <tr> <td>union(otherStream)</td> <td align="center">联合源DStreams和其他DStreams来得到新DStream。</td> </tr> <tr> <td>count()</td> <td align="center">统计源DStreams中每个RDD所含元素的个数得到单元素RDD的新DStreams。</td> </tr> <tr> <td>reduce(func)</td> <td align="center">通过函数func(两个参数一个输出)来整合源DStreams中每个RDD元素得到单元素RDD的DStreams。这个函数需要关联从而可以被并行计算。</td> </tr> <tr> <td>countByValue()</td> <td align="center">对于DStreams中元素类型为K调用此函数，得到包含(K,Long)对的新DStream，其中Long值表明相应的K在源DStream中每个RDD出现的频率。</td> </tr> <tr> <td>reduceByKey(func, [numTasks])</td> <td align="center">对(K,V)对的DStream调用此函数，返回同样（K,V)对的新DStream，但是新DStream中的对应V为使用reduce函数整合而来。Note：默认情况下，这个操作使用Spark默认数量的并行任务（本地模式为2，集群模式中的数量取决于配置参数spark.default.parallelism）。你也可以传入可选的参数numTaska来设置不同数量的任务。</td> </tr> <tr> <td>join(otherStream, [numTasks])</td> <td align="center">两DStream分别为(K,V)和(K,W)对，返回(K,(V,W))对的新DStream。</td> </tr> <tr> <td>cogroup(otherStream, [numTasks])</td> <td align="center">两DStream分别为(K,V)和(K,W)对，返回(K,(Seq[V],Seq[W])对新DStreams</td> </tr> <tr> <td>transform(func)</td> <td align="center">将RDD到RDD映射的函数func作用于源DStream中每个RDD上得到新DStream。这个可用于在DStream的RDD上做任意操作。</td> </tr> <tr> <td>updateStateByKey(func)</td> <td align="center">得到”状态”DStream，其中每个key状态的更新是通过将给定函数用于此key的上一个状态和新值而得到。这个可用于保存每个key值的任意状态数据。</td> </tr> </tbody> </table> <hr/> <p><strong>DStream 的转化操作可以分为无状态(stateless)和有状态(stateful)两种。</strong></p> <ul> <li> <p>在无状态转化操作中，每个批次的处理不依赖于之前批次的数据。常见的 RDD 转化操作，例如 map()、filter()、reduceByKey() 等，都是无状态转化操作。</p> </li> <li> <p>相对地，有状态转化操作需要使用之前批次的数据或者是中间结果来计算当前批次的数据。有状态转化操作包括基于滑动窗口的转化操作和追踪状态变化的转化操作。</p> </li> </ul> <hr/> <h2 id="一无状态转化操作">一、无状态转化操作</h2> <p>无状态转化操作就是把简单的 RDD 转化操作应用到每个批次上，也就是转化 DStream 中的每一个 RDD。部分无状态转化操作列在了下表中。 注意，针对键值对的 DStream 转化操作(比如 reduceByKey())要添加import StreamingContext._ 才能在 Scala中使用。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220607/e524548620cd1100c929d935df409a7e.jpg" alt="Spark系列Spark StreamingDStreams转换"></p> <p>需要记住的是，尽管这些函数看起来像作用在整个流上一样，但事实上每个 DStream 在内部是由许多 RDD(批次)组成，且无状态转化操作是分别应用到每个 RDD 上的。例如， reduceByKey() 会归约每个时间区间中的数据，但不会归约不同区间之间的数据。</p> <p>举个例子，在之前的wordcount程序中，我们只会统计1秒内接收到的数据的单词个数，而不会累加。</p> <p>无状态转化操作也能在多个 DStream 间整合数据，不过也是在各个时间区间内。例如，键 值对 DStream 拥有和 RDD 一样的与连接相关的转化操作，也就是 cogroup()、join()、 leftOuterJoin() 等。我们可以在 DStream 上使用这些操作，这样就对每个批次分别执行了对应的 RDD 操作。</p> <p>我们还可以像在常规的 Spark 中一样使用 DStream 的 union() 操作将它和另一个 DStream 的内容合并起来，也可以使用 StreamingContext.union() 来合并多个流。</p> <h2 id="二有状态转化操作">二、有状态转化操作</h2> <p><strong>特殊的Transformations</strong></p> <h3 id="21-追踪状态变化updatestatebykey">2.1 追踪状态变化UpdateStateByKey</h3> <p>UpdateStateByKey原语用于记录历史记录，有时，我们需要在 DStream 中跨批次维护状态(例如流计算中累加wordcount)。针对这种情况，updateStateByKey() 为我们提供了对一个状态变量的访问，用于键值对形式的 DStream。给定一个由(键，事件)对构成的 DStream，并传递一个指定如何根据新的事件 更新每个键对应状态的函数，它可以构建出一个新的 DStream，其内部数据为(键，状态) 对。</p> <p>updateStateByKey() 的结果会是一个新的 DStream，其内部的 RDD 序列是由每个时间区间对应的(键，状态)对组成的。</p> <p>updateStateByKey操作使得我们可以在用新信息进行更新时保持任意的状态。为使用这个功能，你需要做下面两步：  1. 定义状态，状态可以是一个任意的数据类型。  2. 定义状态更新函数，用此函数阐明如何使用之前的状态和来自输入流的新值对状态进行更新。</p> <p>使用updateStateByKey需要对检查点目录进行配置，会使用检查点来保存状态。</p> <pre class="prettyprint"><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">object</span><span class="hljs-title">WorldCount</span> {<!-- --></span><span class="hljs-keyword">def</span> main(args: Array[String]) {<span class="hljs-comment">// 需要创建一个SparkConf</span><span class="hljs-keyword">val</span> conf =<span class="hljs-keyword">new</span> SparkConf().setMaster(<span class="hljs-string">"local[2]"</span>).setAppName(<span class="hljs-string">"NetworkWordCount"</span>)<span class="hljs-comment">// 需要创建一个StreamingContext</span><span class="hljs-keyword">val</span> ssc =<span class="hljs-keyword">new</span> StreamingContext(conf, Seconds(<span class="hljs-number">3</span>))<span class="hljs-comment">// 需要设置一个checkpoint的目录。</span>     ssc.checkpoint(<span class="hljs-string">"."</span>)<span class="hljs-comment">// 通过StreamingContext来获取hadoop0机器上9999端口传过来的语句</span><span class="hljs-keyword">val</span> lines = ssc.socketTextStream(<span class="hljs-string">"hadoop0"</span>,<span class="hljs-number">9999</span>)<span class="hljs-comment">// 需要通过空格将语句中的单词进行分割DStream[RDD[String]]</span><span class="hljs-keyword">val</span> words = lines.flatMap(_.split(<span class="hljs-string">" "</span>))<span class="hljs-comment">//import org.apache.spark.streaming.StreamingContext._ // not necessary since Spark 1.3</span><span class="hljs-comment">// 需要将每一个单词都映射成为一个元组（word,1）</span><span class="hljs-keyword">val</span> pairs = words.map(word =&gt; (word,<span class="hljs-number">1</span>))<span class="hljs-comment">// 定义一个更新方法，values是当前批次RDD中相同key的value集合，state是框架提供的上次state的值</span><span class="hljs-keyword">val</span> updateFunc = (values: Seq[Int], state: Option[Int]) =&gt; {<span class="hljs-comment">// 计算当前批次相同key的单词总数</span><span class="hljs-keyword">val</span> currentCount = values.foldLeft(<span class="hljs-number">0</span>)(_ + _)<span class="hljs-comment">// 获取上一次保存的单词总数</span><span class="hljs-keyword">val</span> previousCount = state.getOrElse(<span class="hljs-number">0</span>)<span class="hljs-comment">// 返回新的单词总数</span>       Some(currentCount + previousCount)     }<span class="hljs-comment">// 使用updateStateByKey方法，类型参数是状态的类型，后面传入一个更新方法。</span><span class="hljs-keyword">val</span> stateDstream = pairs.updateStateByKey[Int](updateFunc)<span class="hljs-comment">//输出</span>     stateDstream.print()     stateDstream.saveAsTextFiles(<span class="hljs-string">"hdfs://hadoop0:9000/statful/"</span>,<span class="hljs-string">"abc"</span>)      ssc.start()<span class="hljs-comment">// Start the computation</span>     ssc.awaitTermination()<span class="hljs-comment">// Wait for the computation to terminate</span>    }  }</code></pre> <hr/> <h3 id="22-window-operations">2.2 Window Operations</h3> <p>Window Operations有点类似于Storm中的State，可以设置窗口的大小和滑动窗口的间隔来动态的获取当前Steaming的允许状态。</p> <p>基于窗口的操作会在一个比 StreamingContext 的批次间隔更长的时间范围内，通过整合多个批次的结果，计算出整个窗口的结果。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220607/186cb95110c3a9bc9a40f3dfd3a316b8.jpg" alt="Spark系列Spark StreamingDStreams转换"></p> <p>所有基于窗口的操作都需要两个参数，分别为窗口时长以及滑动步长，两者都必须是 StreamContext 的批次间隔的整数倍。窗口时长控制每次计算最近的多少个批次的数据，其实就是最近的 windowDuration/batchInterval 个批次。如果有一个以 10 秒为批次间隔的源 DStream，要创建一个最近 30 秒的时间窗口(即最近 3 个批次)，就应当把 windowDuration 设为 30 秒。而滑动步长的默认值与批次间隔相等，用来控制对新的 DStream 进行计算的间隔。如果源 DStream 批次间隔为 10 秒，并且我们只希望每两个批次计算一次窗口结果， 就应该把滑动步长设置为 20 秒。</p> <p>假设，你想拓展前例从而每隔十秒对持续30秒的数据生成word count。为做到这个，我们需要在持续30秒数据的(word,1)对DStream上应用reduceByKey。使用操作reduceByKeyAndWindow.</p> <pre class="prettyprint"><code class="hljs python"><span class="hljs-comment"># reduce last 30 seconds of data, every 10 second</span> windowedWordCounts = pairs.reduceByKeyAndWindow(<span class="hljs-keyword">lambda</span> x, y: x + y,<span class="hljs-keyword">lambda</span> x, y: x -y,<span class="hljs-number">30</span>,<span class="hljs-number">20</span>)</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220607/d7fd6b78f1d68b7361c3a8602b23699d.jpg" alt="Spark系列Spark StreamingDStreams转换"></p> <table> <thead> <tr> <th>Tables</th> <th align="center">Are</th> </tr> </thead> <tbody> <tr> <td>Transformation</td> <td align="center">Meaning</td> </tr> <tr> <td>window(windowLength, slideInterval)</td> <td align="center">基于对源DStream窗化的批次进行计算返回一个新的DStream</td> </tr> <tr> <td>countByWindow(windowLength, slideInterval)</td> <td align="center">返回一个滑动窗口计数流中的元素。</td> </tr> <tr> <td>reduceByWindow(func, windowLength, slideInterval)</td> <td align="center">通过使用自定义函数整合滑动区间流元素来创建一个新的单元素流。</td> </tr> <tr> <td>reduceByKeyAndWindow(func, windowLength, slideInterval, [numTasks])</td> <td align="center">当在一个(K,V)对的DStream上调用此函数，会返回一个新(K,V)对的DStream，此处通过对滑动窗口中批次数据使用reduce函数来整合每个key的value值。Note:默认情况下，这个操作使用Spark的默认数量并行任务(本地是2)，在集群模式中依据配置属性(spark.default.parallelism)来做grouping。你可以通过设置可选参数numTasks来设置不同数量的tasks。</td> </tr> <tr> <td>reduceByKeyAndWindow(func, invFunc, windowLength, slideInterval, [numTasks])</td> <td align="center">这个函数是上述函数的更高效版本，每个窗口的reduce值都是通过用前一个窗的reduce值来递增计算。通过reduce进入到滑动窗口数据并”反向reduce”离开窗口的旧数据来实现这个操作。一个例子是随着窗口滑动对keys的“加”“减”计数。通过前边介绍可以想到，这个函数只适用于”可逆的reduce函数”，也就是这些reduce函数有相应的”反reduce”函数(以参数invFunc形式传入)。如前述函数，reduce任务的数量通过可选参数来配置。注意：为了使用这个操作，检查点必须可用。</td> </tr> <tr> <td>countByValueAndWindow(windowLength,slideInterval, [numTasks])</td> <td align="center">对(K,V)对的DStream调用，返回(K,Long)对的新DStream，其中每个key的值是其在滑动窗口中频率。如上，可配置reduce任务数量。</td> </tr> </tbody> </table> <p>reduceByWindow() 和 reduceByKeyAndWindow() 让我们可以对每个窗口更高效地进行归约操作。它们接收一个归约函数，在整个窗口上执行，比如 +。除此以外，它们还有一种特殊形式，通过只考虑新进入窗口的数据和离开窗 口的数据，让 Spark 增量计算归约结果。这种特殊形式需要提供归约函数的一个逆函数，比 如 + 对应的逆函数为 -。对于较大的窗口，提供逆函数可以大大提高执行效率。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220607/bf746605422d0d98ae64e22919ce57fc.jpg" alt="Spark系列Spark StreamingDStreams转换"></p> <pre class="prettyprint"><code class="hljs coffeescript">val ipDStream = accessLogsDStream.map(     logEntry<span class="hljs-function"> =&gt;</span> (logEntry.getIpAddress(),<span class="hljs-number">1</span>) )    val ipCountDStream = ipDStream.reduceByKeyAndWindow(   {<!-- --><span class="hljs-function"><span class="hljs-params">(x, y)</span> =&gt;</span> x + y},   {<!-- --><span class="hljs-function"><span class="hljs-params">(x, y)</span> =&gt;</span> x - y},   Seconds(<span class="hljs-number">30</span>),   Seconds(<span class="hljs-number">10</span>)  )<span class="hljs-regexp">//</span> 加上新进入窗口的批次中的元素<span class="hljs-regexp">//</span> 移除离开窗口的老批次中的元素<span class="hljs-regexp">//</span> 窗口时长<span class="hljs-regexp">//</span> 滑动步长</code></pre> <p>countByWindow() 和 countByValueAndWindow() 作为对数据进行 计数操作的简写。countByWindow() 返回一个表示每个窗口中元素个数的 DStream，而 countByValueAndWindow() 返回的 DStream 则包含窗口中每个值的个数，</p> <pre class="prettyprint"><code class="hljs avrasm">val ipDStream = accessLogsDStream<span class="hljs-preprocessor">.map</span>{entry =&gt; entry<span class="hljs-preprocessor">.getIpAddress</span>()}    val ipAddressRequestCount = ipDStream<span class="hljs-preprocessor">.countByValueAndWindow</span>(Seconds(<span class="hljs-number">30</span>), Seconds(<span class="hljs-number">10</span>))    val requestCount = accessLogsDStream<span class="hljs-preprocessor">.countByWindow</span>(Seconds(<span class="hljs-number">30</span>), Seconds(<span class="hljs-number">10</span>))</code></pre> <p>WordCount第三版：3秒一个批次，窗口12秒，滑步6秒。</p> <pre class="prettyprint"><code class="hljs coffeescript">object WorldCount {    def main(<span class="hljs-attribute">args</span>: Array[String]) {      val conf =<span class="hljs-keyword">new</span> SparkConf().setMaster(<span class="hljs-string">"local[2]"</span>).setAppName(<span class="hljs-string">"NetworkWordCount"</span>)<span class="hljs-regexp">//</span> batchInterval =<span class="hljs-number">3</span>s     val ssc =<span class="hljs-keyword">new</span> StreamingContext(conf, Seconds(<span class="hljs-number">3</span>))     ssc.checkpoint(<span class="hljs-string">"./checkpoint"</span>)<span class="hljs-regexp">//</span> Create a DStream that will connect to<span class="hljs-attribute">hostname</span>:port, like<span class="hljs-attribute">localhost</span>:<span class="hljs-number">9999</span>     val lines = ssc.socketTextStream(<span class="hljs-string">"hadoop0"</span>,<span class="hljs-number">9000</span>)<span class="hljs-regexp">//</span> Split each line into words     val words = lines.flatMap(_.split(<span class="hljs-string">" "</span>))<span class="hljs-regexp">//im</span>port org.apache.spark.streaming.StreamingContext._<span class="hljs-regexp">//</span><span class="hljs-keyword">not</span> necessary since Spark<span class="hljs-number">1.3</span>     // Count each word<span class="hljs-keyword">in</span> each batch     val pairs = words.map(word<span class="hljs-function"> =&gt;</span> (word,<span class="hljs-number">1</span>))<span class="hljs-regexp">//</span>val wordCounts = pairs.reduceByKey<span class="hljs-function"><span class="hljs-params">((a:Int,b:Int) =&gt; (a + b))</span>      // 窗口大小 为12<span class="hljs-title">s</span>， 12/3 = 4  滑动步长 6<span class="hljs-title">S</span>，   6/3 =2     //<span class="hljs-title">val</span><span class="hljs-title">wordCounts</span> =<span class="hljs-title">pairs</span>.<span class="hljs-title">reduceByKeyAndWindow</span><span class="hljs-params">((a:Int,b:Int) =&gt; (a + b),Seconds(<span class="hljs-number">12</span>), Seconds(<span class="hljs-number">6</span>))</span><span class="hljs-title">val</span><span class="hljs-title">wordCounts2</span> =<span class="hljs-title">pairs</span>.<span class="hljs-title">reduceByKeyAndWindow</span><span class="hljs-params">(_ + _,_ - _ ,Seconds(<span class="hljs-number">12</span>), Seconds(<span class="hljs-number">6</span>))</span>      //<span class="hljs-title">Print</span><span class="hljs-title">the</span><span class="hljs-title">first</span><span class="hljs-title">ten</span><span class="hljs-title">elements</span><span class="hljs-title">of</span><span class="hljs-title">each</span><span class="hljs-title">RDD</span><span class="hljs-title">generated</span><span class="hljs-title">in</span><span class="hljs-title">this</span><span class="hljs-title">DStream</span><span class="hljs-title">to</span><span class="hljs-title">the</span><span class="hljs-title">console</span><span class="hljs-title">wordCounts2</span>.<span class="hljs-title">print</span><span class="hljs-params">()</span><span class="hljs-title">ssc</span>.<span class="hljs-title">start</span><span class="hljs-params">()</span>             //<span class="hljs-title">Start</span><span class="hljs-title">the</span><span class="hljs-title">computation</span><span class="hljs-title">ssc</span>.<span class="hljs-title">awaitTermination</span><span class="hljs-params">()</span>  //<span class="hljs-title">Wait</span><span class="hljs-title">for</span><span class="hljs-title">the</span><span class="hljs-title">computation</span><span class="hljs-title">to</span><span class="hljs-title">terminate</span>     //<span class="hljs-title">ssc</span>.<span class="hljs-title">stop</span><span class="hljs-params">()</span>    }  }</span></code></pre> <hr/> <h2 id="三重要操作">三、重要操作</h2> <h3 id="31-transform-operation">3.1 Transform Operation</h3> <p>Transform原语允许DStream上执行任意的RDD-to-RDD函数。即使这些函数并没有在DStream的API中暴露出来，通过该函数可以方便的扩展Spark API。<br /> 该函数每一批次调度一次。</p> <p>比如下面的例子，在进行单词统计的时候，想要过滤掉spam的信息。<br /> 其实也就是对DStream中的RDD应用转换。</p> <pre class="prettyprint"><code class="hljs r">val spamInfoRDD = ssc.sparkContext.newAPIHadoopRDD(<span class="hljs-keyword">...</span>)   // RDD containing spam information  val cleanedDStream = wordCounts.transform {       // join data stream with spam information to do data cleaning<span class="hljs-keyword">...</span>      rdd =&gt;   rdd.join(spamInfoRDD).filter(<span class="hljs-keyword">...</span>)  }</code></pre> <h3 id="32-join操作">3.2 Join操作</h3> <p>连接操作（leftOuterJoin, rightOuterJoin, fullOuterJoin也可以），可以连接Stream-Stream，windows-stream to windows-stream、stream-dataset</p> <p><strong>Stream-Stream Joins</strong></p> <pre class="prettyprint"><code class="hljs r">val stream1: DStream[String, String] =<span class="hljs-keyword">...</span> val stream2: DStream[String, String] =<span class="hljs-keyword">...</span> val joinedStream = stream1.join(stream2)  val windowedStream1 = stream1.window(Seconds(<span class="hljs-number">20</span>)) val windowedStream2 = stream2.window(Minutes(<span class="hljs-number">1</span>)) val joinedStream = windowedStream1.join(windowedStream2)</code></pre> <p><strong>Stream-dataset joins</strong></p> <pre class="prettyprint"><code class="hljs r">val dataset: RDD[String, String] =<span class="hljs-keyword">...</span> val windowedStream = stream.window(Seconds(<span class="hljs-number">20</span>))<span class="hljs-keyword">...</span> val joinedStream = windowedStream.transform { rdd =&gt; rdd.join(dataset) }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58015.htm">疫苗分类包括动物疫苗吗 疫苗分类包括动物疫苗吗为什么</a></p>
+                                        <p>下一个：<a href="/news/article-58669.htm">宠物美容师多少钱一个月知乎招聘工作（宠物美容师价格）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe.htm" title="11月16日 | Clash Meta每天更新19.8M/S免费节点订阅链接">11月16日 | Clash Meta每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-today-clash-meta-node.htm" title="11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接">11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28424.htm" title="宠物领养网站html模板下载大全免费（宠物领养网站app）">宠物领养网站html模板下载大全免费（宠物领养网站app）</a></li>
+                        <li class="py-2"><a href="/news/article-53037.htm" title="Git的下载与安装（Windows 保姆教程）">Git的下载与安装（Windows 保姆教程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-latest-clash-meta-node.htm" title="12月7日 | Clash Meta每天更新21.4M/S免费节点订阅链接">12月7日 | Clash Meta每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-43952.htm" title="宠物饲料加工厂加盟 小型饲料颗粒机500元">宠物饲料加工厂加盟 小型饲料颗粒机500元</a></li>
+                        <li class="py-2"><a href="/news/article-54105.htm" title="动物疫病预防控制中心打疫苗吗要钱吗 动物疫病预防控制中心打疫苗吗要钱吗">动物疫病预防控制中心打疫苗吗要钱吗 动物疫病预防控制中心打疫苗吗要钱吗</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-clash-meta-github.htm" title="1月8日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址">1月8日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-32695.htm" title="和田宠物医院污水处理方案 和田宠物医院污水处理方案公示">和田宠物医院污水处理方案 和田宠物医院污水处理方案公示</a></li>
+                        <li class="py-2"><a href="/news/article-38980.htm" title="SpringBoot(39) —— Shiro实现登陆拦截">SpringBoot(39) —— Shiro实现登陆拦截</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
