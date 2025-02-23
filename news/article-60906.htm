@@ -1,0 +1,307 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-60906.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>使用Android实现一个悬浮在软键盘上的输入栏_Android</title>
+        <meta name="description" content="目录  前言 悬浮栏 横屏时软键盘全屏 监听软键盘（该方法不可靠，废弃，下面有靠谱的） 靠谱的监听软键盘的方法 终极悬浮方式  如果变小了 如果变大了 最终代码  总结     前言 我们要实现一个悬" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-60906.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="使用Android实现一个悬浮在软键盘上的输入栏_Android" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/4dc624c83449cb9946f320d22d59a4a1.webp" />
+        <meta property="og:release_date" content="2025-02-22T07:10:55" />
+    <meta property="og:updated_time" content="2025-02-22T07:10:55" />
+        <meta property="og:description" content="目录  前言 悬浮栏 横屏时软键盘全屏 监听软键盘（该方法不可靠，废弃，下面有靠谱的） 靠谱的监听软键盘的方法 终极悬浮方式  如果变小了 如果变大了 最终代码  总结     前言 我们要实现一个悬" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="使用Android实现一个悬浮在软键盘上的输入栏_Android">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">使用Android实现一个悬浮在软键盘上的输入栏_Android</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">前言</a></li> <li><a href="#_label1" rel="nofollow">悬浮栏</a></li> <li><a href="#_label2" rel="nofollow">横屏时软键盘全屏</a></li> <li><a href="#_label3" rel="nofollow">监听软键盘（该方法不可靠，废弃，下面有靠谱的）</a></li> <li><a href="#_label4" rel="nofollow">靠谱的监听软键盘的方法</a></li> <li><a href="#_label5" rel="nofollow">终极悬浮方式</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_5_0" rel="nofollow">如果变小了</a></li> <li><a href="#_lab2_5_1" rel="nofollow">如果变大了</a></li> <li><a href="#_lab2_5_2" rel="nofollow">最终代码</a></li> </ul> <li><a href="#_label6" rel="nofollow">总结</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>前言</h2> <p>我们要实现一个悬浮在软键盘上的输入栏（即一个悬浮栏），过程中遇到了很多问题，查阅了一些网上的文章，结果发现不少是错误的，走了一些弯路，这里就一一记录一下。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>悬浮栏</h2> <p>实现悬浮栏很简单</p> <div class="ay1code"> <pre class="brush:java;">chatInputPanel.setVisibility(View.VISIBLE);  chatInputEt.setFocusable(true);  chatInputEt.setFocusableInTouchMode(true);  chatInputEt.requestFocus();  InputMethodManager inputManager = (InputMethodManager)chatInputEt.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);  inputManager.showSoftInput(chatInputEt, 0);</pre> </div> <p>chatInputPanel就是悬浮栏整个layout，mChatPanelContent才是悬浮栏实际部分，chatInputEt是其中的EditText，对它做一些设置就可以实现将chatInputPanel悬浮在软件盘上。</p> <p>这里chatInputPanel是全屏的（点击mChatPanelContent以外部分隐藏键盘），mChatPanelContent是在它的bottom底部，默认隐藏（INVISIBLE）。</p> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>横屏时软键盘全屏</h2> <p>横屏时，安卓默认会将软键盘全屏显示，这样无法实现悬浮栏。所以需要取消全屏显示</p> <p>在EditText中使用android:imeOptinos可对Android自带的软键盘进行一些界面上的设置</p> <ul> <li> <p>android:imeOptions="flagNoExtractUi" //使软键盘不全屏显示，只占用一部分屏幕</p> </li> <li> <p>android:imeOptions="actionNone" //输入框右侧不带任何提示</p> </li> <li> <p>android:imeOptions="actionGo" //右下角按键内容为'开始'</p> </li> <li> <p>android:imeOptions="actionSearch" //右下角按键为放大镜图片，搜索</p> </li> <li> <p>android:imeOptions="actionSend" //右下角按键内容为'发送'</p> </li> <li> <p>android:imeOptions="actionNext" //右下角按键内容为'下一步'</p> </li> <li> <p>android:imeOptions="actionDone" //右下角按键内容为'完成'</p> </li> </ul> <p>所以我们为EditText设置android:imeOptions="flagNoExtractUi"即可实现在横屏时不全屏显示。同时，可能EditText添加相应的监听器，捕捉用户点击了软键盘右下角按钮的监听事件，以便进行处理。</p> <div class="ay1code"> <pre class="brush:java;">editText.setOnEditorActionListener(new OnEditorActionListener() {             @Override            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {                 Toast.makeText(MainActivity.this, "text2", Toast.LENGTH_SHORT).show();                 return false;             }         });  </pre> </div> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>监听软键盘（该方法不可靠，废弃，下面有靠谱的）</h2> <p>注意：这是网上的一个错误方法，所以特意拿出来说一下，不感兴趣直接去看（3）即可。</p> <p>显示没问题了，但是软键盘隐藏的时候要求悬浮栏同步隐藏起来。</p> <p>系统并没有提供监听软键盘收起的api，所以我们只能自己实现。</p> <div class="ay1code"> <pre class="brush:java;">chatInputPanel.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {      @Override      public void onGlobalLayout() {          if(chatInputPanel.getBottom() &gt; container.getRootView().getHeight() / 2){              chatInputPanel.setVisibility(View.INVISIBLE);          }          else{              chatInputPanel.setVisibility(View.VISIBLE);          }      }  });</pre> </div> <p>监听chatInputPanel（悬浮栏整体布局）的布局变化，当底部大于rootview高度一半的时候隐藏，否则显示。</p> <p>因为我们的功能是横屏的，所以键盘弹起时，chatInputPanel因为悬浮在键盘上，所以底部一定小于rootview高度（屏幕宽度）一半。</p> <p>当收起键盘，chatInputPanel会回到最底部（设置是在父布局底部），所以底部一定大于一半。</p> <p>这个方法不靠谱，而且重绘会导致onGlobalLayout频繁的执行，虽然可以加上一个时间来控制，但是不推荐使用这个方式来监听软键盘，下面看看另外一种方式。</p> <p class="maodian"><a name="_label4" rel="nofollow"></a></p> <h2>靠谱的监听软键盘的方法</h2> <p>上面的方法为什么不考虑，是因为全屏显示FLAG_FULLSCREEN（隐藏通知栏）导致问题</p> <p>当我们需要全屏显示隐藏通知栏时，会使用FLAG_FULLSCREEN属性</p> <div class="ay1code"> <pre class="brush:java;">getActivity().getWindow().setFlags(          WindowManager.LayoutParams.FLAG_FULLSCREEN,          WindowManager.LayoutParams.FLAG_FULLSCREEN);</pre> </div> <p>但是会影响上面的悬浮栏，因为发现chatInputPanel.getBottom()始终没变化，但是我们判断显示隐藏就靠这个变化。</p> <p>没变化是因为android在全屏FLAG_FULLSCREEN的处理方式导致的，全屏时软键盘会出现很多问题，这个网上有很多。</p> <p>如何解决？</p> <p>我们换一种方式监听软键盘即可</p> <div class="ay1code"> <pre class="brush:java;">getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {      @Override      public void onGlobalLayout() {          Rect rect = new Rect();          rootView.getWindowVisibleDisplayFrame(rect);          int rootHeight=rootView.getRootView().getHeight();            int displayHeight=rect.height();          int diffHeight=rootHeight-displayHeight;          if(diffHeight==0){              //键盘收起              chatInputPanel.setVisibility(View.INVISIBLE);          }else{              //键盘弹出              chatInputPanel.setVisibility(View.VISIBLE);          }      }  });</pre> </div> <p>通过监听根布局种的content布局的变化来判断，目前这个方法是最靠谱的。</p> <p>但是还存在一个小问题，就是全屏状态下键盘会覆盖悬浮栏底部的一小部分，这个怎么办？</p> <p class="maodian"><a name="_label5" rel="nofollow"></a></p> <h2>终极悬浮方式</h2> <p>上面解决了软键盘的监听问题，但是全屏状态下悬浮栏总会被遮住一部分，那怎么办？</p> <p>其实这里还有一个问题，当显示键盘后，app中的布局整体被向上推起，这样导致部分组件缩小等情况。</p> <p>我们要首先解决这个问题，让app的布局整体保持不动，键盘覆盖在其上面，这需要在弹起键盘前手动设置一下，如下：</p> <div class="ay1code"> <pre class="brush:java;">mChatInput.setOnClickListener(new View.OnClickListener() {      @Override      public void onClick(View v) {          DisplayMetrics metric = new DisplayMetrics();          getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);          chatInputPanel.setY(-metric.heightPixels);//解决首次可能向上推的问题                    chatInputEt.setFocusable(true);          chatInputEt.setFocusableInTouchMode(true);          chatInputEt.requestFocus();          InputMethodManager inputManager = (InputMethodManager)chatInputEt.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);          inputManager.showSoftInput(chatInputEt, 0);      }  });</pre> </div> <p>这样将悬浮栏移到了最顶部以上，就不会出现上推的情况了（猜测与键盘的机制有关，因为键盘弹出如果遮挡了有焦点的输入组件就好重新调整窗口，我们将悬浮窗放在最上面，键盘怎么也不会遮挡到焦点的EditText，所以不会重新调整窗口）。</p> <p>但是这样悬浮栏就一直看不见了，而且我们可以看到在这里去掉了chatInputPanel.setVisibility(View.VISIBLE);代码，那么如何显示？</p> <p>上面我们提到使用OnGlobalLayoutListener方式监听键盘，我们就在这里显示即可，同时优化一下显示的位置，在这里计算窗口显示区域上移多少，让chatInputPanel也上移相应位置即可，如：</p> <div class="ay1code"> <pre class="brush:java;">private int mLastHeight = 0;  getActivity().getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {      @Override      public void onGlobalLayout() {          Rect rect = new Rect();          getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);          int height = rect.height();          int rawHeight = getResources().getDisplayMetrics().heightPixels - rect.top;          if (height == mLastHeight)              return;                        if (height &lt; rawHeight) {              UiThreadHandler.postDelayed(new Runnable() {                  @Override                  public void run() {                      chatInputPanel.setVisibility(View.VISIBLE);                      chatInputPanel.setTranslationY(-(rawHeight - height));                  }              }, 200);          } else {              UiThreadHandler.postDelayed(new Runnable() {                  @Override                  public void run() {                      chatInputPanel.setVisibility(View.GONE);                  }              }, 100);          }                            mLastHeight = height;          }  });</pre> </div> <p>可以看到先得到当前窗口的显示高度和屏幕的实际高度（窗口部分）</p> <p>然后先判断窗口显示区域是否变化了，如果没变化则不处理。</p> <p>如果有变化，则判断变大还是变小了。</p> <p class="maodian"><a name="_lab2_5_0" rel="nofollow"></a></p> <h3>如果变小了</h3> <p>说明键盘弹起，这时候显示chatInputPanel，同时设置translationY为-(rawHeight - height)</p> <p>首先chatInputPanel初始位置底部是与屏幕底部对齐的，虽然设置了setY，但是setY实际上就是setTranslationY，初始位置没变，源码：</p> <div class="ay1code"> <pre class="brush:java;">public void setY(float y) {      setTranslationY(y - mTop);  }</pre> </div> <p>而弹起键盘后想要显示在键盘以上，那么就需要从最底部向上移动一个键盘的高度，键盘高度就是rawHeight - height，所以向上移动是将translationY设置为-(rawHeight - height)。</p> <p class="maodian"><a name="_lab2_5_1" rel="nofollow"></a></p> <h3>如果变大了</h3> <p>说明键盘收起，隐藏chatInputPanel即可。</p> <p>这样不仅解决了窗口推起的问题，也同时解决了软键盘遮挡部分悬浮栏的问题，因为悬浮栏的位置是通过计算得到的，不是通过软键盘上推导致布局调整而改变位置的。</p> <p class="maodian"><a name="_lab2_5_2" rel="nofollow"></a></p> <h3>最终代码</h3> <p>最后想将这个形成一个独立的组件，直接可用，再编写过程中发现出现好多问题，解决所有问题后发现与上面的代码都不一样，不过思路是一致的，只不过细节调整了，比如获取键盘高度等。</p> <p class="maodian"><a name="_label6" rel="nofollow"></a></p> <h2>总结</h2> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-60310.htm">猫医院游戏（猫咪院子游戏）</a></p>
+                                        <p>下一个：<a href="/news/article-60907.htm">春节自驾游去哪里比较好?(春节自驾游去哪里比较好玩)</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-today-clash-meta-node.htm" title="11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接">11月24日 | Clash Meta每天更新19.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-41951.htm" title="动物疫苗行业排名榜最新 动物疫苗行业排名榜最新">动物疫苗行业排名榜最新 动物疫苗行业排名榜最新</a></li>
+                        <li class="py-2"><a href="/news/article-31764.htm" title="宠物领养协议书范本图片大全下载 宠物领养协议书范本图片大全下载">宠物领养协议书范本图片大全下载 宠物领养协议书范本图片大全下载</a></li>
+                        <li class="py-2"><a href="/news/article-38477.htm" title="Spring Cloud Gateway系列 配置Gateway详解">Spring Cloud Gateway系列 配置Gateway详解</a></li>
+                        <li class="py-2"><a href="/news/article-34128.htm" title="加盟做什么项目比较好（加盟做什么生意最赚钱投资小）">加盟做什么项目比较好（加盟做什么生意最赚钱投资小）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-clash-meta-node.htm" title="1月10日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址">1月10日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-50918.htm" title="mysql将一张表的数据批量插入到另外一张表">mysql将一张表的数据批量插入到另外一张表</a></li>
+                        <li class="py-2"><a href="/news/article-60310.htm" title="猫医院游戏（猫咪院子游戏）">猫医院游戏（猫咪院子游戏）</a></li>
+                        <li class="py-2"><a href="/news/article-23333.htm" title="315公布的安全狗粮（狗粮315黑榜）">315公布的安全狗粮（狗粮315黑榜）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-today-clash-meta-node.htm" title="1月7日 | Clash Meta每天更新20.5M/S免费节点订阅链接地址">1月7日 | Clash Meta每天更新20.5M/S免费节点订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
