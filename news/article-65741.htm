@@ -1,0 +1,307 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-65741.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Git和SVN的区别详解</title>
+        <meta name="description" content="1、Git和SVN的区别  （1）SVN（集中式版本管理系统） 集中式的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-65741.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="Git和SVN的区别详解" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/3fbc046cec797ff467f449a93df2f1df.webp" />
+        <meta property="og:release_date" content="2025-03-02T09:36:56" />
+    <meta property="og:updated_time" content="2025-03-02T09:36:56" />
+        <meta property="og:description" content="1、Git和SVN的区别  （1）SVN（集中式版本管理系统） 集中式的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Git和SVN的区别详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Git和SVN的区别详解</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div class="toc"> <div class="toc-container-header"><span style="font-size: 1.5em;">1、Git和SVN的区别</span></div> </div> <h3 id="1svn集中式版本管理系统">（1）SVN（集中式版本管理系统）</h3> <p>集中式的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/58811f70b98c09eab0a777775a6b4064.jpg" alt="Git和SVN的区别详解"></p> <p><code>Subversion</code>属于集中式版本控制系统。</p> <ol> <li><strong>好处：</strong> <ul> <li>每个人都可以一定程度上看到项目中的其他人正在做些什么。</li> <li>而管理员也可以轻松掌控每个开发者的权限。</li> </ul> </li> <li><strong>缺点：</strong> <ul> <li>中央服务器的单点故障。若是宕机一小时，那么在这一小时内，谁都无法提交更新、还原、对比等，也就无法协同工作。</li> <li>如果中央服务器的磁盘发生故障，并且没做过备份或者备份得不够及时的话，还会有丢失数据的风险。最坏的情况是彻底丢失整个项目的所有历史更改记录，被客户端提取出来的某些快照数据除外，但这样的话依然是个问题，你不能保证所有的数据都已经有人提取出来。</li> <li><code>Subversion</code>原理上只关心文件内容的具体差异。每次记录有哪些文件作了更新，以及都更新了哪些行的什么内容。</li> <li>有很多人认为，集中式的版本控制系统在速度上和性能上是不足的。后来基于集中式的版本控制系统的不足，开发了分布式的版本控制系统。</li> </ul> </li> <li><strong><code>Subversion</code>的特点概括起来主要由以下几条：</strong> <ul> <li>每个版本库有唯一的URL（官方地址），每个用户都从这个地址获取代码和数据；</li> <li>获取代码的更新，也只能连接到这个唯一的版本库，同步以取得最新数据；</li> <li>提交必须有网络连接（非本地版本库）；</li> <li>提交需要授权，如果没有写权限，提交会失败；</li> <li>提交并非每次都能够成功。如果有其他人先于你提交，会提示“改动基于过时的版本，先更新再提交”… 诸如此类；</li> <li>冲突解决是一个提交速度的竞赛：手快者，先提交，平安无事；手慢者，后提交，可能遇到麻烦的冲突解决。</li> </ul> </li> </ol> <h3 id="2git分布式版本管理系统">（2）Git（分布式版本管理系统）</h3> <p>如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/534e98966f8b8cd043d309b41dc4083c.jpg" alt="Git和SVN的区别详解"></p> <p><strong>以Git为例：</strong></p> <ul> <li>Git是一个分布式的版本控制系统，和集中式的控制系统很大的一个差异是，分布式的版本控制系统的服务端和客户端都有完整的一套版本库。那脱离服务端，客户端照样可以管理版本的。并且查看历史以及版本比较等相关操作，都不需要去访问服务器，也就是说分布式的控制系统比集中式的控制系统更能提高版本管理的效率。</li> <li>Git记录版本历史只关心文件数据的整体是否发生变化，Git 不保存文件内容前后变化的差异数据。<br /> 所以Git每次存的都是项目的完整快照，需要的硬盘空间会相对大一点。<br /> （Git团队对代码做了极致的压缩，最终需要的实际空间比SVN多不了太多，可是Git的回滚速度极快）。</li> <li>实际上，Git 更像是把变化的文件作快照后，记录在一个微型的文件系统中。每次提交更新时，它会纵览一遍所有文件的指纹信息，并对文件作一快照，然后保存一个指向这次快照的索引。为提高性能，若文件没有变化，Git 不会再次保存，而只对上次保存的快照作一个连接。</li> <li>在分布式版本控制系统中，客户端并不只提取最新版本的文件快照，而是把原始的代码仓库完整地镜像下来。这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。这类系统都可以指定和若干不同的远端代码仓库进行交互。因此，你就可以在同一个项目中，分别和不同工作小组的人相互协作，你可以根据需要设定不同的协作流程。</li> <li>另外，因为Git在本地磁盘上就保存着所有有关当前项目的历史更新，并且Git中的绝大多数操作都只需要访问本地文件和资源，不用连网，所以处理起来速度飞快。用SVN的话，没有网络或者断开VPN你就无法做任何事情。但用Git的话，就算你在飞机或者火车上，都可以非常愉快地频繁提交更新，等到了有网络的时候再上传到远程的镜像仓库。</li> </ul> <h2 id="2svn和git的优缺点">2、SVN和Git的优缺点</h2> <h3 id="1svn优缺点">（1）SVN优缺点</h3> <p><strong>1）优点：</strong></p> <ol> <li>管理方便，逻辑明确，符合一般人思维习惯。</li> <li>易于管理，集中式服务器更能保证安全性。</li> <li>代码一致性非常高。</li> <li>适合开发人数不多的项目开发。</li> </ol> <p><strong>2）缺点：</strong></p> <ol> <li>服务器压力太大，数据库容量暴增。</li> <li>必须具有网络环境，单机无法实现版本控制。也就是如果不能连接到服务器上，基本上不可以工作，就不能进行提交，还原，对比等等操作。</li> <li>注意避免中央集中服务器单点故障。</li> <li>客户机之间无法直接进行联系。</li> <li>不适合开源开发（开发人数非常非常多）。但是一般集中式管理的有非常明确的权限管理机制（例如分支访问限制），可以实现分层管理，从而很好的解决开发人数众多的问题。</li> </ol> <h3 id="2git优缺点">（2）Git优缺点</h3> <p><strong>1）优点：</strong></p> <ol> <li>适合分布式开发，强调个体。</li> <li>公共服务器压力和数据量都不会太大。</li> <li>速度快、灵活。</li> <li>任意两个开发者之间可以很容易的解决冲突。</li> <li>可以离线工作。</li> </ol> <p><strong>2）缺点：</strong></p> <ol> <li>学习周期相对而言比较长。</li> <li>不符合常规思维。</li> <li>代码保密性差，一旦开发者把整个库克隆下来就可以完全公开所有代码和版本信息。</li> </ol> <h2 id="3总结一下">3、总结一下</h2> <ul> <li>当研发成本比较低，协作开发人数不多，开发人员对于版本管理的水平参差不齐的时候，或者对于代码的安全性要求更高一点的时候，适合用SVN。</li> <li>而对于很多人参与开发，代码量比较大，或者高频次协作，跨公司，跨地域合作的情况下，更适合用Git。</li> </ul> <blockquote> <p>参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/Sungeek/p/9152223.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/Sungeek/p/9152223.html</a></p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-65112.htm">动物医院环评如何办理（宠物医院环评选址要求）</a></p>
+                                        <p>下一个：<a href="/news/article-65742.htm">青岛动物防治中心（青岛动物防治中心官网）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-39457.htm" title="动物疫苗过敏应该用什么药物急救 动物疫苗过敏应该用什么药物急救呢">动物疫苗过敏应该用什么药物急救 动物疫苗过敏应该用什么药物急救呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-20-clash-meta-github.htm" title="2月20日 | Clash Meta每天更新22.7M/S免费节点订阅链接地址">2月20日 | Clash Meta每天更新22.7M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-28424.htm" title="宠物领养网站html模板下载大全免费（宠物领养网站app）">宠物领养网站html模板下载大全免费（宠物领养网站app）</a></li>
+                        <li class="py-2"><a href="/news/article-38981.htm" title="go web 处理文件上传">go web 处理文件上传</a></li>
+                        <li class="py-2"><a href="/news/article-22402.htm" title="卖宠物粮的网站有哪些（卖宠物粮的小程序）">卖宠物粮的网站有哪些（卖宠物粮的小程序）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-clash-meta-node-share.htm" title="3月2日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址">3月2日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-59164.htm" title="宠物领养平台的设计与实现方***文怎么写（宠物领养系统国内外现状）">宠物领养平台的设计与实现方***文怎么写（宠物领养系统国内外现状）</a></li>
+                        <li class="py-2"><a href="/news/article-47882.htm" title="宠物食品加工厂手续代办（宠物食品加工厂手续代办要多少钱）">宠物食品加工厂手续代办（宠物食品加工厂手续代办要多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-26082.htm" title="动物疫苗间隔时间多长有效（动物疫苗间隔多久打一次）">动物疫苗间隔时间多长有效（动物疫苗间隔多久打一次）</a></li>
+                        <li class="py-2"><a href="/news/article-36514.htm" title="SpringBoot+Vue之分页操作">SpringBoot+Vue之分页操作</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

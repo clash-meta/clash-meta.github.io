@@ -1,0 +1,307 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-65111.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>java字符串三种空字符串null、new String()、&#8221;&#8221;的区别</title>
+        <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天写个DEMO的时候碰到了个小麻烦，有关于题目所说的字符串这三者的区别，我觉得我真的是够了，居然会用得这么细，不过会了也好，碰" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-65111.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="java字符串三种空字符串null、new String()、&#8221;&#8221;的区别" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/16c591667d5bb6f26768b2cca2e20724.webp" />
+        <meta property="og:release_date" content="2025-03-01T06:59:16" />
+    <meta property="og:updated_time" content="2025-03-01T06:59:16" />
+        <meta property="og:description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天写个DEMO的时候碰到了个小麻烦，有关于题目所说的字符串这三者的区别，我觉得我真的是够了，居然会用得这么细，不过会了也好，碰" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="java字符串三种空字符串null、new String()、&#8221;&#8221;的区别">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">java字符串三种空字符串null、new String()、&#8221;&#8221;的区别</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天写个DEMO的时候碰到了个小麻烦，有关于题目所说的字符串这三者的区别，我觉得我真的是够了，居然会用得这么细，不过会了也好，碰到相关的问题就可以一言不合代码就开写！</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然研究，那就从结果说起，来看测试代码和输出结果：</p> <pre><code class="prism language-java"><span class="token comment">// 测试代码</span><span class="token keyword">package</span> cn<span class="token punctuation">.</span>com<span class="token punctuation">.</span>dnyy<span class="token punctuation">.</span>sn<span class="token punctuation">;</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">CheckStringNull</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">new</span><span class="token class-name">CheckStringNull</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">// 执行方法</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		 		String blackString<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span><span class="token comment">// 空字符串</span> 		String isEmptyString<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// isEmpty</span> 		String nullString<span class="token operator">=</span> null<span class="token punctuation">;</span><span class="token comment">// 空</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString:"</span><span class="token operator">+</span> blackString<span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"isEmptyString:"</span><span class="token operator">+</span> isEmptyString<span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"nullString:"</span><span class="token operator">+</span> nullString<span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"------------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString.getBytes().length:"</span><span class="token operator">+</span> blackString<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"isEmptyString.getBytes().length:"</span><span class="token operator">+</span> isEmptyString<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//System.out.println("nullString.getBytes().length:" + nullString.getBytes().length);</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----------------------------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString.isEmpty:"</span><span class="token operator">+</span> blackString<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"isEmptyString.isEmpty:"</span><span class="token operator">+</span> isEmptyString<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//System.out.println("nullString.isEmpty:" + nullString.isEmpty());</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----------------------------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\"\".equals(blackString):"</span><span class="token operator">+</span><span class="token string">""</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>blackString<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\"\".equals(isEmptyString):"</span><span class="token operator">+</span><span class="token string">""</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>isEmptyString<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\"\".equals(nullString):"</span><span class="token operator">+</span><span class="token string">""</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>nullString<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----------------------------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString==null:"</span><span class="token operator">+</span> blackString<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"isEmptyString==null:"</span><span class="token operator">+</span> isEmptyString<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"nullString==null:"</span><span class="token operator">+</span> nullString<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----------------------------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString.equals(isEmptyString):"</span><span class="token operator">+</span> blackString<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>isEmptyString<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString == isEmptyString:"</span><span class="token operator">+</span> blackString<span class="token operator">==</span> isEmptyString<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输出结果：</p> <pre><code>blackString: isEmptyString: nullString:null ----------------------------------------------------- blackString.getBytes().length:0 isEmptyString.getBytes().length:0 ----------------------------------------------------- blackString.isEmpty:true isEmptyString.isEmpty:true ----------------------------------------------------- "".equals(blackString):true "".equals(isEmptyString):true "".equals(nullString):false ----------------------------------------------------- blackString==null:false isEmptyString==null:false nullString==null:false ----------------------------------------------------- blackString.equals(isEmptyString):true blackString == isEmptyString:false</code></pre> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由上面的输出结果可以看得出以下几点</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、<code>String nullString = null;</code>这种定义方式表示这个变量是没有被分配内存的，源码里面如果运行被注释掉的代码则会报空指针异常java.lang.NullPointerException的错误，由此可以证明内存并没有分配；<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、<code>String isEmptyString = new String();</code> 这种定义方式会给isEmptyString变量分配出相应的内存，而由于new String()中的参数为空，则其实质上是一个有分配内存，但是值为空的一个变量；<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、<code>String blackString = "";</code> 这种定义方式和前者new String()的定义方式同样的都会分配出内存给这个变量，但与之不同的是，这种定义方式较之前者而言，相当于是new String("")定义的，拥有了参数（即调用了不同的构造方法）之后，blackString则是一个既有内存分配又有值（这个值是一个空的字符串）的变量。</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由此大致能够让大家区分了一下这三者之前的区别和联系，希望对大家今后敲代码的过程中有所帮助！谢谢大家！</p> <hr/> <h2><a id="20190822_93" rel="nofollow"></a>20190822修正</h2> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://me.csdn.net/wy727764020"  rel="nofollow">这个我知道</a>道友的提醒，上述测试代码存在个小BUG，位于</p> <pre><code class="prism language-java">		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString==null:"</span><span class="token operator">+</span> blackString<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"isEmptyString==null:"</span><span class="token operator">+</span> isEmptyString<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"nullString==null:"</span><span class="token operator">+</span> nullString<span class="token operator">==</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----------------------------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString.equals(isEmptyString):"</span><span class="token operator">+</span> blackString<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>isEmptyString<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"blackString == isEmptyString:"</span><span class="token operator">+</span> blackString<span class="token operator">==</span> isEmptyString<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于运算符优先级的关系，+优先级大于==，因此<code>blackString==null</code>、<code>isEmptyString==null</code>、<code>nullString==null</code>和<code>blackString == isEmptyString</code>需要加括号提升优先级，而之前写的没加，导致测试结果有误，不好意思啦~</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先摆个百科上的优先级图复习复习~<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/ee35b3e5e8e28ee57c74a9daed5fbb6d.jpg" alt="java字符串三种空字符串null、new String()、"><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后测试结果如下：</p> <pre><code>blackString: isEmptyString: nullString:null ------------------------------------ blackString.getBytes().length:0 isEmptyString.getBytes().length:0 ----------------------------------------------------- blackString.isEmpty:true isEmptyString.isEmpty:true ----------------------------------------------------- "".equals(blackString):true "".equals(isEmptyString):true "".equals(nullString):false ----------------------------------------------------- blackString==null:false isEmptyString==null:false nullString==null:true ----------------------------------------------------- blackString.equals(isEmptyString):true blackString == isEmptyString:false</code></pre> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区别在<code>nullString==null:true</code>，之前错误的结果是<code>false</code>，明鉴下啦~</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-64504.htm">开宠物美容店需要具备哪些条件和条件（开宠物美容店挣钱吗）</a></p>
+                                        <p>下一个：<a href="/news/article-65112.htm">动物医院环评如何办理（宠物医院环评选址要求）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-58668.htm" title="Spark系列Spark StreamingDStreams转换">Spark系列Spark StreamingDStreams转换</a></li>
+                        <li class="py-2"><a href="/news/article-39456.htm" title="三国杀出将顺序（三国杀 出牌阶段）">三国杀出将顺序（三国杀 出牌阶段）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-free-clash-meta-node.htm" title="2月9日 | Clash Meta每天更新20.9M/S免费节点订阅链接地址">2月9日 | Clash Meta每天更新20.9M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-56885.htm" title="dell新版bios设置硬盘启动模式（dellbios设置硬盘启动项）">dell新版bios设置硬盘启动模式（dellbios设置硬盘启动项）</a></li>
+                        <li class="py-2"><a href="/news/article-61489.htm" title="使用canvas制作验证码">使用canvas制作验证码</a></li>
+                        <li class="py-2"><a href="/news/article-31764.htm" title="宠物领养协议书范本图片大全下载 宠物领养协议书范本图片大全下载">宠物领养协议书范本图片大全下载 宠物领养协议书范本图片大全下载</a></li>
+                        <li class="py-2"><a href="/news/article-50401.htm" title="上海宠物救助站电话号码是多少（上海宠物救助领养中心地址）">上海宠物救助站电话号码是多少（上海宠物救助领养中心地址）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-clash-meta-node.htm" title="12月10日 | Clash Meta每天更新19.7M/S免费节点订阅链接">12月10日 | Clash Meta每天更新19.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-43432.htm" title="猫咪领养协议模板简单易懂图片（猫咪领养协议模板简单易懂图片大全）">猫咪领养协议模板简单易懂图片（猫咪领养协议模板简单易懂图片大全）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-clash-meta-node-share.htm" title="3月2日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址">3月2日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
