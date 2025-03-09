@@ -1,0 +1,304 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-70207.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>在vue项目中配置使用svg</title>
+        <meta name="description" content="日常使用svg作为图标使用已经很常见了,以下为几种使用方式 . file-loader 解析资源文件 最原始的无非就是直接导入使用了 , webpack使用了file-loader 对所有静态资源进行" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-70207.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="在vue项目中配置使用svg" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/5275ebd579800cece969c4082fd08870.webp" />
+        <meta property="og:release_date" content="2025-03-09T09:45:16" />
+    <meta property="og:updated_time" content="2025-03-09T09:45:16" />
+        <meta property="og:description" content="日常使用svg作为图标使用已经很常见了,以下为几种使用方式 . file-loader 解析资源文件 最原始的无非就是直接导入使用了 , webpack使用了file-loader 对所有静态资源进行" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="在vue项目中配置使用svg">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">在vue项目中配置使用svg</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>日常使用svg作为图标使用已经很常见了,以下为几种使用方式 .</p> <h3><a id="fileloader__3" rel="nofollow"></a><code>file-loader</code> 解析资源文件</h3> <p>最原始的无非就是直接导入使用了 , webpack使用了<code>file-loader</code> 对所有静态资源进行路径解析,包括图片、字体、文件等.</p> <p>简单的配置对<code>.svg</code> 的解析.</p> <pre><code class="prism language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{<!-- --></span>   module<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>     rules<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>         test<span class="token operator">:</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(svg)(\?.*)?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>         use<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>             loader<span class="token operator">:</span><span class="token string">'file-loader'</span><span class="token punctuation">,</span>             options<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>               name<span class="token operator">:</span><span class="token string">'img/[name].[hash:8].[ext]'</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre> <p><code>filer-loader</code> 可以解析<code>import/require()</code> 文件路径,并把文件输出到构建目录中.</p> <p>然后在组件文件中使用导入的资源</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>img<span class="token operator">:</span>src<span class="token operator">=</span><span class="token string">"icon404"</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">&lt;</span>object<span class="token operator">:</span>data<span class="token operator">=</span><span class="token string">"icon404"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>object<span class="token operator">&gt;</span><span class="token operator">&lt;</span>iframe<span class="token operator">:</span>src<span class="token operator">=</span><span class="token string">"icon404"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>iframe<span class="token operator">&gt;</span><span class="token operator">--</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script lang<span class="token operator">=</span><span class="token string">"ts"</span><span class="token operator">&gt;</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> Component<span class="token punctuation">,</span> Vue<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">"vue-property-decorator"</span><span class="token punctuation">;</span><span class="token comment">// import icon404 from "@/assets/icons/404.svg";</span><span class="token keyword">const</span> icon404<span class="token operator">=</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"@/assets/images/icon-404.svg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">interface</span><span class="token class-name">IState</span><span class="token punctuation">{<!-- --></span>   description<span class="token operator">:</span> string<span class="token punctuation">;</span><span class="token punctuation">}</span> @<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   name<span class="token operator">:</span><span class="token string">"work-bench"</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token keyword">class</span><span class="token class-name">extends</span> Vue<span class="token keyword">implements</span><span class="token class-name">IState</span><span class="token punctuation">{<!-- --></span>   description<span class="token operator">=</span><span class="token string">"展示当前项目拥有的组件,数据皆为模拟测试数据."</span><span class="token punctuation">;</span><span class="token comment">// 实例中定义引用</span>   icon404<span class="token operator">=</span> icon404<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> <p>通过<code>img \ object \ iframe</code> 作为资源载体加载资源 . 这样引入的方式对于我们常用修改颜色、字号等产生很大不便. 组件中资源过多就存在大量的<code>import</code> .</p> <p>可以通过打印查看<code>icon404</code> 的值是什么? 是对引用的当前.svg资源的路径地址.</p> <h3><a id="svgspriteloader__65" rel="nofollow"></a><code>svg-sprite-loader</code> 声明式调用</h3> <p>为什么说是声明式调用 , 因为它将我们需要的svg资源作为一个模版变量,进而进行指向引用即可 .</p> <p>首先我们按照npm包文档指引进行配置.</p> <h4><a id="_71" rel="nofollow"></a>安装</h4> <pre><code class="prism language-js"># 或 yarn npm install svg<span class="token operator">-</span>sprite<span class="token operator">-</span>loader<span class="token operator">-</span><span class="token constant">D</span></code></pre> <h4><a id="webpack__77" rel="nofollow"></a><code>webpack</code> 简单配置</h4> <p>变更了loader 为<code>svg-sprite-loader</code></p> <pre><code class="prism language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{<!-- --></span>   module<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>     rules<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>         test<span class="token operator">:</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(svg)(\?.*)?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>         use<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>             loader<span class="token operator">:</span><span class="token string">'svg-sprite-loader'</span><span class="token punctuation">,</span>             options<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>               symbolId<span class="token operator">:</span><span class="token string">"icon-[name]"</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre> <p>现在在看组件内的<code>.svg</code> 引入 . 已经加载不出来了,这里要注意的是<code>require</code> 导入,</p> <pre><code class="prism language-js"><span class="token comment">// ... 访问导入的值</span><span class="token keyword">this</span><span class="token punctuation">.</span>icon404<span class="token operator">=</span> icon404<span class="token punctuation">.</span>default<span class="token punctuation">;</span></code></pre> <h5><a id="svguse__108" rel="nofollow"></a>通过svg标签<code>use</code> 呈现</h5> <p>通过打印查看导入的内容icon404</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>symbol xmlns<span class="token operator">=</span><span class="token string">"http://www.w3.org/2000/svg"</span> xmlns<span class="token operator">:</span>xlink<span class="token operator">=</span><span class="token string">"http://www.w3.org/1999/xlink"</span> viewBox<span class="token operator">=</span><span class="token string">"0 0 400 400"</span> id<span class="token operator">=</span><span class="token string">"icon-icon-404"</span><span class="token operator">&gt;</span><span class="token comment">// ... svg 内容</span><span class="token operator">&lt;</span><span class="token operator">/</span>sysmbol<span class="token operator">&gt;</span></code></pre> <p>提供了<code>id</code> 作为引用键值 . 再使用<code>img \ object</code> 不行了, 了解过svg基础知识的同学知道,<code>symbol</code> 用来定义一个图形模版,然后使用<code>use</code> 呈现 .</p> <p><code>svg-sprite-loader</code> 会将加载的svg定义成<code>symbol</code> 汇聚到一个<code>&lt;svg&gt;</code> 元素中添加到body中.</p> <p>这样的话 , 我们局部定义svg引用对应的symbol , 通过<code>use</code>标签引用资源.</p> <p>导入的<code>icon404</code> 是一个<code>SpriteSymbol&lt;id,viewBox,content&gt;</code>实例, 通过<code>id</code> 进行访问 .</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>svg<span class="token operator">&gt;</span><span class="token operator">&lt;</span>use<span class="token operator">:</span>xlink<span class="token operator">:</span>href<span class="token operator">=</span><span class="token string">"`#${icon404.id}`"</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>svg<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span></code></pre> <p>当我们知道了svg的名称之后,加上webpack的配置<code>symbolId: "icon-[name]"</code> , 就不需要使用<code>icon404</code> 对象了,只需要导入</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span>svg<span class="token operator">&gt;</span><span class="token operator">&lt;</span>use<span class="token operator">:</span>xlink<span class="token operator">:</span>href<span class="token operator">=</span><span class="token string">"#icon-icon-404"</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>svg<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script lang<span class="token operator">=</span><span class="token string">"ts"</span><span class="token operator">&gt;</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> Component<span class="token punctuation">,</span> Vue<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">"vue-property-decorator"</span><span class="token punctuation">;</span><span class="token comment">// import icon404 from "@/assets/icons/404.svg";</span><span class="token comment">// const icon404 = require("@/assets/images/icon-404.svg");</span><span class="token comment">// 直接导入资源</span><span class="token keyword">import</span><span class="token string">"@/assets/icons/404.svg"</span><span class="token punctuation">;</span><span class="token keyword">interface</span><span class="token class-name">IState</span><span class="token punctuation">{<!-- --></span>     description<span class="token operator">:</span> string<span class="token punctuation">;</span><span class="token punctuation">}</span>    @<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>     name<span class="token operator">:</span><span class="token string">"work-bench"</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token keyword">class</span><span class="token class-name">extends</span> Vue<span class="token keyword">implements</span><span class="token class-name">IState</span><span class="token punctuation">{<!-- --></span>     description<span class="token operator">=</span><span class="token string">"展示当前项目拥有的组件,数据皆为模拟测试数据."</span><span class="token punctuation">;</span><span class="token comment">// 此处已不再需要定义实例中的变量</span><span class="token comment">// icon404 = icon404.default;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> <p>就可以愉快的使用啦. 这样还存在一个问题就是,每个需要使用的组件都需要导入 . 而且这明显可以作为一个模版抽离出来进行组件化使用.</p> <h5><a id="svg_170" rel="nofollow"></a>批量处理svg</h5> <p>按照上面的思路,我们可以定一个<code>index.ts</code> . 导入所有的svg图片,然后导出 ,</p> <pre><code class="prism language-ts"><span class="token comment">// 引入一遍所有的svg图标</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token comment">// ... 更多</span></code></pre> <p>记得要在主入口文件<code>main.ts</code> 引入.</p> <pre><code class="prism language-ts"><span class="token comment">// icon-svg</span><span class="token keyword">import</span><span class="token string">"@/components/svgIcon/index.ts"</span><span class="token punctuation">;</span></code></pre> <p>这样在所有vue组件中使用,不需要每次都导入了svg了.</p> <h5><a id="svgicon__192" rel="nofollow"></a>定义<code>svg-icon</code> 公共组件</h5> <p>当我们在多个组件中使用某一代码段时,我们就想把它抽离成组件.定一个<code>svgIcon.vue</code> . 这样的</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>svg<span class="token operator">:</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"svgClass"</span> v<span class="token operator">-</span>on<span class="token operator">=</span><span class="token string">"$listeners"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>use<span class="token operator">:</span>xlink<span class="token operator">:</span>href<span class="token operator">=</span><span class="token string">"svgName"</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>svg<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script lang<span class="token operator">=</span><span class="token string">"ts"</span><span class="token operator">&gt;</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> Component<span class="token punctuation">,</span> Vue<span class="token punctuation">,</span> Prop<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">"vue-property-decorator"</span><span class="token punctuation">;</span>  @<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   name<span class="token operator">:</span><span class="token string">"svg-icon"</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token keyword">class</span><span class="token class-name">extends</span> Vue<span class="token punctuation">{<!-- --></span>   @<span class="token function">Prop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">/* 图标名称 */</span> readonly iconName<span class="token operator">!</span><span class="token operator">:</span> string<span class="token punctuation">;</span>   @<span class="token function">Prop</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span><span class="token keyword">default</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token comment">/* 图标类名 */</span> readonly iconClass<span class="token operator">?</span><span class="token operator">:</span> string<span class="token punctuation">;</span><span class="token comment">// 我们配置的loader 选项中,定义了 icon-[name]</span><span class="token keyword">get</span><span class="token function">svgName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">#icon-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>iconName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">get</span><span class="token function">svgClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">svg-icon</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>iconClass<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span><span class="token operator">&lt;</span>style lang<span class="token operator">=</span><span class="token string">"less"</span> scoped<span class="token operator">&gt;</span><span class="token punctuation">.</span>svg<span class="token operator">-</span>icon<span class="token punctuation">{<!-- --></span>   width<span class="token operator">:</span><span class="token number">1</span>em<span class="token punctuation">;</span>   height<span class="token operator">:</span><span class="token number">1</span>em<span class="token punctuation">;</span>   fill<span class="token operator">:</span> currentColor<span class="token punctuation">;</span>   overflow<span class="token operator">:</span> hidden<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span></code></pre> <p>包含了svg名称 , 内部处理引入的<code>sysmbolId</code> . 使用的人只需要知道svg名称是什么就行了. 不关注webpack配置. 还可以加上自定义class名.以及原生事件等等.</p> <p>注册为全局组件,在<code>index.ts</code> 调整,</p> <pre><code class="prism language-ts"><span class="token keyword">import</span> Vue<span class="token keyword">from</span><span class="token string">"vue"</span><span class="token punctuation">;</span><span class="token keyword">import</span> SvgIcon<span class="token keyword">from</span><span class="token string">"./index.vue"</span><span class="token punctuation">;</span><span class="token comment">// 引入一遍所有的svg图标</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token comment">// ... 更多</span><span class="token comment">// SVG 图标</span> Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"svg-icon"</span><span class="token punctuation">,</span> SvgIcon<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p>然后就可以在所所有的组件中愉快的使用公共组件<code>svg-icon</code> 了,不需要每次都导入.</p> <p>怎么使用呢, 还是上面的组件.</p> <pre><code class="prism language-js"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">&lt;</span>svg<span class="token operator">&gt;</span><span class="token operator">&lt;</span>use<span class="token operator">:</span>xlink<span class="token operator">:</span>href<span class="token operator">=</span><span class="token string">"#icon-icon-404"</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>svg<span class="token operator">&gt;</span><span class="token operator">--</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 正常使用一个vue组件<span class="token operator">--</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>svg<span class="token operator">-</span>icon iconName<span class="token operator">=</span><span class="token string">"icon-404"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>svg<span class="token operator">-</span>icon<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script lang<span class="token operator">=</span><span class="token string">"ts"</span><span class="token operator">&gt;</span><span class="token keyword">import</span><span class="token punctuation">{<!-- --></span> Component<span class="token punctuation">,</span> Vue<span class="token punctuation">}</span><span class="token keyword">from</span><span class="token string">"vue-property-decorator"</span><span class="token punctuation">;</span><span class="token comment">// 导入不需要</span><span class="token comment">// import icon404 from "@/assets/icons/404.svg";</span><span class="token comment">// const icon404 = require("@/assets/images/icon-404.svg");</span><span class="token keyword">interface</span><span class="token class-name">IState</span><span class="token punctuation">{<!-- --></span>   description<span class="token operator">:</span> string<span class="token punctuation">;</span><span class="token punctuation">}</span>  @<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   name<span class="token operator">:</span><span class="token string">"work-bench"</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token keyword">class</span><span class="token class-name">extends</span> Vue<span class="token keyword">implements</span><span class="token class-name">IState</span><span class="token punctuation">{<!-- --></span>   description<span class="token operator">=</span><span class="token string">"展示当前项目拥有的组件,数据皆为模拟测试数据."</span><span class="token punctuation">;</span><span class="token comment">// 不需要</span><span class="token comment">// icon404 = icon404.default;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre> <p>是不是很完美 . 还需要优化的点就是加载svg资源的,我们只不过是换了个地方<code>import</code></p> <pre><code class="prism language-ts"><span class="token comment">// 引入一遍所有的svg图标</span><span class="token keyword">import</span><span class="token string">'@/assets/images/icon-404.svg'</span><span class="token comment">// 成百上千个 ....</span></code></pre> <p>想办法批量加载完成 . 幸好webpack提供了一个API 用于做批量加载的事情.<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://webpack.docschina.org/guides/dependency-management/#requirecontext"  rel="nofollow">传送门</a></p> <h5><a id="requirecontext__297" rel="nofollow"></a><code>require.context</code> 引入指定文件夹下的所有文件</h5> <p><code>require.context(dir,useSubDir,regExp,mode)</code></p> <ol> <li>需要加载的目录路径</li> <li>是否需要搜索其他子目录.</li> <li>加载匹配文件的正则表达式.</li> <li>加载方式<code>mode=sync</code></li> </ol> <p>返回一个require函数 ,可以接受一个request参数 ;</p> <p>require函数三个静态属性<code>resolve,keys,id</code> . 通过编译属性<code>kyes</code> 执行每一个加载资源的请求.</p> <pre><code class="prism language-js"><span class="token comment">// 指定目录加载所有的.svg资源</span><span class="token keyword">const</span> req<span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">"@/assets/images"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.svg$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 编译req属性的keys , 对每一个资源路径执行加载函数</span> req<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span></code></pre> <p>然后我们的<code>index.ts</code> 文件就修改为</p> <pre><code class="prism language-ts"><span class="token keyword">import</span> Vue<span class="token keyword">from</span><span class="token string">"vue"</span><span class="token punctuation">;</span><span class="token keyword">import</span> SvgIcon<span class="token keyword">from</span><span class="token string">"./index.vue"</span><span class="token punctuation">;</span><span class="token comment">// import "@/assets/images/icon-404.svg";</span><span class="token comment">// SVG 图标</span> Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">"svg-icon"</span><span class="token punctuation">,</span> SvgIcon<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">const</span> req<span class="token operator">=</span><span class="token keyword">require</span><span class="token punctuation">.</span><span class="token function">context</span><span class="token punctuation">(</span><span class="token string">"@/assets/images"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.svg$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> req<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span></code></pre> <p>看起来就简洁多了, 你只需要往这个目录添加你想要使用的svg资源就行了, 然后在项目中使用它.</p> <h4><a id="vueconfigjs__335" rel="nofollow"></a><code>vue.config.js</code> 配置</h4> <p>上面简单的自定义webpack配置时,如何配置webpack. 通常我们都使用了<code>vue-cli</code> 脚手架搭建vue项目.</p> <p>那就要在<code>vue.config.js</code> 中调整loader配置了.</p> <pre><code class="prism language-js"><span class="token comment">// vue.config.js</span><span class="token comment">// eslint-disable-next-line</span><span class="token keyword">const</span> path<span class="token operator">=</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token function-variable function">chainWebpack</span><span class="token operator">:</span><span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token comment">// svg-sprite-loader</span>     config<span class="token punctuation">.</span>module<span class="token punctuation">.</span>rules<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">"svg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     config<span class="token punctuation">.</span>module<span class="token punctuation">.</span><span class="token function">rule</span><span class="token punctuation">(</span><span class="token string">"svg-sprite-loader"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.svg$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>include<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span><span class="token string">"./src/assets/icons"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">"svg-sprite-loader"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">"svg-sprite-loader"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">options</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> symbolId<span class="token operator">:</span><span class="token string">"icon-[name]"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>首先移除了<code>.svg</code> 的默认loader 规则配置. 开始添加针对<code>.svg</code> 文件的loader规则配置.</p> <p>关于<code>vue.config.js</code> 配置详解,还会有另一篇文章来说明 . 解析<code>chainWebpack</code>是如何运转的.</p> <h3><a id="svgoloader_svg_366" rel="nofollow"></a><code>svgo-loader</code> 优化svg</h3> <p><code>svgo-loader</code>依赖安装<code>svgo</code> , 用来优化svg资源 , 清理掉多余、不必要的信息,比如:元数据信息、批注信息、隐藏的元素等.</p> <p>还有用来操作svg,<code>svgo</code> 可以转换svg<code>SVG-as-XML</code><code>SVG-as-JS</code> AST 树从而手动新增、更新、删减元素 .</p> <pre><code class="prism language-js"><span class="token punctuation">{<!-- --></span>     content<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>         doctype<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>         comment<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>         elem<span class="token operator">:</span><span class="token string">'svg'</span><span class="token punctuation">,</span>         local<span class="token operator">:</span><span class="token string">'svg'</span><span class="token punctuation">,</span>         attrs<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token comment">// ...</span><span class="token punctuation">}</span><span class="token punctuation">,</span>         content<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span><span class="token comment">// ... 嵌套子元素</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span></code></pre> <p>需要更详细操作svg的可以自行去查看这个库, 没怎么具体使用过. 如果有这方面的需求,肯定还有有更细致的文章.</p> <p>了解过之后,再来看<code>svgo-loader</code></p> <h4><a id="_401" rel="nofollow"></a>安装</h4> <pre><code class="prism language-shell"><span class="token function">npm</span><span class="token function">install</span> svgo-loader --save-dev</code></pre> <h4><a id="webpack__407" rel="nofollow"></a><code>webpack</code> 配置</h4> <p>简单的配置,需要明确的是它不是<code>file-loader \ svg-sprite-loader</code> 的替代. 作用不一样.</p> <p>起一个中间优化的作用.配置中添加<code>svgo-loader</code> 即可.</p> <pre><code class="prism language-js">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{<!-- --></span>   module<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>     rules<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>         test<span class="token operator">:</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(svg)(\?.*)?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>         use<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>             loader<span class="token operator">:</span><span class="token string">'file-loader'</span><span class="token punctuation">,</span>             options<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>               name<span class="token operator">:</span><span class="token string">'img/[name].[hash:8].[ext]'</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>             loader<span class="token operator">:</span><span class="token string">"svgo-loader"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre> <h4><a id="vueconfigjs__438" rel="nofollow"></a><code>vue.config.js</code> 配置</h4> <p>在之前配置的<code>svg-sprite-loader</code> 追加loader配置即可.</p> <pre><code class="prism language-js"><span class="token comment">// vue.config.js</span><span class="token comment">// eslint-disable-next-line</span><span class="token keyword">const</span> path<span class="token operator">=</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"path"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{<!-- --></span><span class="token function-variable function">chainWebpack</span><span class="token operator">:</span><span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token comment">// svg-sprite-loader</span>     config<span class="token punctuation">.</span>module<span class="token punctuation">.</span>rules<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">"svg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     config<span class="token punctuation">.</span>module<span class="token punctuation">.</span><span class="token function">rule</span><span class="token punctuation">(</span><span class="token string">"svg-sprite-loader"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.svg$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>include<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span><span class="token string">"./src/assets/icons"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">"svg-sprite-loader"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">"svg-sprite-loader"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">options</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> symbolId<span class="token operator">:</span><span class="token string">"icon-[name]"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">"svgo-loader"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">"svgo-loader"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h3><a id="_468" rel="nofollow"></a>链接资源</h3> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://webpack.docschina.org/guides/dependency-management/#requirecontext"  rel="nofollow">webpack依赖管理-require语句</a> -</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://juejin.cn/post/6991002832484696071"  rel="nofollow">svg基础知识学习</a></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69564.htm">动物防疫站几点下班（动物防疫站几点上班）</a></p>
+                                        <p>下一个：<a href="/news/article-70208.htm">附近宠物收容中心（附近宠物收容中心电话）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-today-clash-meta-node.htm" title="3月5日 | Clash Meta每天更新22.1M/S免费节点订阅链接地址">3月5日 | Clash Meta每天更新22.1M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-node-share-links.htm" title="3月3日 | Clash Meta每天更新20M/S免费节点订阅链接地址">3月3日 | Clash Meta每天更新20M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-56317.htm" title="动物医院介绍自己的店铺怎么写文案（动物医院招牌图片）">动物医院介绍自己的店铺怎么写文案（动物医院招牌图片）</a></li>
+                        <li class="py-2"><a href="/news/article-37479.htm" title="南京上门回收宠物狗（南京上门回收宠物狗电话号码）">南京上门回收宠物狗（南京上门回收宠物狗电话号码）</a></li>
+                        <li class="py-2"><a href="/news/article-53038.htm" title="和田宠物医院电话 和田宠物医院电话号码">和田宠物医院电话 和田宠物医院电话号码</a></li>
+                        <li class="py-2"><a href="/news/article-60906.htm" title="使用Android实现一个悬浮在软键盘上的输入栏_Android">使用Android实现一个悬浮在软键盘上的输入栏_Android</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-today-clash-meta-node.htm" title="1月12日 | Clash Meta每天更新21.6M/S免费节点订阅链接地址">1月12日 | Clash Meta每天更新21.6M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-68917.htm" title="鱼饲料颗粒机多少钱一台小型的（颗粒机鱼饲料配方）">鱼饲料颗粒机多少钱一台小型的（颗粒机鱼饲料配方）</a></li>
+                        <li class="py-2"><a href="/news/article-70208.htm" title="附近宠物收容中心（附近宠物收容中心电话）">附近宠物收容中心（附近宠物收容中心电话）</a></li>
+                        <li class="py-2"><a href="/news/article-60309.htm" title="开宠物店投资大吗（开宠物店很赚钱吗）">开宠物店投资大吗（开宠物店很赚钱吗）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
