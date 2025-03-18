@@ -1,0 +1,304 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-76214.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>关于reshape(-1,&#8230;)与view(-1,&#8230;)这两个改变张量shape的函数</title>
+        <meta name="description" content="&nbsp; &nbsp; &nbsp; &nbsp; 它俩的细节参考链接都说的很明白我就不赘述了，我主要讲一下我那lstm处理mnist数据集的时候需要对数据集进行一个处理，方便把数据按模型inpu" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-76214.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="关于reshape(-1,&#8230;)与view(-1,&#8230;)这两个改变张量shape的函数" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/086ca1473e09e12d4742ba3f10c78733.webp" />
+        <meta property="og:release_date" content="2025-03-18T06:12:23" />
+    <meta property="og:updated_time" content="2025-03-18T06:12:23" />
+        <meta property="og:description" content="&nbsp; &nbsp; &nbsp; &nbsp; 它俩的细节参考链接都说的很明白我就不赘述了，我主要讲一下我那lstm处理mnist数据集的时候需要对数据集进行一个处理，方便把数据按模型inpu" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="关于reshape(-1,&#8230;)与view(-1,&#8230;)这两个改变张量shape的函数">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">关于reshape(-1,&#8230;)与view(-1,&#8230;)这两个改变张量shape的函数</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; &nbsp; &nbsp; &nbsp; 它俩的细节参考链接都说的很明白我就不赘述了，我主要讲一下我那lstm处理mnist数据集的时候需要对数据集进行一个处理，方便把数据按模型input_size设定的那样喂给它。</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p> <pre><code class="language-python">import torch  import torch.nn as nn import torchvision import torchvision.transforms as transforms   # Device configuration device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Hyper-parameters sequence_length = 28 input_size = 28 hidden_size = 128 num_layers = 2 num_classes = 10 batch_size = 100 num_epochs = 2 learning_rate = 0.01  # MNIST dataset train_dataset = torchvision.datasets.MNIST(root='../../data/',                                            train=True,                                             transform=transforms.ToTensor(),                                            download=True)  test_dataset = torchvision.datasets.MNIST(root='../../data/',                                           train=False,                                            transform=transforms.ToTensor())  # Data loader train_loader = torch.utils.data.DataLoader(dataset=train_dataset,                                            batch_size=batch_size,                                             shuffle=True)  test_loader = torch.utils.data.DataLoader(dataset=test_dataset,                                           batch_size=batch_size,                                            shuffle=False)  total_step = len(train_loader) for epoch in range(num_epochs):     for i, (images, labels) in enumerate(train_loader):         print(images.size())         images = images.reshape(-1,sequence_length,input_size).to(device)         # images = images.view(-1,sequence_length,input_size).to(device)         print(images.size())         labels = labels.to(device)</code></pre> <pre><code>打印出来的size正如你所见： 通过enumerate(trai_loader)出来的：torch.Size([100, 1, 28, 28]) 通过reshape或者view改变shape后的：torch.Size([100, 28, 28]) 100是batch_size,1是代表mnist灰色图像只有一个通道，28width，28height</code></pre> <p>&nbsp; &nbsp; &nbsp; &nbsp; 咱再举一反三打个比方，</p> <pre><code class="language-python">        images = images.reshape(-1,2,sequence_length, input_size).to(device)         # images = images.view(-1,2,sequence_length, input_size).to(device)         print(images.size())</code></pre> <pre><code>打印出来的size正如你所见： 通过enumerate(trai_loader)出来的：torch.Size([100, 1, 28, 28]) 通过reshape或者view改变shape后的：torch.Size([50,2, 28, 28]) 自动把batchsize变成了50，但总的数据量少没有变的，你，学废了吗？</code></pre> <p></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-75517.htm">动物疫苗最新消息新闻 动物疫苗最新消息新闻报道</a></p>
+                                        <p>下一个：<a href="/news/article-76215.htm">Redis持久化机制及缓存失效解决方案</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37480.htm" title="20万左右的四座敞篷跑车有哪些品牌(20万左右的四座敞篷跑车有哪些车型)">20万左右的四座敞篷跑车有哪些品牌(20万左右的四座敞篷跑车有哪些车型)</a></li>
+                        <li class="py-2"><a href="/news/article-75516.htm" title="mysql错误解决方案">mysql错误解决方案</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-14-free-node-subscribe.htm" title="2月14日 | Clash Meta每天更新20.6M/S免费节点订阅链接地址">2月14日 | Clash Meta每天更新20.6M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-72189.htm" title="学宠物医生上什么大学（学宠物医生上什么大学好）">学宠物医生上什么大学（学宠物医生上什么大学好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-20-clash-meta-github.htm" title="2月20日 | Clash Meta每天更新22.7M/S免费节点订阅链接地址">2月20日 | Clash Meta每天更新22.7M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-53563.htm" title="宠物领养的软件（宠物领养的平台）">宠物领养的软件（宠物领养的平台）</a></li>
+                        <li class="py-2"><a href="/news/article-50919.htm" title="瑞鹏宠物中心医院在哪里啊（瑞鹏宠物医院总院电话）">瑞鹏宠物中心医院在哪里啊（瑞鹏宠物医院总院电话）</a></li>
+                        <li class="py-2"><a href="/news/article-74176.htm" title="动物接种疫苗多少钱一次打几针 动物接种疫苗多少钱一次打几针啊">动物接种疫苗多少钱一次打几针 动物接种疫苗多少钱一次打几针啊</a></li>
+                        <li class="py-2"><a href="/news/article-68267.htm" title="领养宠物狗需要什么手续（领养狗狗需要什么手续）">领养宠物狗需要什么手续（领养狗狗需要什么手续）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-clash-meta-windows.htm" title="2月15日 | Clash Meta每天更新22.4M/S免费节点订阅链接地址">2月15日 | Clash Meta每天更新22.4M/S免费节点订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
