@@ -1,0 +1,304 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-77576.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>vue项目中数据更新页面不刷新问题</title>
+        <meta name="description" content="这种情况可以分为很多种.但是究其原因就是vue3.0以下版本无法监听对象（包括数组以及对象）的变化，当数据发生变化的时候vue的刷新机制是监听不到数据变化的，所以需要我们在实际应用过程中通过各种处理来" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-77576.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="vue项目中数据更新页面不刷新问题" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/16c591667d5bb6f26768b2cca2e20724.webp" />
+        <meta property="og:release_date" content="2025-03-20T10:00:51" />
+    <meta property="og:updated_time" content="2025-03-20T10:00:51" />
+        <meta property="og:description" content="这种情况可以分为很多种.但是究其原因就是vue3.0以下版本无法监听对象（包括数组以及对象）的变化，当数据发生变化的时候vue的刷新机制是监听不到数据变化的，所以需要我们在实际应用过程中通过各种处理来" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue项目中数据更新页面不刷新问题">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">vue项目中数据更新页面不刷新问题</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>这种情况可以分为很多种.但是究其原因就是vue3.0以下版本无法监听对象（包括数组以及对象）的变化，当数据发生变化的时候vue的刷新机制是监听不到数据变化的，所以需要我们在实际应用过程中通过各种处理来达到页面刷新的目的。</p> <p>1.这是一种简单粗暴的解决方案吧,那就是在数据更新完成之后对页面进行重排和重绘操纵,但是这种方式对页面的消耗会急剧上升,不到万不得已还是不要使用的好，具体实现方法如下:</p> <pre><code>在data中定义一个阈值,比如show，初始为true;  代码实现：  this.show = false; setTimeout(() =&gt; {    this.show = true  },0)</code></pre> <p>2.在数据都处理完成之后,使用this.$froceUpdate()进行强制刷新；</p> <p>3.在数据处理完成之后进行数据重置操作,但是值得注意的是这种方式只对对象有效(亲测数组无效,有朋友能搞来的话欢迎留言,让我膜拜一下,嘿嘿)，并且这种方式不适用于对象中有键值为引用类型的数据源（针对这种方式,个人觉得可以将引用类型数据显示的模板单独封装一个组件,再在这个组件中进行数据刷新,当然,监听数据变化是必不可少的,这个方法没有测试过,按理说应该没问题）</p> <pre><code>let temp = this.data; this.data = null; this.data = temp</code></pre> <p>4.采用官方提供的方法,使用过this.$set全局方法进行数据更新;这里我们要说一下vue的数据绑定机制了;当一个页面创建的过程中，html模板只有只会绑定在data中初始创建的时候已经存在的数据，如果在页面创建之后我们追加数据的话就会出现数据更新了，但是页面却没有刷新的情况,this.$set(数据源,要追加的数据的键 / 在源数据中的索引,新数据)这个方法就是vue官方提供的用于追加数据的,并能够实现页面刷新！</p> <p>5.针对数组数据,常见修改数据之后页面不刷新的原因有:</p> <ol> <li>通过数组下标修改数组元素</li> <li>修改数组长度</li> </ol> <p>那么在修改数组数据的时候,我们应该使用push(),pop(),shift(),unshift(),splice(),sort()，reverse()等原生的方法去操作数据,因为vue可以直接检测这些方法所带来的数组数据变化。</p> <p>6.数据不刷新最根本的原因还是因为vue认为模板结构没有更新，所以不会生成新的虚拟的dom，所以我们可以为需要更新的dom添加一个会由操作结束而发生变化的key值，这样就会刷新了（这是最近学到的一个新技能，再来补充一下）。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-77575.htm">检查pytorch是否安装成功、查看torch和cuda的版本</a></p>
+                                        <p>下一个：<a href="/news/article-78244.htm">RPC及Dubbo和ZooKeeper的安装</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-39976.htm" title="免费领养宠物的app下载安卓（免费领养宠物的应用）">免费领养宠物的app下载安卓（免费领养宠物的应用）</a></li>
+                        <li class="py-2"><a href="/news/article-70208.htm" title="附近宠物收容中心（附近宠物收容中心电话）">附近宠物收容中心（附近宠物收容中心电话）</a></li>
+                        <li class="py-2"><a href="/news/article-63275.htm" title="动物疫病预防中心（动物疫病预防中心党建简报）">动物疫病预防中心（动物疫病预防中心党建简报）</a></li>
+                        <li class="py-2"><a href="/news/article-59736.htm" title="免费领养宠物的正规平台上海有哪些地方（上海免费领养宠物猫）">免费领养宠物的正规平台上海有哪些地方（上海免费领养宠物猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-17-today-clash-meta-node.htm" title="2月17日 | Clash Meta每天更新21.4M/S免费节点订阅链接地址">2月17日 | Clash Meta每天更新21.4M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-36514.htm" title="SpringBoot+Vue之分页操作">SpringBoot+Vue之分页操作</a></li>
+                        <li class="py-2"><a href="/news/article-59164.htm" title="宠物领养平台的设计与实现方***文怎么写（宠物领养系统国内外现状）">宠物领养平台的设计与实现方***文怎么写（宠物领养系统国内外现状）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-free-node-subscribe-links.htm" title="3月16日 | Clash Meta每天更新21.6M/S免费节点订阅链接地址">3月16日 | Clash Meta每天更新21.6M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-clash-meta-node-github.htm" title="3月12日 | Clash Meta每天更新19.7M/S免费节点订阅链接地址">3月12日 | Clash Meta每天更新19.7M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-36515.htm" title="天津宠物猫领养中心地址在哪里（天津宠物猫领养中心地址在哪里呀）">天津宠物猫领养中心地址在哪里（天津宠物猫领养中心地址在哪里呀）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
