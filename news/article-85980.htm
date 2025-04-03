@@ -1,0 +1,301 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-85980.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Redis 数据持久化实践</title>
+        <meta name="description" content="背景 Redis是一种内存数据库，在断电时数据可能会丢失。比如你redis整个挂了，然后redis不可用了，如果没有持久化的话，redis就会丢失所有的数据，如果通过持久化将数据搞一份儿到磁盘上去，然" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-85980.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="Redis 数据持久化实践" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/3f86bea69bc0ebc33ac3352552a480bb.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:47:37" />
+    <meta property="og:updated_time" content="2025-04-01T09:47:37" />
+        <meta property="og:description" content="背景 Redis是一种内存数据库，在断电时数据可能会丢失。比如你redis整个挂了，然后redis不可用了，如果没有持久化的话，redis就会丢失所有的数据，如果通过持久化将数据搞一份儿到磁盘上去，然" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Redis 数据持久化实践">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Redis 数据持久化实践</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <h2><a name="t2" rel="nofollow"></a><a id="_2" rel="nofollow"></a>背景</h2> <p>Redis是一种<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=%E5%86%85%E5%AD%98&amp;spm=1001.2101.3001.7020"  title="内存" rel="nofollow">内存</a>数据库，在断电时数据可能会丢失。比如你redis整个挂了，然后redis不可用了，如果没有持久化的话，redis就会丢失所有的数据，如果通过持久化将数据搞一份儿到磁盘上去，然后再定期同步到一些云存储服务上去，那么就可以保证一些数据不丢失，保证数据的可靠性。</p> <h2>持久化方式</h2> <p>Redis中为了保证在系统宕机(类似进程被杀死)情况下，能更快的进行故障恢复，设计了两种数据持久化方案，分别为rdb和aof方式。</p> <h2>配置准备工作</h2> <p>第一步:从redis.io官方下载对应版本的redis.conf文件,地址如下:</p> <pre><code>https://redis.io/topics/config/</code></pre> <p>第二步:停止redis并删除挂载目录下(/usr/local/docker/redis01/conf)的redis.conf配置文件.<br /> 第三步:将下载的redis.conf文件拷贝到redis挂载目录(/usr/local/docker/redis01/conf)<br /> 第四步:基于vim打开redis.conf文件,然后注释 bind 127.0.0.1这一行,并修改protected-mode的值修改为no.(java连接redis需要改这两项目)<br /> 第五步:重启redis服务,并检查启动日志(docker logs 容器id)</p> </h1> <h2><a name="t6" rel="nofollow"></a><a id="_19" rel="nofollow"></a>概述</h2> <p>Rdb方式是通过手动(save-阻塞式，bgsave-异步)或周期性方式保存redis中key/value的一种机制,Rdb方式一般为redis的默认数据持久化方式.系统启动时会自动开启这种方式的持久化机制。</p> <h2><a name="t7" rel="nofollow"></a><a id="RDB_22" rel="nofollow"></a>RDB方式配置</h2> <p>RDB方式的持久化是默认开启的，也可按规则自己配置，例如，打开redis.conf文件，例如</p> <pre><code># 这里表示每隔60s，如果有超过1000个key发生了变更，那么就生成一个新的dump.rdb文件，就是当前redis内存中完整的数据快照，这个操作也被称之为snapshotting(快照)。  save 60 1000  # 持久化 rdb文件遇到问题时，主进程是否接受写入，yes 表示停止写入，如果是no 表示redis继续提供服务。 stop-writes-on-bgsave-error yes      # 在进行快照镜像时,是否进行压缩。yes:压缩，但是需要一些cpu的消耗。no:不压缩，需要更多的磁盘空间。 rdbcompression yes # 一个CRC64的校验就被放在了文件末尾，当存储或者加载rbd文件的时候会有一个10%左右的性能下降，为了达到性能的最大化，你可以关掉这个配置项。 rdbchecksum yes  # 快照的文件名 dbfilename dump.rdb  # 存放快照的目录 dir /var/lib/redis</code></pre> <h2>Rdb方式持久化实践</h2> <blockquote> <p>试验一</p> </blockquote> <p>在redis中保存几条数据，然后执行shutdown关闭redis,然后再重启redis，看看刚才插入的数据是否还在？假如数据还在，为什么？<br /> 因为,通过redis-cli shutdown这种方式去停掉redis，其实是一种安全退出的模式，redis在退出的时候会将内存中的数据立即生成一份完整的rdb快照,例如</p> <pre><code>127.0.0.1:6379&gt; set phone 11111111 OK 127.0.0.1:6379&gt; shutdown   #默认也会进行持久化 [root@centos7964 ~]#  docker start redis01 [root@centos7964 ~]# docker exec -it redis01 redis-cli 127.0.0.1:6379&gt; keys * 1) "pone"</code></pre> <blockquote> <p>试验二</p> </blockquote> <p>在redis中再保存几条新的数据，用kill -9粗暴杀死redis进程，模拟redis故障异常退出，导致内存数据丢失的场景？<br /> 这次就发现，redis进程异常被杀掉，几条最新的数据就丢失了。例如:</p> <p>首先,打开第一个客户端,先清除redis内存和磁盘对应的数据</p> <pre><code>[root@centos7964 data]# docker exec -it redis01 redis-cli 127.0.0.1:6379&gt; flushall OK 127.0.0.1:6379&gt; exit [root@centos7964 data]# ls dump.rdb [root@centos7964 data]# rm –f dump.rdb [root@centos7964 data]# ls</code></pre> <p>然后,打开并登录第二个客户端,并向redis存储一些数据,例如</p> <pre><code>[root@centos7964 ~]# docker exec -it redis01 redis-cli 127.0.0.1:6379&gt; set one mybatis OK 127.0.0.1:6379&gt; set two spring OK 127.0.0.1:6379&gt; keys * 1) "one" 2) "two"</code></pre> <p>接下来,再次回到第一个客户端,杀掉redis进程,例如</p> <pre><code>[root@centos7964 data]# ps -ef | grep redis polkitd    6995   6974  0 14:44 ?        00:00:00 redis-server *:6379 root       7064   6974  0 14:44 pts/0    00:00:00 redis-cli root       7111   6467  0 14:47 pts/1    00:00:00 docker exec -it redis01 redis-cli root       7130   6974  0 14:47 pts/1    00:00:00 redis-cli root       7278   7180  0 14:51 pts/0    00:00:00 grep --color=auto redis [root@centos7964 data]# kill -9 6995 [root@centos7964 data]# docker start redis01</code></pre> <p>最后,打开第一个客户端,登录redis,检查key是否还存在.</p> <pre><code>[root@centos7964 ~]# docker exec -it redis01 redis-cli 127.0.0.1:6379&gt; keys * (empty array) 127.0.0.1:6379&gt; [root@centos7964 ~]#</code></pre> <blockquote> <p>试验三</p> </blockquote> <p>手动调用save(同步保存)或者bgsave(异步保存)执行rdb快照生成.然后杀掉redis进程,再重启检测是否还有刚刚保存的数据.</p> <pre><code>127.0.0.1:6379&gt; set id 100 OK 127.0.0.1:6379&gt; set name jack OK 127.0.0.1:6379&gt; save  #阻塞式持久化 OK 127.0.0.1:6379&gt; set address beijing OK 127.0.0.1:6379&gt; bgsave  #异步方式持久化 Background saving started</code></pre> <h2>小节面试分析</h2> <blockquote> <p>触发redis中rdb方式持久化的时机?</p> </blockquote> <p>1)基于配置文件中的save规则周期性的执行持久化。<br /> 2)手动执行了shutdown操作会自动执行rdb方式的持久化。<br /> 3)手动调用了save或bgsave指令执行数据持久化。<br /> 4)在Master/Slave架构下,当有新的Slave连接Master时,Master会对数据进行rdb方式持久化.</p> <p><strong>Redis中的save和bgsave有什么不同？</strong></p> <p>Save 命令执行一个同步保存操作，将当前 Redis 实例的所有数据快照(snapshot)以 RDB 文件的形式保存到硬盘。<br /> BGSAVE 命令执行之后立即返回 OK ，然后 Redis fork 出一个新子进程，原来的 Redis 进程(父进程)继续处理客户端请求，而子进程则负责将数据保存到磁盘，然后退出。</p> <p><strong>RDB持久化机制有哪些优点？</strong></p> <p>RDB 文件是经过压缩的二进制文件，占用空间很小，它保存了 Redis 某个时间点的数据集，很适合做冷备.<br /> RDB 非常适用于灾难恢复,它只有一个文件，并且内容都非常紧凑，可以（在加密后）将它传送到别的数据中心。<br /> RDB 方式持久化性能较好，执行持久化时可以fork 一个子进程，由子进程处理保存工作，父进程无须执行任何磁盘 I/O 操作。</p> <p><strong>RDB持久化机制有哪些缺点？</strong></p> <p>RDB方式在服务器故障时容易造成数据的丢失。实际项目中，我们可通过配置来控制持久化的频率。但是，如果频率太频繁，可能会对 Redis 性能产生影响。所以通常可能设置至少5分钟才保存一次快照，这时如果 Redis 出现宕机等情况，则意味着最多可能丢失5分钟数据。</p> <p>RDB 方式使用 fork 子进程进行数据的持久化，子进程的内存是在fork操作时父进程中数据快照的大小，如果数据快照比较大的话，fork 时开辟内存会比较耗时，同时这个fork是同步操作，所以，这个过程会导致父进程无法对外提供服务。<br /> 3)RDB持久化过程中的fork操作，可能会导致内存占用加倍，Linux系统fork 子进程采用的是 copy-on-write 的方式（写时复制，修改前先复制），在 Redis 执行 RDB 持久化期间，如果 client 写入数据很频繁，那么将增加 Redis 占用的内存，最坏情况下，内存的占用将达到原先的2倍。</p> </h1> <h2><a name="t11" rel="nofollow"></a><a id="_163" rel="nofollow"></a>概述</h2> <p>Aof方式是通过记录写操作日志的方式,实现redis数据持久化的一种机制,这个机制默认是关闭的。</p> <h2><a name="t12" rel="nofollow"></a><a id="AOF_165" rel="nofollow"></a>AOF方式配置</h2> <pre><code># 是否开启AOF，默认关闭 appendonly yes # 指定 AOF 文件名 appendfilename appendonly.aof # Redis支持三种刷写模式： # appendfsync always #每次收到写命令就立即强制写入磁盘，类似MySQL的sync_binlog=1,是最安全的。但该模式下速度也是最慢的，一般不推荐使用。 appendfsync everysec #每秒钟强制写入磁盘一次，在性能和持久化方面做平衡，推荐该方式。 # appendfsync no     #完全依赖OS的写入，一般为30秒左右一次，性能最好但是持久化最没有保证，不推荐。      #在日志重写时，不进行命令追加操作，而只是将其放在缓冲区里，避免与命令的追加造成DISK IO上的冲突。 #设置为yes表示rewrite期间对新写操作不fsync,暂时存在内存中,等rewrite完成后再写入，默认为no，建议yes no-appendfsync-on-rewrite yes #当前AOF文件大小是上次日志重写得到AOF文件大小的二倍时，自动启动新的日志重写过程。 auto-aof-rewrite-percentage 100 #当前AOF文件启动新的日志重写过程的最小值，避免刚刚启动Reids时由于文件尺寸较小导致频繁的重写。 auto-aof-rewrite-min-size 64mb</code></pre> <h2>AOF方式持久化实践</h2> <p>第一：打开AOF的开关，启用AOF持久化<br /> 第二：写入一些数据，观察AOF文件（appendonly.aof）中的日志内容<br /> 第三：kill -9杀掉redis进程，重新启动redis进程，发现数据被恢复回来了，就是从AOF文件中恢复回来的，redis进程启动的时候，直接就会从appendonly.aof中加载所有的日志，把内存中的数据恢复回来。</p> <h2>小节面试分析</h2> <blockquote> <p>如何理解AOF方式中的rewrite操作？</p> </blockquote> <p>redis中的可以存储的数据是有限的，很多数据可能会自动过期，也可能会被用户删除或被redis用缓存清除的算法清理掉。也就是说redis中的数据会不断淘汰掉旧的，只有一部分常用的数据会被自动保留在redis内存中，所以可能很多之前的已经被清理掉的数据，对应的写日志还停留在AOF中，AOF日志文件就一个，会不断的膨胀，最后导致文件很大。<br /> 所以,AOF会自动在后台每隔一定时间做rewrite操作，比如日志里已经存放了针对100w数据的写日志了，但redis内存现在10万数据; 于是，基于内存中当前的10万数据构建一套最新的日志，然后到AOF文件中; 覆盖之前的老日志，从而，确保AOF日志文件不会过大，保持跟redis内存数据量一致。</p> <blockquote> <p>AOF持久化机制有哪些优点？</p> </blockquote> <p>AOF 比 RDB更加可靠。你可以设置不同的 fsync 策略（no、everysec 和 always）。默认是 everysec，在这种配置下，redis 仍然可以保持良好的性能，并且就算发生故障停机，也最多只会丢失一秒钟的数据。</p> <p>AOF文件是一个基于纯追加模式的日志文件。即使日志因为某些原因而包含了未写入完整的命令（比如写入时磁盘已满，写入中途停机等等）， 我们也可以使用 redis-check-aof 工具也可以轻易地修复这种问题。</p> <p>当 AOF文件太大时，Redis 会自动在后台进行重写。重写后的新 AOF 文件包含了恢复当前数据集所需的最小命令集合。整个重写是绝对安全，因为重写是在一个新的文件上进行，同时 Redis 会继续往旧的文件追加数据。当新文件重写完毕，Redis 会把新旧文件进行切换，然后开始把数据写到新文件上。</p> <p>AOF 文件有序地保存了对数据库执行的所有写入操作，以 Redis 协议的格式保存， 因此 AOF 文件的内容非常容易被人读懂， 对文件进行分析也很轻松。如果你不小心执行了 FLUSHALL 命令把所有数据刷掉了，但只要 AOF 文件没有被重写，那么只要停止服务器， 移除 AOF 文件末尾的 FLUSHALL 命令， 并重启 Redis ， 就可以将数据集恢复到 FLUSHALL 执行之前的状态。</p> <p><strong>AOF持久化机制有哪些缺点？</strong></p> <p>对于相同的数据集，AOF 文件的大小一般会比 RDB 文件大。根据所使用的 fsync 策略，AOF 的速度可能会比 RDB 慢。通常 fsync 设置为每秒一次就能获得比较高的性能，而关闭 fsync 可以让 AOF 的速度和 RDB 一样快。AOF 可能会因为个别命令的原因，导致 AOF 文件在重新载入时，无法将数据集恢复成保存时的原样。</p> <p><strong>如何选择redis的持久化方式？</strong></p> <p>第一：不要仅仅使用RDB，因为那样会导致你丢失很多数据。<br /> 第二：也不要仅仅使用AOF，因为AOF做冷备没有RDB做冷备进行数据恢复的速度快,并且RDB简单粗暴的数据快照方式更加健壮。<br /> 第三：综合使用AOF和RDB两种持久化机制，用AOF来保证数据不丢失，作为数据恢复的第一选择; 用RDB来做不同程度的冷备。</p> </h1> <p>以上主要是对redis中的持久化方式，持久化机制，应用实践进行基本分析与讲解。重点是如何在生产环境下应用。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85979.htm">win11系统怎么启用SNMP</a></p>
+                                        <p>下一个：<a href="/news/article-86680.htm">win11系统找不到记事本如何解决</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-77576.htm" title="vue项目中数据更新页面不刷新问题">vue项目中数据更新页面不刷新问题</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-free-clash-meta-node.htm" title="3月25日 | Clash Meta每天更新19.9M/S免费节点订阅链接地址">3月25日 | Clash Meta每天更新19.9M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-76215.htm" title="Redis持久化机制及缓存失效解决方案">Redis持久化机制及缓存失效解决方案</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-clash-meta-node-share.htm" title="3月6日 | Clash Meta每天更新19.6M/S免费节点订阅链接地址">3月6日 | Clash Meta每天更新19.6M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-81659.htm" title="初探webpack之编写loader_在线工具">初探webpack之编写loader_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-87400.htm" title="动物医院英文短语怎么写的 动物医院英文短语怎么写的啊">动物医院英文短语怎么写的 动物医院英文短语怎么写的啊</a></li>
+                        <li class="py-2"><a href="/news/article-80294.htm" title="海拉鲁大陆地图解锁（海拉鲁大陆地图哪里找到）">海拉鲁大陆地图解锁（海拉鲁大陆地图哪里找到）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-clash-meta-github.htm" title="3月26日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址">3月26日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-83812.htm" title="动物预防接种计划表模板（动物预防接种计划表模板下载）">动物预防接种计划表模板（动物预防接种计划表模板下载）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-today-clash-meta-node.htm" title="4月2日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址">4月2日 | Clash Meta每天更新18.2M/S免费节点订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
