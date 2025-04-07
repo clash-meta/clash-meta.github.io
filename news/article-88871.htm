@@ -1,0 +1,303 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-88871.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Redis 内存满了怎么办？这样设置才正确！</title>
+        <meta name="description" content="上回在《Redis 数据过期了会被立马删除么？》说到如果过期的数据太多，定时删除无法删除完全（每次删除完过期的 key 还是超过 25%），同时这些 key 再也不会被客户端请求，就无法走惰性删除，内" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-88871.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="Redis 内存满了怎么办？这样设置才正确！" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/1a6501d886cfe8cb980be10e0675e6a4.webp" />
+        <meta property="og:release_date" content="2025-04-05T08:17:56" />
+    <meta property="og:updated_time" content="2025-04-05T08:17:56" />
+        <meta property="og:description" content="上回在《Redis 数据过期了会被立马删除么？》说到如果过期的数据太多，定时删除无法删除完全（每次删除完过期的 key 还是超过 25%），同时这些 key 再也不会被客户端请求，就无法走惰性删除，内" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Redis 内存满了怎么办？这样设置才正确！">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Redis 内存满了怎么办？这样设置才正确！</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>上回在《<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s?__biz=MzkzMDI1NjcyOQ==&amp;mid=2247499253&amp;idx=1&amp;sn=816395c3429177bf94448f1750090a89&amp;chksm=c27fbfc3f50836d53ea80d574d8db93cc3d9be0ff9de1d6339024a2b2f476e05eb2110438917&amp;token=563623526&amp;lang=zh_CN#rd"  target="_blank" rel="nofollow">Redis 数据过期了会被立马删除么？</a>》说到如果过期的数据太多，定时删除无法删除完全（每次删除完过期的 key 还是超过 25%），同时这些 key 再也不会被客户端请求，就无法走惰性删除，内存被打满会怎样？</p> <p>答案是走<strong>内存淘汰机制</strong>。</p> <hr/> <p>故事从一个叫 Redis 帝国的三公九卿官职说起……</p> <p>在 Redis 帝国中，整个帝国的国法、家法和军法等都记录在<code>redis.conf</code>中，它控制着整个帝国的运行。</p> <p>公务员占用的国家地盘资源大小限定由名叫「maxmemory」的司法官员制定，一共有两种方式实现：</p> <ul> <li>在运行时使用<code>CONFIG SET maxmemory 4gb</code>指定帝国官职人员最大地盘资源为 4GB；</li> <li>将<code>maxmemory 4gb</code>法令记录到<code>redis.conf</code>「法典」中，在帝国运转指定使用该「法典」运行。</li> </ul> <p>需要注意的是，如果<code>maxmemory</code>  为 0 ，在<code>64</code> 位「空间」上则没有限制，而<code>32</code> 位「空间」则有<code>3GB</code> 的隐式限制。</p> </h1> <blockquote> <p>设置了帝国官职地盘资源限制，每年选拔新人就会导致没有地盘资源可以使用怎么办？如何选择一些公务员淘汰？</p> </blockquote> <p>在 Redis 4.0 时代，一共有 6 种淘汰策略，之后，又新增了 2 中策略。</p> <p>总体上我们可以根据是否需要淘汰可以分为两大类：</p> <ul> <li>不执行淘汰策略，<code>noeviction</code>；</li> <li>根据不同法则淘汰的其他 7 中策略。</li> </ul> <h2 id="noeviction-不退伍策略">noeviction 不退伍策略</h2> <p>默认情况下，资源超过<code>maxmemory</code> 的值也不会执行淘汰，不允许新人加入。</p> <p>关系户啊这是，皇亲国戚，永久 vip 啊喂。</p> <p>随着官职人员的新增，由于不会淘汰，资源容量迟早会满。满了以后，<strong>当有「新人」想要进来的时候，Redis 直接返回错误，并罢工</strong>。</p> <p>秀，真是任性。</p> <h2 id="各式各样的淘汰策略">各式各样的淘汰策略</h2> <p>剩下的 7 种策略还可以根据淘汰的候选集合和淘汰范围分为两大类：</p> <ul> <li> <p>对<strong>有设置任职过期时间</strong>的职员进行淘汰，没有设定任职过期时间的不会淘汰，淘汰策略如下：</p> <ul> <li><strong>volatile-lru</strong>：淘汰最近最少上一线干活的人员；</li> <li><strong>volatile-lfu</strong>：4.0 之后新增的策略，淘汰上一线干活次数最少的人员；</li> <li><strong>volatile-random</strong>：随机淘汰，腾出坑位给新人；</li> <li><strong>volatile-ttl</strong>：淘汰设置了任期时间的公务员，谁最接近任期时间就先淘汰谁。</li> </ul> </li> <li> <p>对<strong>所有类型人员淘汰</strong>，不管是永久 vip 的皇亲国戚还是设置了任职过期时间的人员。</p> <ul> <li><strong>allkeys-lru</strong>：淘汰最近最少上一线干活的职员；</li> <li><strong>allkeys-lfu</strong>：淘汰最少上一线干活的公务员；</li> <li><strong>allkeys-random</strong>：随机淘汰职员，为新兵腾出空位。</li> </ul> </li> </ul> <p>故事到这里就结束了，接下来「码哥」分享下在实际 Redis 中如何选择合适的淘汰策略和设置最佳缓存大小给大家。</p> <p>淘汰执行过程如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0721b96bea661a89b6ffae4876db1793.jpg" alt="Redis 内存满了怎么办？这样设置才正确！"></p> <ul> <li> <p>客户端发送新命令到服务端；</p> </li> <li> <p>服务端收到客户端命令，Redis 检查内存使用情况，如果大于<code>maxmemory</code> 限制，则根据策略驱逐数据。</p> </li> <li> <p>执行新命令。</p> </li> </ul> <h3 id="allkeys-lru-使用场景">allkeys-lru 使用场景</h3> <p>假如你的应用存在明显的冷热数据区别，根据经验推荐你使用这个策略，充分利用 LRU 算法把<strong>最近最常访问的数据保留</strong>，有限的内存提高访问性能。</p> <h3 id="allkeys-random-使用场景">allkeys-random 使用场景</h3> <p>假如数据没有明显的冷热分别，所有的数据分布查询比较均衡，这些数据都会被随机查询，那就使用<strong>allkeys-random</strong> 策略，让其随机选择淘汰数据。</p> <h3 id="volatile-lru-使用场景">volatile-lru 使用场景</h3> <p>业务场景有一些数据不能删除，比如置顶新闻、视频，这时候我们为这些数据不设置过期时间，这样的话数据就不会被删除，该策略就会去根据 LRU 算法去淘汰哪些设置了过期时间且最近最少被访问的数据。</p> <p><strong>有一个点需要注意下，为 key 执行 expire 设置过期时间会消耗一些内存，所以使用<code>allkeyds-lru</code> 会提高内存效率。</strong></p> <p><strong>将需要持数据不能删除的和全都可以淘汰数据的业务系统分别使用不同的 Redis 实例集群是更好的方案。</strong></p> <p>针对业务场景有一些数据不能删除的使用<code>volatile-lru</code>策略，另一类则可以使用<code>allkyes-lru 或者 allkeys-random</code>。</p> </h1> <p>缓存并不是越大越好，用最小的代价去获得最高的收益才是老板想要的。</p> <p>数据访问有局部性，根据「二八原理」：<strong>通常 20% 的数据能支撑 80% 的访问请求。</strong></p> <p>所以我们可不可以把缓存容量大小设置为总数据量的 20%？</p> <p><strong>当然，不能这么绝对，这是理想状态。因为可能存在一些个性化需求，不同的用户访问的数据可能差别很大，不完全具备「二八原理」。</strong></p> <p><strong>我们应当结合实际的访问特点和成本来综合评估。根据经验建议将容量设置成总数据量的 15%~30%。</strong></p> <blockquote> <p>码哥，其他淘汰规则比较简单，volatile-lru 和 volatile-lfu 则比较复杂，他们的算法是怎样的？</p> </blockquote> <p>volatile-lru 使用了 LRU 算法，淘汰最近最少使用的数据。而volatile-lfu 使用了 LFU 算法，它在 LRU 算法基础上同时考虑了数据的时效性和访问频率，最少访问的 key 会被删除。</p> <p>至于具体算法细节，我们下回分解。一次性太多的话大家容易在知识的海洋里里呛水。</p> <p>现在的文章阅读量越来越低</p> <p>大家可以在评论区叫我一声靓仔么？</p> <p>不想叫我靓仔的可以帮我点个赞和在看么？</p> <p>参考资料</p> <p>1.<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://redis.io/docs/manual/eviction/"  target="_blank" rel="nofollow">https://redis.io/docs/manual/eviction/</a></p> <p>2.Redis 核心技术与实战</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-88139.htm">北京宠爱国际动物医疗机构怎么样呀（北京宠爱国际医院怎么样）</a></p>
+                                        <p>下一个：<a href="/news/article-88872.htm">动物疫苗市场占有率排行榜前十（全国动物用疫苗销量排行）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-clash-meta-github.htm" title="3月26日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址">3月26日 | Clash Meta每天更新19.5M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-68917.htm" title="鱼饲料颗粒机多少钱一台小型的（颗粒机鱼饲料配方）">鱼饲料颗粒机多少钱一台小型的（颗粒机鱼饲料配方）</a></li>
+                        <li class="py-2"><a href="/news/article-72854.htm" title="动物疫苗打几次有效果 动物疫苗打几次有效果呢">动物疫苗打几次有效果 动物疫苗打几次有效果呢</a></li>
+                        <li class="py-2"><a href="/news/article-74845.htm" title="宠物领养中心是什么部门管理的（宠物领养中心是什么部门管理的呢）">宠物领养中心是什么部门管理的（宠物领养中心是什么部门管理的呢）</a></li>
+                        <li class="py-2"><a href="/news/article-85259.htm" title="315公布的安全猫粮2020（315公布的安全猫粮原文）">315公布的安全猫粮2020（315公布的安全猫粮原文）</a></li>
+                        <li class="py-2"><a href="/news/article-84534.htm" title="spring集成mongodb及基础使用">spring集成mongodb及基础使用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-latest-clash-meta-node.htm" title="3月8日 | Clash Meta每天更新23M/S免费节点订阅链接地址">3月8日 | Clash Meta每天更新23M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-81659.htm" title="初探webpack之编写loader_在线工具">初探webpack之编写loader_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-clash-meta-node-share.htm" title="3月2日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址">3月2日 | Clash Meta每天更新18.9M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-84535.htm" title="宠物粮批发名称大全图片及价格表（宠物粮批发网）">宠物粮批发名称大全图片及价格表（宠物粮批发网）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
