@@ -1,0 +1,303 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-95589.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>maven打包web项目时同时打包为war和jar文件</title>
+        <meta name="description" content="首先在pom.xml文件中指定war的打包方式，war &lt;artifactId&gt;test&lt;/artifactId&gt;&lt;name&gt;test&lt;/name&gt;&l" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-95589.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="maven打包web项目时同时打包为war和jar文件" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/9c357afd746a12d215b453e2ea6089c3.webp" />
+        <meta property="og:release_date" content="2025-04-14T08:02:45" />
+    <meta property="og:updated_time" content="2025-04-14T08:02:45" />
+        <meta property="og:description" content="首先在pom.xml文件中指定war的打包方式，war &lt;artifactId&gt;test&lt;/artifactId&gt;&lt;name&gt;test&lt;/name&gt;&l" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="maven打包web项目时同时打包为war和jar文件">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">maven打包web项目时同时打包为war和jar文件</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p><strong>首先在pom.xml文件中指定war的打包方式，war</strong></p> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">packaging</span>&gt;</span>war<span class="hljs-tag">&lt;/<span class="hljs-title">packaging</span>&gt;</span></code></pre> <p>上述代码在eclipse中执行maven install时， 会默认打成war，并放入本地仓库。</p> <p><strong>web项目时同时打包为war和jar文件</strong><br /> 1、首先添加在pom.xml中添加插件 maven-jar-plugin ， 使得 在调用命令mvn package install 或者 mvn package deploy 先生成 jar包。或者使用mvn package生成jar包。该插件生成的架包会放在工程的target文件夹下。</p> <p>2、然后配置maven-install-plugin 插件， 使得在eclipse中执行maven install时, 同时生成jar和war到本地仓库。</p> <p>3、再配置org.apache.maven.plugins插件， 使得在eclipse中执行deploy 时, 同时，生成jar和war到远程仓库。</p> <p>源码如下：</p> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-comment">&lt;!--  package jar on package --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>maven-jar-plugin<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">executions</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">execution</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">phase</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-title">phase</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">goals</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">goal</span>&gt;</span>jar<span class="hljs-tag">&lt;/<span class="hljs-title">goal</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">goals</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">execution</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">executions</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-comment">&lt;!--  install jar to local repository --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>maven-install-plugin<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">executions</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">execution</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">phase</span>&gt;</span>install<span class="hljs-tag">&lt;/<span class="hljs-title">phase</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">goals</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">goal</span>&gt;</span>install-file<span class="hljs-tag">&lt;/<span class="hljs-title">goal</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">goals</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">packaging</span>&gt;</span>jar<span class="hljs-tag">&lt;/<span class="hljs-title">packaging</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>${project.artifactId}<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>${project.groupId}<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>${project.version}<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">file</span>&gt;</span>                                 ${project.build.directory}/${project.artifactId}-${project.version}.jar<span class="hljs-tag">&lt;/<span class="hljs-title">file</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">execution</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">executions</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-comment">&lt;!--  deploy jar to remote repository --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">plugin</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>maven-deploy-plugin<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">executions</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">execution</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">phase</span>&gt;</span>deploy<span class="hljs-tag">&lt;/<span class="hljs-title">phase</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">goals</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">goal</span>&gt;</span>deploy-file<span class="hljs-tag">&lt;/<span class="hljs-title">goal</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">goals</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">packaging</span>&gt;</span>jar<span class="hljs-tag">&lt;/<span class="hljs-title">packaging</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">generatePom</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">generatePom</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">url</span>&gt;</span>${project.distributionManagement.repository.url}<span class="hljs-tag">&lt;/<span class="hljs-title">url</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>${project.artifactId}<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>${project.groupId}<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>${project.version}<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">file</span>&gt;</span>${project.build.directory}/${project.artifactId}.jar<span class="hljs-tag">&lt;/<span class="hljs-title">file</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">configuration</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">execution</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">executions</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">plugin</span>&gt;</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-94833.htm">ansible容器学习环境搭建教程</a></p>
+                                        <p>下一个：<a href="/news/article-95592.htm">吉泰连锁酒店官网 吉泰连锁酒店官网电话</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-72853.htm" title="广州哪里有批发狗市场（广州哪里有批发狗市场啊）">广州哪里有批发狗市场（广州哪里有批发狗市场啊）</a></li>
+                        <li class="py-2"><a href="/news/article-78245.htm" title="Java 轻松实现二维数组与稀疏数组互转_java">Java 轻松实现二维数组与稀疏数组互转_java</a></li>
+                        <li class="py-2"><a href="/news/article-87399.htm" title="违约养宠物（养宠物违背了动物权利吗）">违约养宠物（养宠物违背了动物权利吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-clash-meta-node.htm" title="4月9日 | Clash Meta每天更新20.9M/S免费节点订阅链接地址">4月9日 | Clash Meta每天更新20.9M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-node-share-links.htm" title="3月3日 | Clash Meta每天更新20M/S免费节点订阅链接地址">3月3日 | Clash Meta每天更新20M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-77575.htm" title="检查pytorch是否安装成功、查看torch和cuda的版本">检查pytorch是否安装成功、查看torch和cuda的版本</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-free-high-speed-nodes.htm" title="3月20日 | Clash Meta每天更新20.3M/S免费节点订阅链接地址">3月20日 | Clash Meta每天更新20.3M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-69564.htm" title="动物防疫站几点下班（动物防疫站几点上班）">动物防疫站几点下班（动物防疫站几点上班）</a></li>
+                        <li class="py-2"><a href="/news/article-81029.htm" title="宠物粮食在哪里进货便宜些（宠物粮食批发市场）">宠物粮食在哪里进货便宜些（宠物粮食批发市场）</a></li>
+                        <li class="py-2"><a href="/news/article-85258.htm" title="动物疫苗的生产原料有哪些种类 动物疫苗的生产原料有哪些种类呢">动物疫苗的生产原料有哪些种类 动物疫苗的生产原料有哪些种类呢</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
