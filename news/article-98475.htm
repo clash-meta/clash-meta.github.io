@@ -1,0 +1,303 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-98475.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring AOP&#8212;面向切面编程入门</title>
+        <meta name="description" content="文章目录    一、Spring AOP简介   1.1 AOP 概述   1.1.1 AOP 是什么？ 1.1.2 AOP 应用场景分析？ 1.1.3 AOP 应用原理分析(先了解)？   1.2 " />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-98475.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="Spring AOP&#8212;面向切面编程入门" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/5cd84ac19f0c7facb330bfda18243a1a.webp" />
+        <meta property="og:release_date" content="2025-04-18T09:38:25" />
+    <meta property="og:updated_time" content="2025-04-18T09:38:25" />
+        <meta property="og:description" content="文章目录    一、Spring AOP简介   1.1 AOP 概述   1.1.1 AOP 是什么？ 1.1.2 AOP 应用场景分析？ 1.1.3 AOP 应用原理分析(先了解)？   1.2 " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring AOP&#8212;面向切面编程入门">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Spring AOP&#8212;面向切面编程入门</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-dracula"> <div class="toc"> <h3>文章目录</h3> <ul> <li> <ul> <li><a href="#Spring_AOP_1" rel="nofollow">一、Spring AOP简介</a></li> <li> <ul> <li><a href="#11_AOP__2" rel="nofollow">1.1 AOP 概述</a></li> <li> <ul> <li><a href="#111_AOP__3" rel="nofollow">1.1.1 AOP 是什么？</a></li> <li><a href="#112_AOP__8" rel="nofollow">1.1.2 AOP 应用场景分析？</a></li> <li><a href="#113_AOP__13" rel="nofollow">1.1.3 AOP 应用原理分析(先了解)？</a></li> </ul> </li> <li><a href="#12_AOP__25" rel="nofollow">1.2 AOP 相关术语分析</a></li> </ul> </li> <li><a href="#Spring_AOP_34" rel="nofollow">二、Spring AOP快速实践</a></li> <li> <ul> <li><a href="#21__35" rel="nofollow">2.1 业务描述</a></li> <li><a href="#22__37" rel="nofollow">2.2 项目创建及配置</a></li> <li><a href="#23__48" rel="nofollow">2.3 扩展业务分析及实现</a></li> <li> <ul> <li><a href="#231__49" rel="nofollow">2.3.1 创建日志切面类对象</a></li> <li><a href="#232__82" rel="nofollow">2.3.2 业务切面测试实现</a></li> <li><a href="#233__100" rel="nofollow">2.3.3 应用总结分析</a></li> </ul> </li> <li><a href="#24__103" rel="nofollow">2.4 扩展业务织入增强分析</a></li> <li> <ul> <li><a href="#241_JDK_104" rel="nofollow">2.4.1 基于JDK代理方式实现</a></li> <li><a href="#242_CGLIB_107" rel="nofollow">2.4.2 基于CGLIB代理方式实现</a></li> </ul> </li> </ul> </li> <li><a href="#Spring_AOP_112" rel="nofollow">三、Spring AOP编程增强</a></li> <li> <ul> <li><a href="#31__113" rel="nofollow">3.1 切面通知应用增强</a></li> <li> <ul> <li><a href="#311__114" rel="nofollow">3.1.1 通知类型</a></li> <li><a href="#312__123" rel="nofollow">3.1.2 通知执行顺序</a></li> <li><a href="#313__127" rel="nofollow">3.1.3 通知实践过程分析</a></li> <li><a href="#314__174" rel="nofollow">3.1.4 练习</a></li> </ul> </li> <li><a href="#32__197" rel="nofollow">3.2 切入点表达式增强</a></li> <li> <ul> <li><a href="#321_bean_200" rel="nofollow">3.2.1 bean表达式（重点）</a></li> <li><a href="#322_within_207" rel="nofollow">3.2.2 within表达式（了解）</a></li> <li><a href="#323_execution_217" rel="nofollow">3.2.3 execution表达式（了解）</a></li> <li><a href="#324_annotation_223" rel="nofollow">3.2.4 @annotation表达式（重点）</a></li> <li><a href="#325__230" rel="nofollow">3.2.5 练习:</a></li> </ul> </li> <li><a href="#33__278" rel="nofollow">3.3 切面优先级设置实现</a></li> <li><a href="#34__304" rel="nofollow">3.4 关键对象与术语总结</a></li> <li><a href="#35__307" rel="nofollow">3.5 用户行为日志记录实现（实践）</a></li> </ul> </li> </ul> </li> </ul> </div> <h2> <a id="Spring_AOP_1" rel="nofollow"></a>一、Spring AOP简介</h2> <h3> <a id="11_AOP__2" rel="nofollow"></a>1.1 AOP 概述</h3> <h4> <a id="111_AOP__3" rel="nofollow"></a>1.1.1 AOP 是什么？</h4> <p>AOP（Aspect Orient Programming）是一种设计思想，是软件设计领域中的面向切面编程，它是面向对象编程(OOP)的一种补充和完善。它以通过预编译方式和运行期动态代理方式，实现在不修改源代码的情况下给程序动态统一添加额外功能的一种技术。如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/11c01c474a915434ee709fbf23c7ce94.jpg" alt="Spring AOP---面向切面编程入门"><br /> AOP与OOP字面意思相近，但其实两者完全是面向不同领域的设计思想。实际项目中我们通常将面向对象理解为一个静态过程(例如一个系统有多少个模块，一个模块有哪些对象，对象有哪些属性)，面向切面的运行期代理方式，理解为一个动态过程，可以在对象运行时动态织入一些扩展功能或控制对象执行。</p> <h4> <a id="112_AOP__8" rel="nofollow"></a>1.1.2 AOP 应用场景分析？</h4> <p>（1）实际项目中通常会将系统分为两大部分，一部分是核心业务，一部分是非核业务。在编程实现时我们首先要完成的是核心业务的实现，非核心业务一般是通过特定方式切入到系统中，这种特定方式一般就是借助AOP进行实现。<br /> （2）AOP就是要基于OCP(开闭原则)，在不改变原有系统核心业务代码的基础上动态添加一些扩展功能并可以"控制"对象的执行。例如AOP应用于项目中的日志处理，事务处理，权限处理，缓存处理等等。如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/d64ef5978b50e8671c93a0cc496291db.jpg" alt="Spring AOP---面向切面编程入门"><br /> 思考:现有一业务,在没有AOP编程时,如何基于OCP原则实现功能扩展?</p> <h4> <a id="113_AOP__13" rel="nofollow"></a>1.1.3 AOP 应用原理分析(先了解)？</h4> <p>Spring AOP底层基于代理机制实现功能扩展：<br /> （1）假如目标对象(被代理对象)实现接口，则底层可以采用JDK动态代理机制为目标对象创建代理对象（目标类和代理类会实现共同接口）。<br /> （2）假如目标对象(被代理对象)没有实现接口，则底层可以采用CGLIB代理机制为目标对象创建代理对象（默认创建的代理类会继承目标对象类型）。</p> <p>Spring AOP 原理分析，如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/ff3de83a065cab5de5840ad9300f4bfb.jpg" alt="Spring AOP---面向切面编程入门"><br /><mark><strong>说明:</strong></mark> Spring boot2.x 中AOP现在默认使用的CGLIB代理,假如需要使用JDK动态代理可以在配置文件(applicatiion.properties)中进行如下配置:</p> <pre><code class="prism language-java">spring<span class="token punctuation">.</span>aop<span class="token punctuation">.</span>proxy<span class="token operator">-</span>target<span class="token operator">-</span><span class="token keyword">class</span><span class="token operator">=</span><span class="token boolean">false</span> </code></pre> <h3> <a id="12_AOP__25" rel="nofollow"></a>1.2 AOP 相关术语分析</h3> <ul> <li>切面(aspect): 横切面对象,一般为一个具体类对象(可以借助@Aspect声明)。</li> <li>通知(Advice):在切面的某个特定连接点上执行的动作(扩展功能)，例如around,before,after等。</li> <li>连接点(joinpoint):程序执行过程中某个特定的点，一般指被拦截到的的方法。</li> <li>切入点(pointcut):对多个连接点(Joinpoint)一种定义,一般可以理解为多个连接点的集合。</li> </ul> <p>连接点与切入点定义如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/6dcb850116c8b3059897c0703ea49e99.jpg" alt="Spring AOP---面向切面编程入门"><br /><mark><strong>说明：</strong></mark> 我们可以简单的将机场的一个安检口理解为连接点，多个安检口为切入点，安全检查过程看成是通知。总之，概念很晦涩难懂，多做例子，做完就会清晰。先可以按白话去理解。</p> <h2> <a id="Spring_AOP_34" rel="nofollow"></a>二、Spring AOP快速实践</h2> <h3> <a id="21__35" rel="nofollow"></a>2.1 业务描述</h3> <p>基于项目中的核心业务，添加简单的日志操作，借助SLF4J日志API输出目标方法的执行时长。(前提，不能修改目标方法代码)</p> <h3> <a id="22__37" rel="nofollow"></a>2.2 项目创建及配置</h3> <p>创建maven项目或在已有项目基础上添加AOP启动依赖：</p> <pre><code class="prism language-java"><span class="token generics function"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>        <span class="token generics function"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>        <span class="token generics function"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>aop<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span> </code></pre> <p><mark><strong>说明：</strong></mark> 基于此依赖spring可以整合AspectJ框架快速完成AOP的基本实现。AspectJ 是一个面向切面的框架，他定义了AOP的一些语法，有一个专门的字节码生成器来生成遵守java规范的class文件。</p> <h3> <a id="23__48" rel="nofollow"></a>2.3 扩展业务分析及实现</h3> <h4> <a id="231__49" rel="nofollow"></a>2.3.1 创建日志切面类对象</h4> <p>将此日志切面类作为核心业务增强（一个横切面对象）类，用于输出业务执行时长，其关键代码如下：</p> <pre><code class="prism language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>cy<span class="token punctuation">.</span>pj<span class="token punctuation">.</span>common<span class="token punctuation">.</span>aspect<span class="token punctuation">;</span> <span class="token annotation punctuation">@Aspect</span> <span class="token annotation punctuation">@Slf4j</span> <span class="token annotation punctuation">@Component</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysLogAspect</span> <span class="token punctuation">{<!-- --></span> 	 <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span><span class="token string">"bean(sysUserServiceImpl)"</span><span class="token punctuation">)</span> 	 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">logPointCut</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span>   	 <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"logPointCut()"</span><span class="token punctuation">)</span> 	 <span class="token keyword">public</span> Object <span class="token function">around</span><span class="token punctuation">(</span>ProceedingJoinPoint jp<span class="token punctuation">)</span> 	 <span class="token keyword">throws</span> Throwable<span class="token punctuation">{<!-- --></span> 		 <span class="token keyword">try</span> <span class="token punctuation">{<!-- --></span> 		   log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"start:"</span><span class="token operator">+</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		   Object result<span class="token operator">=</span>jp<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//调用下一个切面方法或目标方法</span> 		   log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"after:"</span><span class="token operator">+</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		   <span class="token keyword">return</span> result<span class="token punctuation">;</span> 		 <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Throwable e<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		   log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		   <span class="token keyword">throw</span> e<span class="token punctuation">;</span> 		 <span class="token punctuation">}</span> 	 <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p><mark><strong>说明：</strong></mark></p> <ul> <li> <strong>@Aspect</strong> 注解用于标识或者描述AOP中的切面类型，基于切面类型构建的对象用于为目标对象进行功能扩展或控制目标对象的执行。</li> <li> <strong>@Pointcut</strong> 注解用于描述切面中的方法，并定义切面中的切入点（基于特定表达式的方式进行描述），在本案例中切入点表达式用的是bean表达式，这个表达式以bean开头，bean括号中的内容为一个spring管理的某个bean对象的名字。</li> <li> <strong>@Around</strong> 注解用于描述切面中方法，这样的方法会被认为是一个环绕通知（核心业务方法执行之前和之后要执行的一个动作），@Aournd注解内部value属性的值为一个切入点表达式或者是切入点表达式的一个引用(这个引用为一个@PointCut注解描述的方法的方法名)。</li> <li> <strong>ProceedingJoinPoint</strong> 类为一个连接点类型，此类型的对象用于封装要执行的目标方法相关的一些信息。一般用于@Around注解描述的方法参数。</li> </ul> <h4> <a id="232__82" rel="nofollow"></a>2.3.2 业务切面测试实现</h4> <p>启动项目测试或者进行单元测试，其中Spring Boot项目中的单元测试代码如下：</p> <pre><code class="prism language-java">	<span class="token annotation punctuation">@SpringBootTest</span> 	<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AopTests</span> <span class="token punctuation">{<!-- --></span> 		 <span class="token annotation punctuation">@Autowired</span> 		 <span class="token keyword">private</span> SysUserService userService<span class="token punctuation">;</span> 		 <span class="token annotation punctuation">@Test</span> 		 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSysUserService</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 			 PageObject<span class="token generics function"><span class="token punctuation">&lt;</span>SysUserDeptVo<span class="token punctuation">&gt;</span></span> po<span class="token operator">=</span> 			 userService<span class="token punctuation">.</span><span class="token function">findPageObjects</span><span class="token punctuation">(</span><span class="token string">"admin"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 			 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"rowCount:"</span><span class="token operator">+</span>po<span class="token punctuation">.</span><span class="token function">getRowCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		 <span class="token punctuation">}</span> 	<span class="token punctuation">}</span> </code></pre> <p>对于测试类中的userService对象而言,它有可能指向JDK代理,也有可能指向CGLIB代理,具体是什么类型的代理对象,要看application.yml配置文件中的配置.</p> <h4> <a id="233__100" rel="nofollow"></a>2.3.3 应用总结分析</h4> <p>在业务应用,AOP相关对象分析,如图所示:<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/4a5c6d742bdd63a8e7a6017b2375b763.jpg" alt="Spring AOP---面向切面编程入门"></p> <h3> <a id="24__103" rel="nofollow"></a>2.4 扩展业务织入增强分析</h3> <h4> <a id="241_JDK_104" rel="nofollow"></a>2.4.1 基于JDK代理方式实现</h4> <p>假如目标对象有实现接口,则可以基于JDK为目标对象创建代理对象,然后为目标对象进行功能扩展,如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/7778e3129c7ed9de20dbce0d8f436a46.jpg" alt="Spring AOP---面向切面编程入门"></p> <h4> <a id="242_CGLIB_107" rel="nofollow"></a>2.4.2 基于CGLIB代理方式实现</h4> <p>假如目标对象没有实现接口，可以基于CGLIB代理方式为目标织入功能扩展，如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/751ce33818915557b7b9e72af6300d59.jpg" alt="Spring AOP---面向切面编程入门"><br /> 说明：目标对象实现了接口也可以基于CGLIB为目标对象创建代理对象。</p> <h2> <a id="Spring_AOP_112" rel="nofollow"></a>三、Spring AOP编程增强</h2> <h3> <a id="31__113" rel="nofollow"></a>3.1 切面通知应用增强</h3> <h4> <a id="311__114" rel="nofollow"></a>3.1.1 通知类型</h4> <p>在基于Spring AOP编程的过程中，基于AspectJ框架标准，spring中定义了五种类型的通知(通知描述的是一种扩展业务)，它们分别是：</p> <ul> <li>@Before。</li> <li>@AfterReturning。</li> <li>@AfterThrowing。</li> <li>@After。</li> <li>@Around.重点掌握（优先级最高）</li> </ul> <p><mark><strong>说明：</strong></mark> 在切面类中使用什么通知，由业务决定，并不是说，在切面中要把所有通知都写上。</p> <h4> <a id="312__123" rel="nofollow"></a>3.1.2 通知执行顺序</h4> <p>假如这些通知全部写到一个切面对象中，其执行顺序及过程，如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/92825eace69fb47d9d71379f674bc006.jpg" alt="Spring AOP---面向切面编程入门"><br /><mark><strong>说明：</strong></mark> 实际项目中可能不会在切面中定义所有的通知，具体定义哪些通知要结合业务进行实现。</p> <h4> <a id="313__127" rel="nofollow"></a>3.1.3 通知实践过程分析</h4> <p>代码实践分析如下：</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Component</span> <span class="token annotation punctuation">@Aspect</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysTimeAspect</span> <span class="token punctuation">{<!-- --></span> 	<span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span><span class="token string">"bean(sysUserServiceImpl)"</span><span class="token punctuation">)</span> 	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span>   	<span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"doTime()"</span><span class="token punctuation">)</span> 	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doBefore</span><span class="token punctuation">(</span>JoinPoint jp<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"time doBefore()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token punctuation">}</span> 	<span class="token annotation punctuation">@After</span><span class="token punctuation">(</span><span class="token string">"doTime()"</span><span class="token punctuation">)</span> 	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAfter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"time doAfter()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token punctuation">}</span> 	<span class="token comment">/**核心业务正常结束时执行* 说明：假如有after，先执行after,再执行returning*/</span> 	<span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span><span class="token string">"doTime()"</span><span class="token punctuation">)</span> 	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAfterReturning</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"time doAfterReturning"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token punctuation">}</span> 	<span class="token comment">/**核心业务出现异常时执行说明：假如有after，先执行after,再执行Throwing*/</span> 	<span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span><span class="token string">"doTime()"</span><span class="token punctuation">)</span> 	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAfterThrowing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"time doAfterThrowing"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token punctuation">}</span> 	<span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"doTime()"</span><span class="token punctuation">)</span> 	<span class="token keyword">public</span> Object <span class="token function">doAround</span><span class="token punctuation">(</span>ProceedingJoinPoint jp<span class="token punctuation">)</span> 			<span class="token keyword">throws</span> Throwable<span class="token punctuation">{<!-- --></span> 		System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"doAround.before"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token keyword">try</span><span class="token punctuation">{<!-- --></span> 		 Object obj<span class="token operator">=</span>jp<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"doAround.after"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token keyword">return</span> obj<span class="token punctuation">;</span> 		 <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Throwable e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>           System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token keyword">throw</span> e<span class="token punctuation">;</span>          <span class="token punctuation">}</span> 		 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p><mark><strong>说明：</strong></mark> 对于@AfterThrowing通知只有在出现异常时才会执行，所以当做一些异常监控时可在此方法中进行代码实现。</p> <h4> <a id="314__174" rel="nofollow"></a>3.1.4 练习</h4> <p>定义一个异常监控切面,对目标页面方法进行异常监控,并以日志信息?<br /> 形式输出异常</p> <pre><code class="prism language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>cy<span class="token punctuation">.</span>pj<span class="token punctuation">.</span>common<span class="token punctuation">.</span>aspect<span class="token punctuation">;</span> <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span> <span class="token annotation punctuation">@Slf4j</span> <span class="token annotation punctuation">@Aspect</span> <span class="token annotation punctuation">@Component</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysExceptionAspect</span> <span class="token punctuation">{<!-- --></span>   	<span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span>pointcut<span class="token operator">=</span><span class="token string">"bean(*ServiceImpl)"</span><span class="token punctuation">,</span>throwing <span class="token operator">=</span> <span class="token string">"e"</span><span class="token punctuation">)</span> 	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doHandleException</span><span class="token punctuation">(</span>JoinPoint jp<span class="token punctuation">,</span>Throwable e<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		MethodSignature ms<span class="token operator">=</span><span class="token punctuation">(</span>MethodSignature<span class="token punctuation">)</span>jp<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>"<span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span>'exception msg is  <span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span>"<span class="token punctuation">,</span>ms<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 	<span class="token punctuation">}</span>   <span class="token punctuation">}</span> </code></pre> <p><mark><strong>说明：</strong></mark> AfterThrowing中throwing属性的值，需要与它描述的方法的异常参数名相同。</p> <h3> <a id="32__197" rel="nofollow"></a>3.2 切入点表达式增强</h3> <p>Spring中通过切入点表达式定义具体切入点，其常用AOP切入点表达式定义及说明：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/e92d8a805ddac780096bf123431d2473.jpg" alt="Spring AOP---面向切面编程入门"></p> <h4> <a id="321_bean_200" rel="nofollow"></a>3.2.1 bean表达式（重点）</h4> <p><strong>bean表达式一般应用于类级别，实现粗粒度的切入点定义，案例分析：</strong></p> <ul> <li> <code>bean("userServiceImpl")</code>指定一个userServiceImpl类中所有方法。</li> <li> <code>bean("*ServiceImpl")</code>指定所有后缀为ServiceImpl的类中所有方法。</li> </ul> <p><mark><strong>说明:</strong></mark> bean表达式内部的对象是由spring容器管理的一个bean对象,表达式内部的名字应该是spring容器中某个bean的name。</p> <h4> <a id="322_within_207" rel="nofollow"></a>3.2.2 within表达式（了解）</h4> <p><strong>within表达式应用于类级别，实现粗粒度的切入点表达式定义，案例分析：</strong></p> <ul> <li> <code>within("aop.service.UserServiceImpl")</code>指定当前包中这个类内部的所有方法。</li> <li> <code>within("aop.service.*")</code>指定当前目录下的所有类的所有方法。</li> <li> <code>within("aop.service..*")</code>指定当前目录以及子目录中类的所有方法。</li> </ul> <p><strong>within表达式应用场景分析：</strong><br /> （1）对所有业务bean都要进行功能增强，但是bean名字又没有规则。<br /> （2）按业务模块(不同包下的业务)对bean对象进行业务功能增强。</p> <h4> <a id="323_execution_217" rel="nofollow"></a>3.2.3 execution表达式（了解）</h4> <p><strong>execution表达式应用于方法级别，实现细粒度的切入点表达式定义，案例分析：</strong><br /> 语法：execution(返回值类型 包名.类名.方法名(参数列表))。</p> <ul> <li> <code>execution(void aop.service.UserServiceImpl.addUser())</code>匹配addUser方法。</li> <li> <code>execution(void aop.service.PersonServiceImpl.addUser(String))</code> 方法参数必须为String的addUser方法。</li> <li> <code>execution(* aop.service..*.*(..))</code>万能配置。</li> </ul> <h4> <a id="324_annotation_223" rel="nofollow"></a>3.2.4 @annotation表达式（重点）</h4> <p><strong>@annotaion表达式应用于方法级别，实现细粒度的切入点表达式定义，案例分析：</strong></p> <ul> <li> <code>@annotation(anno.RequiredLog)</code>匹配有此注解描述的方法。</li> <li> <code>@annotation(anno.RequiredCache)</code>匹配有此注解描述的方法。</li> </ul> <p>其中:RequiredLog为我们自己定义的注解,当我们使用@RequiredLog注解修饰业务层方法时,系统底层会在执行此方法时进行日扩展操作。</p> <h4> <a id="325__230" rel="nofollow"></a>3.2.5 练习:</h4> <p>定义一Cache相关切面,使用注解表达式定义切入点,并使用此注解对需要使用cache的业务方法进行描述,代码分析如下:<br /> 第一步:定义注解RequiredCache</p> <pre><code class="prism language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>cy<span class="token punctuation">.</span>pj<span class="token punctuation">.</span>common<span class="token punctuation">.</span>annotation<span class="token punctuation">;</span> <span class="token comment">/**  * 自定义注解,一个特殊的类,所有注解都默认继承Annotation接口  */</span> <span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span> <span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>METHOD<span class="token punctuation">)</span> <span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">RequiredCache</span> <span class="token punctuation">{<!-- --></span>    <span class="token comment">//...</span> <span class="token punctuation">}</span>   </code></pre> <p>第二步:定义SysCacheAspect切面对象。</p> <pre><code class="prism language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>cy<span class="token punctuation">.</span>pj<span class="token punctuation">.</span>common<span class="token punctuation">.</span>aspect<span class="token punctuation">;</span> <span class="token annotation punctuation">@Aspect</span> <span class="token annotation punctuation">@Component</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysCacheAspect</span> <span class="token punctuation">{<!-- --></span> 	    <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span><span class="token string">"@annotation(com.cy.pj.common.annotation.RequiredCache)"</span><span class="token punctuation">)</span> 	  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span>   	  <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"doCache()"</span><span class="token punctuation">)</span> 	  <span class="token keyword">public</span> Object <span class="token function">around</span><span class="token punctuation">(</span>ProceedingJoinPoint jp<span class="token punctuation">)</span><span class="token keyword">throws</span> Throwable<span class="token punctuation">{<!-- --></span> 		  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Get data from cache"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		  Object obj<span class="token operator">=</span>jp<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Put data to cache"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 		  <span class="token keyword">return</span> obj<span class="token punctuation">;</span> 	  <span class="token punctuation">}</span>      <span class="token punctuation">}</span> </code></pre> <p>第三步:使用@RequiredCache注解对特定业务目标对象中的查询方法进行描述。</p> <pre><code class="prism language-java">  <span class="token annotation punctuation">@RequiredCache</span> <span class="token annotation punctuation">@Override</span> <span class="token keyword">public</span> List<span class="token operator">&lt;</span>Map<span class="token generics function"><span class="token punctuation">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token punctuation">&gt;</span></span><span class="token operator">&gt;</span> <span class="token function">findObjects</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	…<span class="token punctuation">.</span> 	<span class="token keyword">return</span> list<span class="token punctuation">;</span> <span class="token punctuation">}</span> </code></pre> <h3> <a id="33__278" rel="nofollow"></a>3.3 切面优先级设置实现</h3> <p>切面的优先级需要借助@Order注解进行描述，数字越小优先级越高，默认优先级比较低。例如：<br /> 定义日志切面并指定优先级。</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Order</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token annotation punctuation">@Aspect</span> <span class="token annotation punctuation">@Component</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysLogAspect</span> <span class="token punctuation">{<!-- --></span>  … <span class="token punctuation">}</span> </code></pre> <p>定义缓存切面并指定优先级：</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Order</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token annotation punctuation">@Aspect</span> <span class="token annotation punctuation">@Component</span> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SysCacheAspect</span> <span class="token punctuation">{<!-- --></span> 	… <span class="token punctuation">}</span> </code></pre> <p><mark><strong>说明：</strong></mark> 当多个切面作用于同一个目标对象方法时，这些切面会构建成一个切面链，类似过滤器链、拦截器链，其执行分析如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/c8df7c3fd9ec2402138d9498fcf45526.jpg" alt="Spring AOP---面向切面编程入门"></p> <h3> <a id="34__304" rel="nofollow"></a>3.4 关键对象与术语总结</h3> <p>Spring 基于AspectJ框架实现AOP设计的关键对象概览，如图所示：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230224/4cdbc09ee03989876a154516289b963d.jpg" alt="Spring AOP---面向切面编程入门"></p> <h3> <a id="35__307" rel="nofollow"></a>3.5 用户行为日志记录实现（实践）</h3> <p>本小节作为练习，以AOP方式记录项目中的用户行为信息，并将其存储到数据库。<br /> 参考日志模块的文档。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-97781.htm">宠物店一年的纯利润能挣多少（宠物店生意好的一般多少收入一个月）</a></p>
+                                        <p>下一个：<a href="/news/article-98476.htm">我们城市里有一个宠物（我们城市里有一个宠物医院用英语怎么写）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-88138.htm" title="JavaScript案例——04tab选项卡功能">JavaScript案例——04tab选项卡功能</a></li>
+                        <li class="py-2"><a href="/news/article-70883.htm" title="1970年农历四月二十七是几号呢（1970年农历4月27日）">1970年农历四月二十七是几号呢（1970年农历4月27日）</a></li>
+                        <li class="py-2"><a href="/news/article-71522.htm" title="Python数据可视化-Matplotlib线性图(折线图等) 代码教学 Part 1">Python数据可视化-Matplotlib线性图(折线图等) 代码教学 Part 1</a></li>
+                        <li class="py-2"><a href="/news/article-76891.htm" title="宠物批发哪里拿货好（宠物批发在哪里）">宠物批发哪里拿货好（宠物批发在哪里）</a></li>
+                        <li class="py-2"><a href="/news/article-85979.htm" title="win11系统怎么启用SNMP">win11系统怎么启用SNMP</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-16-clash-meta-github.htm" title="4月16日 | Clash Meta每天更新19.2M/S免费节点订阅链接地址">4月16日 | Clash Meta每天更新19.2M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-73510.htm" title="动物疫苗的意义是什么 动物疫苗的意义是什么呢">动物疫苗的意义是什么 动物疫苗的意义是什么呢</a></li>
+                        <li class="py-2"><a href="/news/article-73511.htm" title="养猫的人容易得癌症吗（养猫的人容易得什么癌）">养猫的人容易得癌症吗（养猫的人容易得什么癌）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-free-high-speed-nodes.htm" title="4月12日 | Clash Meta每天更新22.4M/S免费节点订阅链接地址">4月12日 | Clash Meta每天更新22.4M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-node-share-links.htm" title="4月1日 | Clash Meta每天更新22.9M/S免费节点订阅链接地址">4月1日 | Clash Meta每天更新22.9M/S免费节点订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">59</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
