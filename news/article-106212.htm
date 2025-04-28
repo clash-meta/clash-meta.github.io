@@ -1,0 +1,306 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://clash-meta.github.io/news/article-106212.htm" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Python实现双X轴双Y轴绘图</title>
+        <meta name="description" content="诈尸人口回归。这一年忙着灌水忙到头都掉了，最近在女朋友的提醒下终于想起来博客的账号密码，正好今天灌水的时候需要画一个双X轴双Y轴的图，研究了两小时终于用Py实现了。找资料的过程中没有发现有系统的文章，" />
+        <link rel="icon" href="/assets/website/img/clash_meta/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Clash Meta免费节点订阅站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clash-meta.github.io/news/article-106212.htm" />
+    <meta property="og:site_name" content="Clash Meta免费节点订阅站" />
+    <meta property="og:title" content="Python实现双X轴双Y轴绘图" />
+    <meta property="og:image" content="https://clash-meta.github.io/uploads/20240803-1/4dc624c83449cb9946f320d22d59a4a1.webp" />
+        <meta property="og:release_date" content="2025-04-28T09:43:23" />
+    <meta property="og:updated_time" content="2025-04-28T09:43:23" />
+        <meta property="og:description" content="诈尸人口回归。这一年忙着灌水忙到头都掉了，最近在女朋友的提醒下终于想起来博客的账号密码，正好今天灌水的时候需要画一个双X轴双Y轴的图，研究了两小时终于用Py实现了。找资料的过程中没有发现有系统的文章，" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Python实现双X轴双Y轴绘图">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="//fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/clash_meta/style-starter.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJF0YS0LDW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJF0YS0LDW');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                                <a class="navbar-brand" href="/">
+                    Clash Meta                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <!-- about breadcrumb -->
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-5">
+                <h1 class="title pt-5">Python实现双X轴双Y轴绘图</h1>
+                <ul class="breadcrumbs-custom-path mt-3 text-center">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //about breadcrumb -->
+    <section class="w3l-homeblock1">
+        <div class="midd-w3 py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<p>诈尸人口回归。这一年忙着灌水忙到头都掉了，最近<s>在女朋友的提醒下</s>终于想起来博客的账号密码，正好今天灌水的时候需要画一个双X轴双Y轴的图，研究了两小时终于用Py实现了。找资料的过程中没有发现有系统的文章，反正代码都整理出来了，我决定顺势水一篇。</p> <p>目前找到的plt实现双X轴双Y轴绘图方式有两种：</p> <ol> <li>使用<code>fig.add_subplot</code>方式将两对坐标系叠加在一个fig上实现双X轴双Y轴效果。所有调整均可完美实现，推荐该方式</li> <li>通过<code>axes.twinx().twiny()</code>方式实现双X轴双Y轴图形绘制。问题在于对于第二个Y轴的各种设置无效，label可以通过手动添加的方式创建并指定颜色，而tick颜色则无法修改。可能需要等待官方修复，或者尝试先使用<code>ax1=axes.twinx()</code>方式，从<code>ax1</code>中获取第二个Y轴，然后再使用<code>ax2.twiny()</code>创建第二个X轴。</li> </ol> <h2 id="figadd_subplot-方式实现双x轴双y轴绘图">fig.add_subplot 方式实现双X轴双Y轴绘图</h2> <pre><code class="language-python">""" 使用plt，通过fig.add_subplot方式将两对坐标系叠加在一个fig上实现双X轴双Y轴效果。 所有调整均可完美实现，推荐该方式 """ import matplotlib.pyplot as plt import numpy as np  """生成数据并设置绘图参数""" x = np.arange(1, 12, 4) y = np.arange(1, 4, 1) x2=x*10 y2=y**2 # 设置两种绘图颜色 c1='r' c2='b' # 设置字体大小 fontsize=12 # 设置画布大小 width,height=16,14 # 单位为cm；因为保存图片时使用 bbox_inches = 'tight' 可能使图片尺寸略微放大，所以此处宽度设置得略小 # 设置刻度线在坐标轴内 plt.rcParams['xtick.direction'] = 'in' plt.rcParams['ytick.direction'] = 'in' """绘图""" lns=[] # 用于存储绘图句柄以合并图例的list # 创建画布并设置大小 fig=plt.figure() fig.set_size_inches(width/2.54, height/2.54) # 因为画布输入大小为厘米，此处需转换为英寸，所以除以2.54 # 通过 add_subplot 方式创建两个坐标轴，相当于在同一个子图上叠加了两对坐标系 ax=fig.add_subplot(111, label="1") ax2=fig.add_subplot(111, label="2", frame_on=False) # 绘制图1并将绘图句柄返回，以便添加合并图例 lns1=ax.plot(x,y,color=c1,label=c1) lns=lns1 lns2=ax2.plot(x2,y2, color=c2,label=c2) lns+=lns2 """图形美化""" # 调整第二对坐标轴的label和tick位置，以实现双X轴双Y轴效果 ax2.xaxis.tick_top() ax2.yaxis.tick_right() ax2.xaxis.set_label_position('top') ax2.yaxis.set_label_position('right') # 设置坐标轴标注 ax.set_xlabel("X1", color=c1,fontsize=fontsize) ax.set_ylabel("Y1", color=c1,fontsize=fontsize) ax2.set_xlabel('X2', color=c2,fontsize=fontsize) ax2.set_ylabel('Y2', color=c2,fontsize=fontsize) # 设置图表标题 fig.suptitle("Title",fontsize=fontsize+2) # 设置坐标轴刻度颜色 ax.tick_params(axis='x', colors=c1) ax.tick_params(axis='y', colors=c1) ax2.tick_params(axis='x', colors=c2) ax2.tick_params(axis='y', colors=c2) # 设置坐标轴线颜色 ax.spines["left"].set_color("r") # 修改左侧颜色 ax.spines["right"].set_color("b") # 修改右侧颜色 ax.spines["top"].set_color("b") # 修改上边颜色 ax.spines["bottom"].set_color("r") # 修改下边颜色 # 添加图例 labs = [l.get_label() for l in lns] ax.legend(lns, labs, loc=0,fontsize=fontsize) plt.tight_layout() plt.show()</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/16734b41d69c4946f0b634b39efc88ef.jpg" alt="Python实现双X轴双Y轴绘图"></p> <h2 id="使用-axestwinxtwiny-方式实现双x轴双y轴绘图">使用 axes.twinx().twiny() 方式实现双X轴双Y轴绘图</h2> <pre><code class="language-python">""" 使用plt，通过 axes.twinx().twiny() 方式实现双X轴双Y轴图形绘制。 问题在于对于第二个Y轴的各种设置无效，label可以通过手动添加的方式创建并指定颜色，而tick颜色则无法修改 """ import matplotlib.pyplot as plt import numpy as np  """生成数据并设置绘图参数""" x = np.arange(1, 12, 4) y = np.arange(1, 4, 1) x2=x*10 y2=y**2 # 设置两种绘图颜色 c1='r' c2='b' # 设置字体大小 fontsize=12 # 设置刻度线在坐标轴内 plt.rcParams['xtick.direction'] = 'in' plt.rcParams['ytick.direction'] = 'in' """绘图""" lns=[] # 用于存储绘图句柄以合并图例的list # 创建画布 fig,axes=plt.subplots() fig.set_size_inches(10, 8) # 绘制图1并将绘图句柄返回，以便添加合并图例 lns1=axes.plot(x,y,color=c1,label=c1) lns=lns1 # 创建双x轴双y轴 twin_axes=axes.twinx().twiny() # 使用画布的初始坐标轴对象创建第二对坐标轴，类似于在双x轴的基础上叠加双y轴 # 绘制图2并将绘图句柄返回，以便添加合并图例 lns2=twin_axes.plot(x2,y2,color=c2,label=c2)  lns+=lns2 """图形美化""" # 设置坐标轴标注 axes.set_xlabel("X1",color=c1, fontsize=fontsize) axes.set_ylabel("Y1",color=c1, fontsize=fontsize) twin_axes.set_xlabel("X2",color=c2, fontsize=fontsize) twin_axes.set_ylabel("Y2",color=c2, fontsize=fontsize) # 第二个y轴设置标注无效 # 设置图表标题 fig.suptitle("Title",fontsize=fontsize+2) # 设置第二个y轴的label；由于set_ylabel无效，因此只能通过该种方式手动添加 loc_text_x=np.min(plt.xlim())+np.ptp(plt.xlim())*1.03 loc_text_y=np.min(plt.ylim())+np.ptp(plt.ylim())*0.5 str_text='Y2' twin_axes.text(loc_text_x, loc_text_y, str_text,rotation=90,color=c2,fontsize=fontsize) # 设置坐标轴刻度颜色 axes.tick_params('x', colors=c1) axes.tick_params('y', colors=c1) twin_axes.tick_params('x', colors=c2) twin_axes.tick_params('y', colors=c2) # 设置坐标轴线颜色 twin_axes.spines["left"].set_color("r") # 修改左侧颜色 twin_axes.spines["right"].set_color("b") # 修改右侧颜色；同第二个y轴的label设置一样，该设置也不起作用 twin_axes.spines["top"].set_color("b") # 修改上边颜色 twin_axes.spines["bottom"].set_color("r") # 修改下边颜色 # 添加图例 # lns = lns1+lns2 labs = [l.get_label() for l in lns] axes.legend(lns, labs, loc=0,fontsize=fontsize) plt.tight_layout() plt.show()</code></pre> <h2 id=""><img decoding="async" src="https://cdn.jsdelivr.net/gh/geoli91/ImageHosting/img/output.jpg" alt="Python实现双X轴双Y轴绘图"></h2> <p>本文参考：</p> <ol> <li>matplotlib using twinx and twiny together (like twinxy)</li> <li>twinx and twiny in Matplotlib</li> <li>matplotlib 双y轴绘制及合并图例</li> <li>Python matplotlib怎么画双X轴和双Y轴</li> </ol> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-105391.htm">全自动煎药机十大名牌(为什么晚上不能煎中药)</a></p>
+                                        <p>下一个：<a href="/news/article-106213.htm">哪里有免费给狗狗打疫苗的地方西安（西安狗狗疫苗接种点）</a></p>
+                                    </div>
+                                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-89586.htm" title="给宠物打疫苗可以自己打吗安全吗（给宠物打疫苗可以自己打吗?）">给宠物打疫苗可以自己打吗安全吗（给宠物打疫苗可以自己打吗?）</a></li>
+                        <li class="py-2"><a href="/news/article-81660.htm" title="十天后猫没死人安全吗又接种了三针疫苗（十天后猫没死人安全吗又接种了三针疫苗）">十天后猫没死人安全吗又接种了三针疫苗（十天后猫没死人安全吗又接种了三针疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-101408.htm" title="access update语句执行_用pymysql实现对多行数据的insert和update加速">access update语句执行_用pymysql实现对多行数据的insert和update加速</a></li>
+                        <li class="py-2"><a href="/news/article-94833.htm" title="ansible容器学习环境搭建教程">ansible容器学习环境搭建教程</a></li>
+                        <li class="py-2"><a href="/news/article-99238.htm" title="动物疫病防控中心可以打疫苗吗多少钱（动物疾病预防控制中心可以打疫苗吗）">动物疫病防控中心可以打疫苗吗多少钱（动物疾病预防控制中心可以打疫苗吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-clash-meta-node.htm" title="4月9日 | Clash Meta每天更新20.9M/S免费节点订阅链接地址">4月9日 | Clash Meta每天更新20.9M/S免费节点订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-78938.htm" title="页面搭建系统的那些事儿_在线工具">页面搭建系统的那些事儿_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-95592.htm" title="吉泰连锁酒店官网 吉泰连锁酒店官网电话">吉泰连锁酒店官网 吉泰连锁酒店官网电话</a></li>
+                        <li class="py-2"><a href="/news/article-68267.htm" title="领养宠物狗需要什么手续（领养狗狗需要什么手续）">领养宠物狗需要什么手续（领养狗狗需要什么手续）</a></li>
+                        <li class="py-2"><a href="/news/article-69563.htm" title="动物疫苗市场开放了吗（动物疫苗价格查询）">动物疫苗市场开放了吗（动物疫苗价格查询）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <!-- copyright -->
+        <section class="w3l-copyright text-center">
+            <div class="container">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="copy-footer-29">
+                Clash Meta免费节点订阅站 版权所有 Powered by WordPress
+                </p>
+            </div>
+            <!-- move top -->
+            <button onclick="topFunction()" id="movetop" title="Go to top">
+                &#10548;
+            </button>
+            <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            </script>
+            <!-- /move top -->
+        </section>
+        <!-- //copyright -->
+    </section>
+    <!-- //footer -->
+    <!-- all js scripts and files here -->
+    <script src="/assets/website/js/frontend/clash_meta/theme-change.js"></script><!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/clash_meta/jquery-3.5.1.min.js"></script><!-- default jQuery -->
+    <script src="/assets/website/js/frontend/clash_meta/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/clash_meta/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
